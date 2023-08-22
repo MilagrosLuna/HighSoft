@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Banking - Banco ABC</title>
+    <link type="text/css" rel="stylesheet" href="css/stylePrincipal.css" />
+</head>
+<body>
+    <header>
+        <div class="menu-btn" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="bank-info">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1 class="bank-name">Banco ABC</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <button class="btnSideBar">Inicio</button>
+            <button class="btnSideBar">Cuentas</button>
+            <button class="btnSideBar">Transferencias</button>
+            <button class="btnSideBar">Pagos</button>
+            <button class="btnSideBar">Cerrar Sesión</button>
+        </div>
+        <div class="main-content">
+            <h1>Bienvenido a tu cuenta</h1>
+            <div>
+                <button class="btn">Ver Saldo</button>
+            </div>
+            <div>
+                <button class="btn">Realizar Transferencia</button>
+            </div>
+            <div>
+                <button class="btn">Historial de Transacciones</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2023 Banco ABC. Todos los derechos reservados.
+    </div>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.style.width === "250px") {
+                sidebar.style.width = "0";
+            } else {
+                sidebar.style.width = "250px";
+            }
+        }
+    </script>
+</body>
+</html>
