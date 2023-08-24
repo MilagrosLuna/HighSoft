@@ -79,6 +79,10 @@ submitFormButton.addEventListener('click', getFormData);
 submitFormButton.addEventListener('click', updateSaldo);
 
 toggleTransferShowButton.addEventListener('click', ()=>toggleShow(transferFormDiv));
+document.querySelector("#accesoRapidoTransferencia").addEventListener('click', ()=>{
+  toggleShow(transferFormDiv)
+  toggleSidebar()
+});
 
 // Historial Movimientos //
 
@@ -123,12 +127,20 @@ function updateHistory (){
 
 submitFormButton.addEventListener('click', updateHistory);
 showMovementsHistory.addEventListener('click', ()=>toggleShow(historyDiv));
+document.querySelector("#accesoRapidoMovimientos").addEventListener('click', ()=>{
+  toggleShow(historyDiv)
+  toggleSidebar()
+});
 
 // Covertir divisa
 
   const showConvertirDivisa = document.querySelector("#cambioDivisasBtn");
   const conversionDivisaDiv = document.querySelector("#seccionConvertirMoneda");
   showConvertirDivisa.addEventListener('click', ()=>toggleShow(conversionDivisaDiv))
+  document.querySelector("#accesoRapidoConvertir").addEventListener('click', ()=>{
+    toggleShow(conversionDivisaDiv)
+    toggleSidebar()
+  });
 
  // Función para realizar la conversión de moneda
  const btnRealizarConversion = document.getElementById("btnRealizarConversion");
