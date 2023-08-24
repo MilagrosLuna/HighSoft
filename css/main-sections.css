@@ -121,6 +121,7 @@ form label {
   display: flex;
   justify-content: space-evenly;
   background:#ddd;
+  border-radius: 5px;
 }
 .log-wrap {
   color: #000;
