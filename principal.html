@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Banking - Banco ABC</title>
     <link type="text/css" rel="stylesheet" href="css/stylePrincipal.css" />
+    <link rel="stylesheet" href="./css/main-sections.css">
     <script src="https://kit.fontawesome.com/eb496ab1a0.js"></script>
+    <script src="./converseionMoneda.js"></script>
+    <script src="./mainContentBtns.js"></script>
+    <script src="./toogleSidebar.js"></script>
 </head>
 <body>
     <header>
@@ -73,15 +77,5 @@
            </small> 
         </div>       
     </div>
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            if (sidebar.style.width === "250px") {
-                sidebar.style.width = "0";
-            } else {
-                sidebar.style.width = "250px";
-            }
-        }
-    </script>
 </body>
 </html>
