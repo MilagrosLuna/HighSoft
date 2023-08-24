@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Banking</title>
-    <link type="text/css" rel="stylesheet" href="css/styleIndex.css" />
-    
+    <link rel="stylesheet" href="./css/styleIndex.css">
+    <link rel="shortcut icon" href="images/favicon-96x96.png" type="image/x-icon">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="./img/favicon/android-icon-96x96.png" type="image/x-icon">
+    <title>Iniciar Sesión</title>
 </head>
+
 <body>
-    <div class="container">
-        <img src="./logo.pNg" alt="Logo" class="logo">
-        <h2>Iniciar Sesión</h2>
-        <form>
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required>
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required>
-            <button type="submit">Ingresar</button>
+    <div class="form-container">
+        <form class="login-container" action="./principal.html">
+            <div class="login-title-container">
+                <h1 class="login-title"><img src="./img/logoW.png" class="login-img" alt="logo"></h1>
+            </div>
+            <div class="login">
+                <label for="name" class="login-label">Usuario</label>
+                <input type="text" id="name"  minlength="8" maxlength="13" autocomplete="off"  required>
+                <label for="surname" class="login-label" >Contraseña</label>
+                <input type="password" id="surname" minlength="8" maxlength="8" placeholder="Debe ser de 8 carácteres" autocomplete="off" required>
+            </div>
+            <div class="login-submit-container">
+                <button onclick="location.href='./signup.html';" class="skip-button leer-mas" value="Registrarme">Registrarme</button>
+                <input type="submit" value="Ingresar" class="submit-button leer-mas">
+                <button onclick="location.href='./index.html';" class="skip-button leer-mas" value="Saltar">Salir</button>
+            </div>
         </form>
-        <div class="footer">
-            © 2023 Todos los derechos reservados | Home Banking
-            <button class="help-button">Ayuda</button>
-        </div>
     </div>
 </body>
+
 </html>
