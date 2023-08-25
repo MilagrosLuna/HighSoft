@@ -32,3 +32,21 @@ function closeSidebar() {
   overlay.style.display = "none"; 
   overlay.style.pointerEvents = "none"; 
 }
+
+
+
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark-mode");
+  const modeToggle = document.querySelector(".mode-toggle");
+  modeToggle.classList.toggle("active");
+}
+
+
+
+
+const btnlogOut = document.querySelector("#btn-logOut");
+const logOut = ()=>{
+  
+};
+btnSaldo.addEventListener('click', verSaldo)

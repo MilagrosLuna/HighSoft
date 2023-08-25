@@ -271,6 +271,108 @@ header {
     font-size: 15px;
 }
 
+/* Estilos generales modo oscuro */
+.light-mode header {
+    background-color: #333; /* Fondo claro para el encabezado */
+}
+
+
+body.dark-mode {
+    background: #111; 
+    color: #fff; 
+}
+.dark-mode header {
+    background-color: #222; 
+}
+.dark-mode .btn,
+.dark-mode .btnSideBar,
+.dark-mode .footer .red-social a {
+    background-color: #575656;
+}
+.dark-mode .btn:hover,
+.dark-mode .btnSideBar:hover,
+.dark-mode .footer .red-social a:hover {
+    background-color: #070707;
+}
+
+.dark-mode .flex-cards {
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 4px 8px rgba(243, 243, 243, 0.521);
+}
+
+.mode-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mode-toggle i {
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.light-mode .mode-toggle {
+    color: #f1c40f; 
+}
+
+.dark-mode .mode-toggle {
+    color: #fc9b00; 
+}
+
+/*  <button class="mode-toggle" onclick="toggleDarkMode()">
+                <span class="fas fa-sun"></span>
+                <span class="fas fa-moon"></span>
+            </button> */
+.mode-toggle {
+    background: #343D5B;
+    border-radius: 1000px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+    align-items: center;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.mode-toggle::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: #f1f1f1;
+    top: 0;
+    left: 0;
+    right: unset;
+    border-radius: 1000px;
+    transition: 0.3s ease all;
+    box-shadow: 0px 0px 2px 2px #0c0c0c;
+}
+
+.mode-toggle.active::after {
+    right: 0;
+    left: unset;
+    background: #343D5B; 
+    color: #f1f1f1; 
+}
+
+.mode-toggle span {
+    width: 20px; 
+    height: 20px; 
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: #ffffff;
+    transition: inherit;
+}
+
+.light-mode .mode-toggle.active {
+    background-color: #343D5B;  
+}
+
 
 
 @keyframes slideIn {

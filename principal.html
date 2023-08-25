@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/main-sections.css">
     <script src="https://kit.fontawesome.com/eb496ab1a0.js"></script>
 </head>
-<body>
+<body class="light-mode" >
     <header>
         <div class="header-Container">
             <div class="menu-btn" onclick="toggleSidebar()">
@@ -18,12 +18,15 @@
             </div>
             <div class="bank-info">                  
                 <img src="img/logoW.png" alt="Logo highsoft banking" class="logo">                                         
-            </div>
-            <div class="bank-logOut">
+            </div>           
+            <button class="mode-toggle" onclick="toggleDarkMode()">
+                <span class="fas fa-sun"></span>
+                <span class="fas fa-moon"></span>
+            </button>
+            <div class="bank-logOut">               
                 <button class="btn-logOut">Cerrar Sesión</button>   
-            </div>
-        </div>        
-        
+            </div>         
+        </div> 
     </header>
     <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
     <div class="container">
@@ -32,7 +35,8 @@
             <button id="transferShow" class="btnSideBar">Transferencias</button>
             <button id="historialMovimientosShow" class="btnSideBar">Movimientos</button>
             <button class="btnSideBar" id="cambioDivisasBtn">Cambio divisas</button>
-            <button class="btnSideBar">Pagos</button>
+            <button class="btnSideBar">Pagos</button>            
+            <button id="modeToggle" class="btn">Cambiar Modo</button>
         </div>
         <div class="main-content">
             <div class="section-wrap-show" id="incioWrap">
@@ -121,7 +125,7 @@
             <div class="box-footer">
                 <figure>
                     <a href="#">
-                        <img src="img/logoW.png" class="logo" alt="logo highsoft">
+                        <img src="img/logoW.png" class="logo" alt="Logo highsoft banking">
                     </a>
                 </figure>
             </div>
