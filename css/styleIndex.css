@@ -24,11 +24,11 @@ body {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background-image: url("../img/background.jpg");
+    /* background-image: url("../img/background.jpg");
     background-size: cover;
     background-repeat: no-repeat; 
-    background-position: center; 
-       
+    background-position: center;  */
+    background: radial-gradient(rgb(225, 211, 245), rgb(230, 209, 241));
     /* background: radial-gradient(rgb(181, 179, 184), rgb(70, 69, 69));  */
 }
 
