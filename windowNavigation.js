@@ -37,3 +37,4 @@ document.querySelector("#accesoRapidoConvertir").addEventListener('click', ()=>{
   toggleShow(conversionDivisaDiv)
   toggleSidebar()
 });
+

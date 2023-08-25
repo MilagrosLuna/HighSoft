@@ -27,7 +27,7 @@
   flex-grow: 1;
 }
 .btn-saldo{
-  background-color: #ec297a;
+  background-color: #9f8ee0;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -38,7 +38,7 @@
   text-align: center;
 }
 .btn-saldo:hover{
-  background-color: #44ace9;
+  background-color: #2a0ca0;
 }
 .div-botones-seccion-inicio{
   display: flex;

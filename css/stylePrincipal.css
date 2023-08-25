@@ -2,7 +2,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(rgb(200, 103, 238), rgb(241, 127, 226));
+    /* background: linear-gradient(rgb(200, 103, 238), rgb(241, 127, 226)); */     
+    background: radial-gradient(rgb(225, 211, 245), rgb(230, 209, 241)); 
+   /*  background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center; */
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -11,6 +16,12 @@ body {
 header {
     background-color: #333;
     padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Asegura que el encabezado esté encima de la barra lateral */
+    /* Otros estilos del encabezado */
 }
 .header-Container{
     display: flex;
@@ -21,6 +32,14 @@ header {
     height: 50px;  
 }
 .menu-btn {
+    /* width: 30px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-left: 0%; */
+
     width: 30px;
     height: 30px;
     display: flex;
@@ -28,6 +47,7 @@ header {
     justify-content: space-between;
     cursor: pointer;
     padding-left: 0%;
+
 }
 .bank-info {
     align-items: center;    
@@ -38,27 +58,47 @@ header {
     height: 100%;
 }
 .sidebar {
-    background-color: #333;
+    /* background-color: #333;
     width: 0;
     padding-top: 1rem;
     padding-bottom: 1rem;
     animation: slideIn 0.5s ease-in-out;
-    overflow-x: hidden;
+    overflow-x: hidden; */
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: left 0.3s ease-in-out;   
+    z-index: 99;
+    margin-top: 65px;
+}
+.sidebar.active {
+    left: 0;
 }
 .menu-btn div {
     width: 30px;
     height: 5px;
-    background-color: #fff;
+    background-color: #fff;    
 }
 .container {
     display: flex;
     flex: 1;
 }
 .main-content {
+    /* flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+    align-items: center; */
+
     flex-grow: 1;
     padding: 20px;
     text-align: center;
     align-items: center;
+    margin-left: 0;
+    margin-top: 5%;  /*Ajusta esta altura según la altura del encabezado */
+    transition: margin-left 0.3s ease-in-out;
 }
 .btn-logOut{
     padding: 7px 5px;
@@ -70,26 +110,29 @@ header {
     font-size: 16px;
     margin: 10px auto; 
     display: block;
+    margin-right: 30px;
     text-align: center;
 }
 .btnSideBar {
-    padding: 10px 20px;
-    background-color: #ec297a;
+    padding: 10px 20px;    
+    margin-top: 350px; 
+    /* background-color: #ec297a; */
+    background-color: #9f8ee0;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 10px auto;
+    margin: 12px auto;
     display: block;
-    width: 100%; 
+    width: 80%; 
 }
 .btnSideBar:hover {
-    background-color: #44ace9;
+    background-color: #2a0ca0;
 }
 .btn {
     padding: 10px 20px;
-    background-color: #ec297a;
+    background-color: #9f8ee0;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -100,8 +143,75 @@ header {
     text-align: center;
 }
 .btn:hover {
-    background-color: #44ace9;
+    /* background-color: #44ace9; */
+    background-color: #2a0ca0;
 }
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    pointer-events: none; 
+}
+.overlay.active {
+    display: block; /* Muestra el overlay cuando la barra lateral está activa */
+}
+
+.flex-container-cards {
+    
+    height: 40vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+  }
+.flex-cards {
+    text-align: center;
+    align-items: center;
+    align-self: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+  .flex-cards:nth-child(1) {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: stretch;
+    order: 0;
+  }
+  
+  .flex-cards:nth-child(2) {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    align-self: stretch;
+    order: 0;
+  }
+  .flex-cards:nth-child(3) {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: stretch;
+    order: 0;
+  }
+  .flex-cards img {
+    width: 300px;
+    height: 300px;
+   }
 
 .footer {  
     width: 100%;
@@ -180,8 +290,12 @@ header {
         opacity: 1;
     }
 }
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1600px){
+    .main-content{
+        margin-top: 8%; 
+    }
+}
+@media screen and (max-width: 450px) {
     .container {
         flex-direction: column;
     }
@@ -198,4 +312,66 @@ header {
         grid-gap: 30px;
         padding: 35px 0px;
     }
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent; /* Fondo transparente */
+        z-index: 100;
+    }
+    .sidebar {
+        /* width: 100%;
+        left: -100%;
+        top: 50px; Ajusta la posición vertical para evitar que tape el encabezado */
+        position: fixed;
+        top: 0;
+        left: -80%; /* Empieza oculta */
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        transition: left 0.3s ease-in-out;
+        z-index: 99;
+        margin-top: 65px;
+    }
+    .btnSideBar{
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 20px auto;
+        display: block;
+        width: 80%; 
+    }
+    .main-content{
+        flex-grow: 1;
+        padding: 30px;
+        text-align: center;
+        margin-left: 0; /* Asegura que no se superponga la barra lateral */
+        margin-top: 50px; /* Ajusta esta altura según la altura del encabezado */
+        transition: margin-left 0.3s ease-in-out;
+       
+    }
+
+    /* Estilos adicionales para hacer la transición de la barra lateral en pantallas pequeñas */
+    .sidebar.active {
+        left: 0;
+    }
+    .flex-container-cards {
+        flex-direction: column;
+        align-self: center; 
+        align-items: center; 
+        height: auto; 
+        align-content: center;
+    }
+    
+    .flex-cards {
+        width: auto; 
+        margin: 10px auto; 
+        align-content: center;
+        align-items: center;
+    }
+    .flex-cards img {
+        width: 180px;
+        height: 180px;
+    }
+    
 }
