@@ -1,39 +1,26 @@
-// function toggleSidebar() {
-//   var sidebar = document.getElementById("sidebar");
-//   var content = document.querySelector(".main-content");
-  
-//   sidebar.classList.toggle("active");
-//   content.classList.toggle("active");
-//   const overlay = document.getElementById("overlay");
-
-//   overlay.classList.toggle("active"); // Activa/desactiva el overlay
-// }
-
 function toggleSidebar() {
   var sidebar = document.getElementById("sidebar");
   var overlay = document.getElementById("overlay");
-  
+
   if (sidebar.style.left === "-80%") {
-      sidebar.style.left = "0";
-      overlay.style.display = "block"; 
-      overlay.style.pointerEvents = "auto"; 
+    sidebar.style.left = "0";
+    overlay.style.display = "block";
+    overlay.style.pointerEvents = "auto";
   } else {
-      sidebar.style.left = "-80%";
-      overlay.style.display = "none"; 
-      overlay.style.pointerEvents = "none"; 
+    sidebar.style.left = "-80%";
+    overlay.style.display = "none";
+    overlay.style.pointerEvents = "none";
   }
 }
 
 function closeSidebar() {
   var sidebar = document.getElementById("sidebar");
   var overlay = document.getElementById("overlay");
-  
+
   sidebar.style.left = "-80%";
-  overlay.style.display = "none"; 
-  overlay.style.pointerEvents = "none"; 
+  overlay.style.display = "none";
+  overlay.style.pointerEvents = "none";
 }
-
-
 
 function toggleDarkMode() {
   const body = document.body;
@@ -42,11 +29,11 @@ function toggleDarkMode() {
   modeToggle.classList.toggle("active");
 }
 
-
-
-
 const btnlogOut = document.querySelector("#btn-logOut");
-const logOut = ()=>{
-  
+const logOut = () => {
+  const confirmLogout = confirm("¿Estás seguro que deseas cerrar sesión?");
+  if (confirmLogout) {
+    window.location.href = "index.html";
+  }
 };
-btnSaldo.addEventListener('click', verSaldo)
+btnlogOut.addEventListener("click", logOut);

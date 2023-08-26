@@ -1,7 +1,7 @@
-.section-wrap-hidden{
+.section-wrap-hidden {
   display: none;
 }
-.section-wrap-show{
+.section-wrap-show {
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -10,7 +10,7 @@
   width: 60%;
   margin: 0 auto 2rem;
 }
-.saldo-wrap{
+.saldo-wrap {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -21,12 +21,12 @@
   flex-wrap: wrap;
   background-color: rgba(51, 51, 51, 0.09);
 }
-.saldoDisp{
+.saldoDisp {
   font-size: 2rem;
   font-weight: 700;
   flex-grow: 1;
 }
-.btn-saldo{
+.btn-saldo {
   background-color: #9f8ee0;
   color: #fff;
   border: none;
@@ -37,32 +37,32 @@
   height: 3rem;
   text-align: center;
 }
-.btn-saldo:hover{
+.btn-saldo:hover {
   background-color: #2a0ca0;
 }
-.div-botones-seccion-inicio{
+.div-botones-seccion-inicio {
   display: flex;
   flex-direction: column;
   width: 80%;
   margin: 2rem auto 0;
 }
-.btns-acceso-directo{
+.btns-acceso-directo {
   display: flex;
   align-content: stretch;
 }
-.btns-acceso-directo button{
+.btns-acceso-directo button {
   flex-grow: 1;
   margin: 0 2px;
   height: 3rem;
   font-weight: 700;
 }
-.acceso-directo-movimientos{
+.acceso-directo-movimientos {
   width: 100%;
   height: 3rem;
   font-weight: 700;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -71,12 +71,12 @@ form{
   margin: 0 auto;
   padding: 1rem;
 }
-.form-entries{
-  margin:1rem 0 ;
+.form-entries {
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
 }
-form button{
+form button {
   margin: 1.5rem 0 0;
 }
 form input {
@@ -94,14 +94,14 @@ form label {
   color: #333;
   font-weight: 700;
 }
-.log-history{
+.log-history {
   display: flex;
   flex-direction: column-reverse;
 }
-.log-titles-hidden{
+.log-titles-hidden {
   display: none;
 }
-.log-titles{
+.log-titles {
   display: flex;
   width: 80%;
   margin: 0 auto;
@@ -109,28 +109,28 @@ form label {
   font-weight: 700;
   font-size: 1.2rem;
 }
-.log-wrap{
+.log-wrap {
   width: 80%;
   margin: 0 auto;
-  display:flex;
-  flex-direction:column;
-  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
   text-align: left;
 }
-.momiviento-wrap{
+.momiviento-wrap {
   display: flex;
   justify-content: space-evenly;
-  background:#ddd;
+  background: #ddd;
   border-radius: 5px;
 }
 .log-wrap {
   color: #000;
   font-weight: 700;
 }
-.monto-transferencia{
+.monto-transferencia {
   color: red;
 }
-.conversion-form{
+.conversion-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,7 +143,8 @@ form label {
   background: #000;
   text-align: left;
 }
-select, input {
+select,
+input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;

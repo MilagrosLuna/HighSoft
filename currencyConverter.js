@@ -8,5 +8,7 @@ btnRealizarConversion.addEventListener("click", () => {
   const tasaConversion = 350;
   const resultado = monto / tasaConversion;
 
-  resultadoConversion.textContent = `${monto} ARS son aproximadamente ${resultado.toFixed(2)} USD`;
+  resultadoConversion.textContent = `${monto} ARS son aproximadamente ${resultado.toFixed(
+    2
+  )} USD`;
 });
