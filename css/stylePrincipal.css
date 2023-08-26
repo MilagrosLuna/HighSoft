@@ -21,6 +21,9 @@ header {
   left: 0;
   width: 100%;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .header-Container {
   display: flex;
@@ -67,14 +70,14 @@ header {
     animation: slideIn 0.5s ease-in-out;
     overflow-x: hidden; */
   position: fixed;
-  top: 0;
+  top: 7%;
   left: -300px;
   width: 300px;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   transition: left 0.3s ease-in-out;
   z-index: 99;
-  margin-top: 65px;
+  margin-top: 33px;
 }
 .sidebar.active {
   left: 0;
@@ -93,13 +96,12 @@ header {
     padding: 20px;
     text-align: center;
     align-items: center; */
-
   flex-grow: 1;
   padding: 20px;
   text-align: center;
   align-items: center;
   margin-left: 0;
-  margin-top: 5%; /*Ajusta esta altura según la altura del encabezado */
+  margin-top: 8%; /*Ajusta esta altura según la altura del encabezado */
   transition: margin-left 0.3s ease-in-out;
 }
 .btn-logOut {
@@ -167,8 +169,6 @@ header {
 .overlay.active {
   display: block; /* Muestra el overlay cuando la barra lateral está activa */
 }
-
-
 
 .footer {
   width: 100%;
@@ -251,7 +251,6 @@ body.dark-mode {
   background-color: #070707;
 }
 
-
 .mode-toggle {
   cursor: pointer;
   display: flex;
@@ -259,7 +258,7 @@ body.dark-mode {
   gap: 5px;
   padding: 5px;
   transition: background-color 0.3s ease;
-  margin-right: 30px;
+  margin-right: 40px;
 }
 
 .mode-toggle i {
@@ -276,19 +275,18 @@ body.dark-mode {
 }
 
 .dark-mode .carousel-container {
-    width: 80%;
-    margin: 0 auto; 
-    overflow: hidden;
-    justify-content: space-around;
-    align-items: center;     
-    background-color: rgba(2, 2, 2, 0.9);
-    border-radius: 10px;
-    padding: 1%;
-    box-shadow: 0px 4px 8px rgba(248, 245, 245, 0.541);
-    margin-bottom: 10%;
-    padding-left: 2%;
-  }
-
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(2, 2, 2, 0.9);
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 0px 4px 8px rgba(248, 245, 245, 0.541);
+  margin-bottom: 10%;
+  padding-left: 2%;
+}
 
 /*  <button class="mode-toggle" onclick="toggleDarkMode()">
                 <span class="fas fa-sun"></span>
@@ -343,43 +341,93 @@ body.dark-mode {
   background-color: #343d5b;
 }
 /* 
-*/ 
+*/
 .carousel-container {
-    width: 80%;
-    margin: 0 auto; 
-    overflow: hidden;
-    justify-content: space-around;
-    align-items: center;     
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 1%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.733);
-    margin-bottom: 10%;
-    padding-left: 2%;
-  }
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.733);
+  margin-bottom: 10%;
+  padding-left: 2%;
+}
 
-  #carousel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5%; /* Adjust the gap between images */
-    align-items: center;  
-  }
+#carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5%; /* Adjust the gap between images */
+  align-items: center;
+}
 
-  #carousel img {
-    flex: 1 1 calc(33.33% -1.5%); 
-    max-width: calc(33.33% - 1.5%); 
-  }
-  #carousel img :last-child{
-    margin-right: 0;
-  }
+#carousel img {
+  flex: 1 1 calc(33.33% -1.5%);
+  max-width: calc(33.33% - 1.5%);
+}
+#carousel img :last-child {
+  margin-right: 0;
+}
 
-  .btn-carousel-prev,
-  .btn-carousel-next {
-    display: none;
-  }
-  .hidden {
-    display: none;
-  }
+.btn-carousel-prev,
+.btn-carousel-next {
+  display: none;
+}
+.hidden {
+  display: none;
+}
+
+.info-user-container {
+  margin-top: 1px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0 15%;
+  border-radius: 5px;
+}
+.user-info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 1px;
+}
+.user-name:nth-child(1) {
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: stretch;
+  order: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px 0 0 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+}
+
+.current-time:nth-child(2) {
+  
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: stretch;
+  order: 0;
+
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  padding: 5px;
+}
 
 @keyframes slideIn {
   from {
@@ -400,9 +448,22 @@ body.dark-mode {
 }
 @media screen and (max-width: 1600px) {
   .main-content {
-    margin-top: 8%;
+    margin-top: 12%;
+  }
+  .sidebar {
+    margin-top: 33px;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .main-content {
+    margin-top: 20%;
+  }
+  .sidebar {
+    margin-top: 10px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .container {
     flex-direction: column;
@@ -425,24 +486,20 @@ body.dark-mode {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent; /* Fondo transparente */
     z-index: 100;
     justify-content: space-between;
     padding: 10px 15px;
   }
   .sidebar {
-    /* width: 100%;
-        left: -100%;
-        top: 50px; Ajusta la posición vertical para evitar que tape el encabezado */
     position: fixed;
-    top: 0;
-    left: -80%; /* Empieza oculta */
+    top: 7%;
+    left: -80%;
     width: 80%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     transition: left 0.3s ease-in-out;
     z-index: 99;
-    margin-top: 65px;
+    margin-top: 33px;
   }
   .btnSideBar {
     padding: 10px 20px;
@@ -455,24 +512,23 @@ body.dark-mode {
     flex-grow: 1;
     padding: 30px;
     text-align: center;
-    margin-left: 0; /* Asegura que no se superponga la barra lateral */
-    margin-top: 50px; /* Ajusta esta altura según la altura del encabezado */
+    margin-left: 0;
+    margin-top: 160px;
     transition: margin-left 0.3s ease-in-out;
   }
 
-  /* Estilos adicionales para hacer la transición de la barra lateral en pantallas pequeñas */
   .sidebar.active {
     left: 0;
   }
   .carousel-container {
     position: relative;
-    width: 80%; 
+    width: 80%;
     align-self: center;
     overflow: hidden;
     align-items: center;
     display: flex;
     justify-content: center;
-    
+
     padding-left: 1%;
   }
 

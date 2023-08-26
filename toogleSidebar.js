@@ -69,8 +69,7 @@ function updateCarousel() {
 updateCarousel();
 
 
-
-// Function to be executed when the media query changes
+/* arregla carrusel depende la medida de la pag */
 function handleMediaQueryChange(mq) {
   if (!mq.matches) {
     const images = carousel.querySelectorAll('img');
@@ -83,12 +82,24 @@ function handleMediaQueryChange(mq) {
     updateCarousel();
   }
 }
-
-// Create a media query
 var mediaQuery = window.matchMedia("(max-width: 450px)");
-
-// Initial execution of the function
 handleMediaQueryChange(mediaQuery);
-
-// Add a resize event listener to track changes in the media query
 mediaQuery.addListener(handleMediaQueryChange);
+
+
+
+function updateCurrentTime() {
+  const currentTimeElement = document.getElementById("current-time-p");
+
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  //const seconds = now.getSeconds();
+
+//  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  const formattedTime = `${hours}:${minutes}`;
+  currentTimeElement.textContent = formattedTime;
+}
+
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime();

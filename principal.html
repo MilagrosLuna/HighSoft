@@ -7,6 +7,10 @@
     <link type="text/css" rel="stylesheet" href="css/stylePrincipal.css" />
     <link rel="stylesheet" href="./css/main-sections.css" />
     <script src="https://kit.fontawesome.com/eb496ab1a0.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
   </head>
   <body class="light-mode">
     <header>
@@ -26,6 +30,17 @@
           </button>
         </div>
       </div>
+      <div class="info-user-container">
+        <div class="user-info-container">
+          <div class="user-name">
+            <i class="fas fa-user-circle"></i><span>Hola juan</span>
+          </div>
+          <div class="current-time" id="current-time">
+            <i class="fas fa-clock"></i>
+            <span id="current-time-p"></span>
+          </div>
+        </div>
+      </div>
     </header>
     <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
     <div class="container">
@@ -39,6 +54,7 @@
         <button class="btnSideBar">Pagos</button>
         <button class="btn-logOut" id="btn-logOut">Cerrar Sesión</button>
       </div>
+
       <div class="main-content">
         <div class="section-wrap-show" id="incioWrap">
           <h1>Bienvenido a tu cuenta</h1>
@@ -211,5 +227,6 @@
     <!-- <script src="./converseionMoneda.js"></script> -->
     <script src="./toogleSidebar.js"></script>
     <script src="./mainContentBtns.js"></script>
+    <script src="./current-time.js"></script>
   </body>
 </html>

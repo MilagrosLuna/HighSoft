@@ -40,6 +40,12 @@
 .btn-saldo:hover {
   background-color: #2a0ca0;
 }
+.dark-mode .btn-saldo {
+  background-color: #575656;
+}
+.dark-mode .btn-saldo:hover {
+  background-color: #070707;
+}
 .div-botones-seccion-inicio {
   display: flex;
   flex-direction: column;
@@ -150,4 +156,27 @@ input {
   border-radius: 5px;
   margin: 1rem auto 1rem;
   width: 15rem;
+}
+
+
+@media screen and (max-width: 450px) {
+  .main-content {
+    padding: 15px; 
+  }
+
+  .section-wrap-show,
+  .saldo-wrap,
+  form,
+  .log-wrap,
+  .conversion-form {
+    width: 90%; 
+    margin: 0 auto 1rem; 
+  }
+
+  .btns-acceso-directo button,
+  .acceso-directo-movimientos,
+  select,
+  input {
+    width: 100%; 
+  }
 }
