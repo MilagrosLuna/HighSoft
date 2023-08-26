@@ -51,6 +51,7 @@
           Movimientos
         </button>
         <button class="btnSideBar" id="cambioDivisasBtn">Cambio divisas</button>
+        <button id="loanSectionBtn" class="btnSideBar">Préstamos</button>
         <button class="btnSideBar">Pagos</button>
         <button class="btn-logOut" id="btn-logOut">Cerrar Sesión</button>
       </div>
@@ -149,6 +150,26 @@
             </div>
           </div>
         </div>
+        <div>
+          <div class="section-wrap-hidden" id="seccionPrestamos">
+            <h2>Solicitar Préstamo</h2>
+            <label for="montoPrestamo">Monto a Solicitar:</label>
+            <input onchange="showFinalAmount()" type="number" id="montoPrestamo" placeholder="Ingrese el monto" value="1000">
+            <label for="termInMonths">Elija un plazo de pago:</label>
+            <select onchange="showFinalAmount()" name="termInMonths" id="termInMonths">
+              <option value="12">12 cuotas</option>
+              <option value="24">24 cuotas</option>
+              <option value="36">26 cuotas</option>
+            </select>
+            <label for="tasa-interes">Tasa de interes:</label>
+            <input name="tasa-interes" type="text" disabled value="171,99%">
+            <div id="laonResult">
+              <label for="totalCost">Costo Total</label><br>
+              <input type="text" disabled id="totalCost">
+            </div>
+            <button id="btnEnviarPrestamo" class="btn">Enviar Solicitud</button>
+          </div>
+      </div>
       </div>
     </div>
 
@@ -224,9 +245,14 @@
         </small>
       </div>
     </div>
-    <!-- <script src="./converseionMoneda.js"></script> -->
+    <script src="./js/mostrarSaldoFunction.js"></script>
+    <script src="./js/windowNavigation.js"></script>
+    <script src="js/transferFunctions.js"></script>
+    <script src="js/movementsHistoyLog.js"></script>
+    <script src="js/currencyConverter.js"></script>
+    <script src="js/loanFunctions.js"></script>
+    <script src="./js/getFechaHyM.js"></script>
+    <script src="./js/toogleSidebar.js"></script>
     <script src="./toogleSidebar.js"></script>
-    <script src="./mainContentBtns.js"></script>
-    <script src="./current-time.js"></script>
   </body>
 </html>

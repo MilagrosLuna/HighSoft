@@ -55,3 +55,14 @@ document
     toggleShow(conversionDivisaDiv);
     toggleSidebar();
   });
+
+// Mostrar Prestamos
+const showLoanSection = document.querySelector("#loanSectionBtn");
+const loanSectionDiv = document.querySelector("#seccionPrestamos");
+showLoanSection.addEventListener("click", () => toggleShow(loanSectionDiv));
+document
+  .querySelector("#accesoRapidoPrestamo")
+  .addEventListener("click", () => {
+    toggleShow(loanSectionDiv);
+    toggleSidebar();
+  });
