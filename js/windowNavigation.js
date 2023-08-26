@@ -27,7 +27,6 @@ document
   .querySelector("#accesoRapidoTransferencia")
   .addEventListener("click", () => {
     toggleShow(transferFormDiv);
-    toggleSidebar();
   });
 
 // Mostrar Movimientos //
@@ -40,7 +39,6 @@ document
   .querySelector("#accesoRapidoMovimientos")
   .addEventListener("click", () => {
     toggleShow(historyDiv);
-    toggleSidebar();
   });
 
 // Mostrar Convertidor Divisas //
@@ -53,7 +51,6 @@ document
   .querySelector("#accesoRapidoConvertir")
   .addEventListener("click", () => {
     toggleShow(conversionDivisaDiv);
-    toggleSidebar();
   });
 
 // Mostrar Prestamos
@@ -64,5 +61,9 @@ document
   .querySelector("#accesoRapidoPrestamo")
   .addEventListener("click", () => {
     toggleShow(loanSectionDiv);
-    toggleSidebar();
+  });
+document
+  .querySelector("#loanImg")
+  .addEventListener("click", () => {
+    toggleShow(loanSectionDiv);
   });
