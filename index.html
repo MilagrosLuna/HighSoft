@@ -1,74 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styleIndex.css" />
-    <link
-      rel="shortcut icon"
-      href="images/favicon-96x96.png"
-      type="image/x-icon"
-    />
-    <meta name="theme-color" content="#ffffff" />
-    <link
-      rel="shortcut icon"
-      href="./img/favicon/android-icon-96x96.png"
-      type="image/x-icon"
-    />
-    <title>Iniciar Sesión</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/styleIndex.css" />
+  <link
+    rel="shortcut icon"
+    href="images/favicon-96x96.png"
+    type="image/x-icon"
+  />
+  <meta name="theme-color" content="#ffffff" />
+  <link
+    rel="shortcut icon"
+    href="./img/favicon/android-icon-96x96.png"
+    type="image/x-icon"
+  />
+  <title>Iniciar Sesión</title>  
+  <script src="./toogleSidebar.js"></script>
+  
+  <script src="https://kit.fontawesome.com/eb496ab1a0.js"></script>
+</head>
 
-  <body>
-    <div class="form-container">
-      <form class="login-container" action="./principal.html">
-        <div class="login-title-container">
-          <h1 class="login-title">
-            <img
-              src="./img/logoW.png"
-              class="login-img"
-              alt="Logo highsoft banking"
-            />
-          </h1>
-        </div>
-        <div class="login">
-          <label for="name" class="login-label">DNI</label>
-          <input
-            type="text"
-            id="name"
-            minlength="8"
-            maxlength="13"
-            placeholder="Ingrese su dni "
-            autocomplete="off"
-            required
-          />
-          <label for="surname" class="login-label">Clave</label>
-          <input
-            type="password"
-            id="surname"
-            minlength="8"
-            maxlength="8"
-            placeholder="Debe ser de 8 carácteres"
-            autocomplete="off"
-            required
-          />
-        </div>
-        <div class="login-submit-container">
-          <button
-            onclick="location.href='./signup.html';"
-            class="skip-button leer-mas"
-            value="Registrarme"
-          >
-            Registrarme
-          </button>
-          <input
-            type="submit"
-            value="Ingresar"
-            class="submit-button leer-mas"
-          />
-          <a href="#" class="forgot-password">¿Olvidaste tu clave?</a>
-        </div>
-      </form>
+<body>
+  <div class="form-container">
+    <div class="darkMode">
+      <button class="mode-toggle" onclick="toggleDarkMode()">
+        <span class="fas fa-sun"></span>
+        <span class="fas fa-moon"></span>
+      </button>
     </div>
-  </body>
+    <form class="login-container" action="./principal.html">
+      <div class="login-title-container">
+        <h1 class="login-title">
+          <img
+            src="./img/logoW.png"
+            class="login-img"
+            alt="Logo highsoft banking"
+          />
+        </h1>
+      </div>
+      <div class="login">
+        <label for="name" class="login-label">DNI</label>
+        <input
+          type="text"
+          id="name"
+          minlength="8"
+          maxlength="13"
+          placeholder="Ingrese su dni "
+          autocomplete="off"
+          required
+        />
+        <label for="surname" class="login-label">Clave</label>
+        <input
+          type="password"
+          id="surname"
+          minlength="8"
+          maxlength="8"
+          placeholder="Debe ser de 8 carácteres"
+          autocomplete="off"
+          required
+        />
+      </div>
+      <div class="login-submit-container">
+        <button
+          onclick="location.href='./signup.html';"
+          class="skip-button leer-mas"
+          value="Registrarme"
+        >
+          Registrarme
+        </button>
+        <input
+          type="submit"
+          value="Ingresar"
+          class="submit-button leer-mas"
+        />
+        <a href="#" class="forgot-password">¿Olvidaste tu clave?</a>
+      </div>
+    </form>
+  </div>
+</body>
 </html>

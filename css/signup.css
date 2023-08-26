@@ -30,6 +30,7 @@ body {
 }
 
 .form-container {
+  padding-top: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,6 +154,93 @@ body {
   background-color: rgba(128, 128, 128, 0.42);
   color: (--clr-main-light);
 }
+
+
+.mode-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+  margin-right: 40px;
+}
+
+.mode-toggle i {
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.light-mode .mode-toggle {
+  color: #f1c40f;
+}
+
+.dark-mode .mode-toggle {
+  color: #fc9b00;
+}
+.mode-toggle {
+  background: #343d5b;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  align-items: center;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.mode-toggle::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #f1f1f1;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 1000px;
+  transition: 0.3s ease all;
+  box-shadow: 0px 0px 2px 2px #0c0c0c;
+}
+
+.mode-toggle.active::after {
+  right: 0;
+  left: unset;
+  background: #343d5b;
+  color: #f1f1f1;
+}
+
+.mode-toggle span {
+  width: 20px;
+  height: 20px;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+  transition: inherit;
+}
+
+.light-mode .mode-toggle.active {
+  background-color: #343d5b;
+}
+
+.mode-toggle {
+  color: #fc9b00;
+}
+
+body.dark-mode {
+  background: rgb(66, 66, 66);
+}
+.dark-mode .form-container {
+  background-color:#4b33a8;
+}
+.dark-mode .login-label {
+  color: white;
+}
+
 @media (max-width: 520px) {
   .form-container {
     height: 60%;
