@@ -20,8 +20,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100; 
-  
+  z-index: 100;
 }
 .header-Container {
   display: flex;
@@ -47,16 +46,14 @@ header {
   justify-content: space-between;
   cursor: pointer;
   padding-left: 0%;
-
 }
 .bank-info {
   align-items: center;
   justify-content: center;
- 
 }
-.darkMode{
-    align-items: center;
-    justify-content: center;
+.darkMode {
+  align-items: center;
+  justify-content: center;
 }
 .logo {
   width: 300px;
@@ -120,8 +117,8 @@ header {
   width: 80%;
   margin: 20px auto;
 }
-.btn-logOut:hover{
-    background-color:#fd6464 !important;
+.btn-logOut:hover {
+  background-color: #fd6464 !important;
 }
 .btnSideBar {
   padding: 10px 20px;
@@ -171,56 +168,7 @@ header {
   display: block; /* Muestra el overlay cuando la barra lateral está activa */
 }
 
-.flex-container-cards {
-  height: 40vh;
-  width: 40vw;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-.flex-cards {
-  text-align: center;
-  align-items: center;
-  align-self: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-}
-.flex-cards:nth-child(1) {
-  display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: stretch;
-  order: 0;
-}
 
-.flex-cards:nth-child(2) {
-  display: block;
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: auto;
-  align-self: stretch;
-  order: 0;
-}
-.flex-cards:nth-child(3) {
-  display: block;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: stretch;
-  order: 0;
-}
-.flex-cards img {
-  width: 300px;
-  height: 300px;
-}
 
 .footer {
   width: 100%;
@@ -303,10 +251,6 @@ body.dark-mode {
   background-color: #070707;
 }
 
-.dark-mode .flex-cards {
-  background-color: rgba(0, 0, 0, 0.6);
-  box-shadow: 0px 4px 8px rgba(243, 243, 243, 0.521);
-}
 
 .mode-toggle {
   cursor: pointer;
@@ -314,8 +258,8 @@ body.dark-mode {
   align-items: center;
   gap: 5px;
   padding: 5px;
-    transition: background-color 0.3s ease;
-    margin-right: 30px;
+  transition: background-color 0.3s ease;
+  margin-right: 30px;
 }
 
 .mode-toggle i {
@@ -330,6 +274,21 @@ body.dark-mode {
 .dark-mode .mode-toggle {
   color: #fc9b00;
 }
+
+.dark-mode .carousel-container {
+    width: 80%;
+    margin: 0 auto; 
+    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;     
+    background-color: rgba(2, 2, 2, 0.9);
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0px 4px 8px rgba(248, 245, 245, 0.541);
+    margin-bottom: 10%;
+    padding-left: 2%;
+  }
+
 
 /*  <button class="mode-toggle" onclick="toggleDarkMode()">
                 <span class="fas fa-sun"></span>
@@ -383,6 +342,44 @@ body.dark-mode {
 .light-mode .mode-toggle.active {
   background-color: #343d5b;
 }
+/* 
+*/ 
+.carousel-container {
+    width: 80%;
+    margin: 0 auto; 
+    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;     
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.733);
+    margin-bottom: 10%;
+    padding-left: 2%;
+  }
+
+  #carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5%; /* Adjust the gap between images */
+    align-items: center;  
+  }
+
+  #carousel img {
+    flex: 1 1 calc(33.33% -1.5%); 
+    max-width: calc(33.33% - 1.5%); 
+  }
+  #carousel img :last-child{
+    margin-right: 0;
+  }
+
+  .btn-carousel-prev,
+  .btn-carousel-next {
+    display: none;
+  }
+  .hidden {
+    display: none;
+  }
 
 @keyframes slideIn {
   from {
@@ -467,22 +464,48 @@ body.dark-mode {
   .sidebar.active {
     left: 0;
   }
-  .flex-container-cards {
-    flex-direction: column;
+  .carousel-container {
+    position: relative;
+    width: 80%; 
     align-self: center;
+    overflow: hidden;
     align-items: center;
-    height: auto;
-    align-content: center;
+    display: flex;
+    justify-content: center;
+    
+    padding-left: 1%;
   }
 
-  .flex-cards {
-    width: auto;
-    margin: 10px auto;
-    align-content: center;
+  #carousel {
+    display: flex;
     align-items: center;
+    justify-content: center;
   }
-  .flex-cards img {
-    width: 180px;
-    height: 180px;
+
+  #carousel img {
+    height: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .btn-carousel-prev,
+  .btn-carousel-next {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .btn-carousel-prev {
+    left: 10px;
+  }
+
+  .btn-carousel-next {
+    right: 10px;
   }
 }
