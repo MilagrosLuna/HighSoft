@@ -161,6 +161,25 @@ input {
   width: 15rem;
 }
 
+/* Estilos de pagos de servicio */
+.span-not-paid{
+  color: #ff6666;
+  font-weight: 600;
+}
+.span-paid{
+  color: #66ff66;
+  font-weight: 600;
+}
+.service-btn{
+  width: 60%;
+}
+.pending-pay-service{
+  background-color: #ff6666;
+}
+.paid-service{
+  background-color: #66ff66;
+}
+
 
 @media screen and (max-width: 450px) {
   .main-content {
@@ -175,7 +194,12 @@ input {
     width: 90%; 
     margin: 0 auto 1rem; 
   }
-
+  .btns-acceso-directo{
+    flex-direction: column;
+  }
+  .btns-acceso-directo button{
+    margin: 2px 2px 0;
+  }
   .btns-acceso-directo button,
   .acceso-directo-movimientos,
   select,

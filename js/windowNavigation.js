@@ -67,3 +67,9 @@ document
   .addEventListener("click", () => {
     toggleShow(loanSectionDiv);
   });
+  // Mostrar Prestamos
+const showPayServicesBtn = document.querySelector("#payServicesBtn");
+const payServicesDiv = document.querySelector("#payServicesSection");
+showPayServicesBtn.addEventListener("click", () => toggleShow(payServicesDiv));
+
+

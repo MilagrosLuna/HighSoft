@@ -52,7 +52,7 @@
         </button>
         <button class="btnSideBar" id="cambioDivisasBtn">Cambio divisas</button>
         <button id="loanSectionBtn" class="btnSideBar">Préstamos</button>
-        <button class="btnSideBar">Pagos</button>
+        <button id="payServicesBtn" class="btnSideBar">Pagos</button>
         <button class="btn-logOut" id="btn-logOut">Cerrar Sesión</button>
       </div>
 
@@ -169,7 +169,21 @@
             </div>
             <button id="btnEnviarPrestamo" class="btn">Enviar Solicitud</button>
           </div>
-      </div>
+        </div>
+        <div>
+          <div class="section-wrap-hidden" id="payServicesSection">
+            <h2>Pagar Servicios</h2>
+            <div id="services-to-pay">
+              <p>Los servicios en <span class="span-not-paid">rojos</span> no estan pagados</p>
+              <p>Los servicios en <span class="span-paid">verde</span> ya estan pagos</p>
+              <button id="btnPayServiceLuz" class="btn service-btn pending-pay-service">Luz</button>
+              <button id="btnPayServiceAgua" class="btn service-btn pending-pay-service">Agua</button>
+              <button id="btnPayServiceGN" class="btn service-btn pending-pay-service">Gas natural</button>
+              <button paid id="btnPayServicePSP" class="btn service-btn paid-service">PS Plus</button>
+              <button paid id="btnPayServiceXGP" class="btn service-btn paid-service">Xbox Game Pass</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -253,6 +267,6 @@
     <script src="js/loanFunctions.js"></script>
     <script src="./js/getFechaHyM.js"></script>
     <script src="./js/toogleSidebar.js"></script>
-    <script src="./toogleSidebar.js"></script>
+    <script src="js/payServicesFunctions.js"></script>
   </body>
 </html>
