@@ -63,12 +63,6 @@ header {
   height: 100%;
 }
 .sidebar {
-  /* background-color: #333;
-    width: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    animation: slideIn 0.5s ease-in-out;
-    overflow-x: hidden; */
   position: fixed;
   top: 7%;
   left: -300px;
@@ -412,14 +406,13 @@ body.dark-mode {
 }
 
 .current-time:nth-child(2) {
-  
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
   align-self: stretch;
   order: 0;
 
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: white;
