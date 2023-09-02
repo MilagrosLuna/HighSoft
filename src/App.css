@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  /* background: linear-gradient(rgb(200, 103, 238), rgb(241, 127, 226)); */
+  background: radial-gradient(rgb(225, 211, 245), rgb(230, 209, 241));
+  /*  background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center; */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

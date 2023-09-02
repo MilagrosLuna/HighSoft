@@ -1,0 +1,51 @@
+.btn-logOut {
+    padding: 7px 5px;
+    background-color: #f11717;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin-right: 30px;
+    text-align: center;
+  
+    width: 80%;
+    margin: 20px auto;
+  }
+  .btn-logOut:hover {
+    background-color: #fd6464 !important;
+  }
+  .btnSideBar {
+    padding: 10px 20px;
+    margin-top: 350px;
+    /* background-color: #ec297a; */
+    background-color: #9f8ee0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 12px auto;
+    display: block;
+    width: 80%;
+  }
+  .btnSideBar:hover {
+    background-color: #2a0ca0;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #9f8ee0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+  }
+  .btn:hover {
+    /* background-color: #44ace9; */
+    background-color: #2a0ca0;
+  }
