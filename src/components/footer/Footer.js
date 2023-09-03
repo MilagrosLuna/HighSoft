@@ -1,66 +1,147 @@
 import "./Footer.css";
+import { useState } from "react";
+import emailjs from "emailjs-com";
+import React from "react";
 
-export default function Footer() {
-    return (
-        <div class="footer">
-        <div class="group-one">
-          <div class="box-footer">
-            <figure>
-              {/* <a href="#">
-                <img
-                  src="img/logoW.png"
-                  class="logo"
-                  alt="Logo highsoft banking"
-                />
-              </a> */}
-            </figure>
-          </div>
-          <div class="box-footer">
-            <h2>SOBRE NOSOTROS</h2>
-            <p>
-              HighSoft Banking se fundó en el año 2023 con la visión de
-              proporcionar soluciones financieras innovadoras y accesibles para
-              todos.
-            </p>
-            <p>
-              Nuestra misión en HighSoft Banking es ser el socio financiero
-              confiable para nuestros clientes. Buscamos empoderar a las personas
-              con soluciones financieras personalizadas y tecnología de vanguardia
-              para lograr sus metas económicas.
-            </p>
-          </div>
-          {/* <div class="box-footer">
-            <h2>SIGUENOS</h2>
-            <div class="red-social">
-              <a
-                href="https://www.facebook.com/itbauniversidad/?locale=es_LA"
-                target="_blank"
-                class="fa fa-facebook"
-              ></a>
-              <a
-                href="https://www.instagram.com/itbauniversidad/"
-                target="_blank"
-                class="fa fa-instagram"
-              ></a>
-              <a
-                href="https://twitter.com/i/flow/login?redirect_after_login=%2FITBA"
-                target="_blank"
-                class="fa fa-twitter"
-              ></a>
-              <a
-                href="https://www.youtube.com/channel/UCk7TR5Oxi3h63uzCpG3rC6w"
-                target="_blank"
-                class="fa fa-youtube"
-              ></a>
+const initialState = {
+  name: "",
+  email: "",
+  message: "",
+};
+
+export default function Footer(props) {
+  const [{ name, email, message }, setState] = useState(initialState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const clearState = () => setState({ ...initialState });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(name, email, message);
+    emailjs
+      .sendForm(
+        "service_highsoft",
+        "TU_ID_DE_PLANTILLA",
+        e.target,
+        "TU_ID_DE_USUARIO"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          clearState();
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+  return (
+    <div>
+      <div id="contact">
+        <div className="container center-content">
+          <div className="col-md-8 mx-auto"> {/* Agregamos mx-auto para centrar el contenido */}
+            <div className="row">
+              <div>
+              <img src="./logoW.png" alt="Logo de HighSoft" className="logo" />
+              </div>
+              <div className="section-title text-center"> {/* Agregamos text-center para centrar el texto */}
+                <h2>Contacto</h2>
+                <p>
+                  Por favor, completa el formulario a continuación para
+                  enviarnos un correo electrónico y te responderemos lo antes
+                  posible.
+                </p>
+              </div>
+              <form name="sentMessage" onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="form-control"
+                        placeholder="Nombre"
+                        required
+                        onChange={handleChange}
+                      />
+                      <p className="help-block text-danger"></p>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="Correo Electrónico"
+                        required
+                        onChange={handleChange}
+                      />
+                      <p className="help-block text-danger"></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <textarea
+                    name="message"
+                    id="message"
+                    className="form-control"
+                    rows="4"
+                    placeholder="Mensaje"
+                    required
+                    onChange={handleChange}
+                  ></textarea>
+                  <p className="help-block text-danger"></p>
+                </div>
+                <div id="success"></div>
+                <button type="submit" className="btn btn-custom btn-lg mx-auto"> {/* Agregamos mx-auto para centrar el botón */}
+                  Enviar Mensaje
+                </button>
+              </form>
             </div>
-          </div> */}
-        </div>
-        <div class="group-two">
-          <small>
-            &copy; 2023 <b>HighSoft banking</b>. Todos los derechos reservados.
-          </small>
+          </div>
+          <div className="col-md-3 col-md-offset-1 contact-info">
+            <div className="contact-item">
+              <h3 className="text-center">Información de Contacto</h3> {/* Agregamos text-center para centrar el texto */}
+              <p>
+                <span>
+                  <i className="fa fa-map-marker"></i> Dirección
+                </span>
+                {props.data ? props.data.address : "cargando"}
+              </p>
+            </div>
+            <div className="contact-item">
+              <p>
+                <span>
+                  <i className="fa fa-phone"></i> Teléfono
+                </span>{" "}
+                {props.data ? props.data.phone : "cargando"}
+              </p>
+            </div>
+            <div className="contact-item">
+              <p>
+                <span>
+                  <i className="fa fa-envelope-o"></i> Correo Electrónico
+                </span>{" "}
+                {props.data ? props.data.email : "cargando"}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    );
-  }
-  
+
+      <div id="footer">
+        <div className="container text-center">
+          <p>
+          &copy; 2023 <b>HighSoft banking</b>. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

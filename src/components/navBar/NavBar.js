@@ -1,28 +1,18 @@
-export default function NavBar() {
+import Button from "../Button";
+import "./navBar.css";
+
+export default function NavBar(props) {
   return (
-    <div class="container">
-      <div class="sidebar" id="sidebar">
-        <button class="btnSideBar" id="inicioShow">
-          Inicio
-        </button>
-        <button id="transferShow" class="btnSideBar">
-          Transferencias
-        </button>
-        <button id="historialMovimientosShow" class="btnSideBar">
-          Movimientos
-        </button>
-        <button class="btnSideBar" id="cambioDivisasBtn">
-          Cambio divisas
-        </button>
-        <button id="loanSectionBtn" class="btnSideBar">
-          Préstamos
-        </button>
-        <button id="payServicesBtn" class="btnSideBar">
-          Pagos
-        </button>
-        <button class="btn-logOut" id="btn-logOut">
-          Cerrar Sesión
-        </button>
+    <div className="menu-btn" >
+      <div className="hamburger" onClick={props.toggleSidebar}></div>
+      <div className="hamburger" onClick={props.toggleSidebar}></div>
+      <div className="hamburger" onClick={props.toggleSidebar}></div>
+      <div className="sidebar" id="sidebar">
+        <Button text="sdafsafs"  onclick={()=>console.log("asdas")} />
+        <Button text="sdafsafs"  onclick={()=>console.log("asdas")} />
+        <Button text="sdafsafs"  onclick={()=>console.log("asdas")} />
+        <Button text="sdafsafs"  onclick={()=>console.log("asdas")} />
+        <Button text="sdafsafs"  onclick={()=>console.log("asdas")} />
       </div>
     </div>
   );

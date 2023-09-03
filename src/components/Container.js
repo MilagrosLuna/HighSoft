@@ -1,25 +1,22 @@
-import React from "react";
-import NavBar from "./navBar/NavBar";
+import React, { useState, useEffect } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
+import MainContent from "./pageContent/MainContent";
+import JsonData from "./data/data.json";
 
-class Container extends React.Component {
- 
-  render() {
+export default function  Container(){
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
+
     return (
-      <div>
-        <header>
-          <Header />
-        </header>
-        <body>
-          <NavBar/>
-        </body>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
+      <>
+        <Header />
+        <MainContent />
+        <Footer data={landingPageData.Contact}/>
+      </>
     );
-  }
+  
 }
 
-export default Container;

@@ -18,20 +18,6 @@ header {
   align-items: center;
   height: 50px;
 }
-.menu-btn {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  padding-left: 0%;
-}
-.menu-btn div {
-  width: 30px;
-  height: 5px;
-  background-color: #fff;
-}
 .bank-info {
   align-items: center;
   justify-content: center;
