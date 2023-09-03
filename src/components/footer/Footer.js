@@ -24,9 +24,9 @@ export default function Footer(props) {
     emailjs
       .sendForm(
         "service_highsoft",
-        "TU_ID_DE_PLANTILLA",
+        "template_lbtq95w",
         e.target,
-        "TU_ID_DE_USUARIO"
+        "c27M8Q4FXi0vsbfvL"
       )
       .then(
         (result) => {
