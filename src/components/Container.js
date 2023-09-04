@@ -3,6 +3,7 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import MainContent from "./pageContent/MainContent";
 import JsonData from "./data/data.json";
+import HomePage from "./home-page/HomePage";
 
 export default function  Container(){
   const [landingPageData, setLandingPageData] = useState({});
@@ -14,7 +15,8 @@ export default function  Container(){
       <>
         <Header />
         <MainContent />
-        <Footer data={landingPageData.Contact}/>
+        <HomePage />
+        <Footer data={landingPageData.Contact}/> 
       </>
     );
   
