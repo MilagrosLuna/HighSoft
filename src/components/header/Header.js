@@ -59,18 +59,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <div className="info-user-container">
-        <div className="user-info-container">
-          <div className="user-name">
-            <i className="fas fa-user-circle"></i>
-            <span>Hola juan</span>
-          </div>
-          <div className="current-time" id="current-time">
-            <i className="fas fa-clock"></i>
-            <span id="current-time-p"></span>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }

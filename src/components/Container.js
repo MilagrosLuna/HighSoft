@@ -13,10 +13,7 @@ export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
 
   useEffect(() => {
-    // Simulando una carga asincrónica de datos
-    setTimeout(() => {
       setLandingPageData(JsonData);
-    }, 1000); // Esto es solo para simular una carga, puedes ajustarlo a tus necesidades reales.
   }, []);
 
     return (

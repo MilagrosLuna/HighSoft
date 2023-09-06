@@ -24,7 +24,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   transition: left 0.3s ease-in-out;
   z-index: 99;
-  margin-top: 33px;
+  margin-top: 5px;
 }
 .sidebar.active {
   left: 0;
@@ -32,4 +32,16 @@
 .container {
   display: flex;
   flex: 1;
+}
+/* Estilos para los botones en la barra lateral */
+.sidebar a {
+  display: block;
+  padding: 10px 20px; /* Espaciado interno para los botones */
+  color: #fff; /* Color de texto */
+  text-decoration: none;
+  transition: background-color 0.2s; /* Animación de color de fondo al pasar el ratón */
+}
+
+.sidebar a:hover {
+  background-color: #555; /* Color de fondo al pasar el ratón */
 }

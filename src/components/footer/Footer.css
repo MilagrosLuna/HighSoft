@@ -5,15 +5,18 @@
   justify-content: center;
   align-items: center;
 }
-.logo-container{
+#container-footer{
+  
   background-color: #181818 !important;
+}
+.logo-container{
+  padding-top: 10px;
   align-items: center;
   justify-content: center;
   justify-self: center;
 }
 #contact {
   padding: 20px;
-  background-color: #181818 !important;
   color: rgba(255, 255, 255, 0.75);
 }
 

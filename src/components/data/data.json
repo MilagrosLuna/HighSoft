@@ -6,5 +6,15 @@
     "facebook": "fb.com",
     "twitter": "twitter.com",
     "youtube": "youtube.com"
+  },
+  "Users":{
+    "User1":{
+        "dni":"45873696",
+        "password":"holamundo"
+    },
+    "User2":{
+      "dni":"a",
+      "password":"a"
+    }
   }
 }
