@@ -18,7 +18,6 @@ export default function Container() {
     }, 1000); // Esto es solo para simular una carga, puedes ajustarlo a tus necesidades reales.
   }, []);
 
-<<<<<<< HEAD
   return (
     <>
       <Header />
@@ -26,14 +25,4 @@ export default function Container() {
       {landingPageData.Contact && <Footer data={landingPageData.Contact} />}
     </>
   );
-=======
-    return (
-      <>
-        <Header />
-        <MainContent />
-        <Footer data={landingPageData.Contact}/> 
-      </>
-    );
-  
->>>>>>> d0e9ecd4a5ef2be25f0b22ac42023f5c5cbb3c45
 }
