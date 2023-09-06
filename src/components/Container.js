@@ -7,6 +7,7 @@ import HomePage from "./main-modules/home-page/HomePage";
 import Transfers from "./main-modules/transfer-money/Transfers";
 import LoanMoney from "./main-modules/loan-money/LoanMoney";
 import CurrencyExchange from "./main-modules/currency-exchange/CurrencyExchange";
+import BalanceProvider from "./main-modules/BalanceProvider";
 
 export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
@@ -18,11 +19,14 @@ export default function Container() {
     }, 1000); // Esto es solo para simular una carga, puedes ajustarlo a tus necesidades reales.
   }, []);
 
-  return (
-    <>
-      <Header />
-      <MainContent />
-      {landingPageData.Contact && <Footer data={landingPageData.Contact} />}
-    </>
-  );
+    return (
+      <>
+          <BalanceProvider>
+            <Header />
+            <MainContent />
+            <HomePage />
+            <Footer data={landingPageData.Contact}/> 
+          </BalanceProvider>
+      </>
+    );
 }

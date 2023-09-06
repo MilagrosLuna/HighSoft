@@ -1,26 +1,28 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react";
+import useBalance from "../../../hooks/useBalance";
+import BalanceContext from "../../../context/BalanceContext.js/BalanceContext";
 
 const HomePage = () => {
-
-  const [balance, setBalance] = useState(10000)
-  const [showBalance, setShowBalance] = useState(false);
-
-  const handleShowBalance =()=>{
-    (showBalance)?setShowBalance(false):setShowBalance(true);
-  }
+  const balance = useContext(BalanceContext);
 
   return (
+    <div className="container">
       <div>
-        <div class="section-wrap-show" id="incioWrap">
-          <h1>Bienvenido a tu cuenta</h1>
-          <h2 class="section-title">Saldo disponible</h2>
-          <div class="saldo-wrap">
-            {(showBalance)?balance:"***"}
-            <button id="saldoButton" onClick={handleShowBalance}>Mostrar Saldo</button>
-          </div>
+        <h1>Bienvenido a tu cuenta</h1>
+        <h2>Saldo disponible</h2>
+        <div>
+          {balance.showBalance ? balance.balance : "***"}
+          <button
+            className="btn btn-default"
+            id="saldoButton"
+            onClick={balance.toggleShow}
+          >
+            Mostrar Saldo
+          </button>
         </div>
       </div>
-    ) 
-}
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
