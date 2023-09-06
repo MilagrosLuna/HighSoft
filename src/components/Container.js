@@ -4,19 +4,21 @@ import Footer from "./footer/Footer";
 import MainContent from "./pageContent/MainContent";
 import JsonData from "./data/data.json";
 
-export default function  Container(){
+export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
+
   useEffect(() => {
-    setLandingPageData(JsonData);
+    // Simulando una carga asincrónica de datos
+    setTimeout(() => {
+      setLandingPageData(JsonData);
+    }, 1000); // Esto es solo para simular una carga, puedes ajustarlo a tus necesidades reales.
   }, []);
 
-    return (
-      <>
-        <Header />
-        <MainContent />
-        <Footer data={landingPageData.Contact}/>
-      </>
-    );
-  
+  return (
+    <>
+      <Header />
+      <MainContent />
+      {landingPageData.Contact && <Footer data={landingPageData.Contact} />}
+    </>
+  );
 }
-
