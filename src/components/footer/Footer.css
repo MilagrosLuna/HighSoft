@@ -1,13 +1,18 @@
-/* Estilos para tamaños de pantalla grandes */
+
+footer{
+  z-index: 1007;
+  background-color: #181818 !important;
+  width: 100%;
+  position: absolute;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
 .center-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-#container-footer{
-  z-index: 2;
-  background-color: #181818 !important;
 }
 .logo-container{
   padding-top: 10px;

@@ -7,7 +7,7 @@ import Transfers from "./components/main-modules/transfer-money/Transfers.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import MySideNav from "./components/navBar/NavBar";
-
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,7 +46,5 @@ function App() {
     </Router>
   );
 }
-function app2(){
-  return <MySideNav></MySideNav> 
-}
+
 export default App;

@@ -41,7 +41,7 @@ export default function Footer({ data }) {
   };
 
   return (
-    <div id="container-footer">
+    <footer id="container-footer" >
       <ContactSection
         handleSubmit={handleSubmit}
         handleChange={handleChange}
@@ -49,7 +49,7 @@ export default function Footer({ data }) {
         data={data}
       />
       <InfoSection />
-    </div>
+    </footer>
   );
 }
 
