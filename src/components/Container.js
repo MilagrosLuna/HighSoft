@@ -8,7 +8,7 @@ import Transfers from "./main-modules/transfer-money/Transfers";
 import LoanMoney from "./main-modules/loan-money/LoanMoney";
 import CurrencyExchange from "./main-modules/currency-exchange/CurrencyExchange";
 import BalanceProvider from "./main-modules/BalanceProvider";
-
+import MySideNav from "./navBar/NavBar";
 export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
 
@@ -20,6 +20,7 @@ export default function Container() {
       <>
           <BalanceProvider>
             <Header />
+            <MySideNav></MySideNav> 
             <MainContent />
             <HomePage />
             <Footer data={landingPageData.Contact}/> 

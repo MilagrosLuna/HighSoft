@@ -6,7 +6,7 @@
   align-items: center;
 }
 #container-footer{
-  
+  z-index: 2;
   background-color: #181818 !important;
 }
 .logo-container{

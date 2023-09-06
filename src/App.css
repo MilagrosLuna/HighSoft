@@ -4,8 +4,9 @@ body {
   font-family: "Open Sans", sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  background: radial-gradient(rgb(225, 211, 245), rgb(230, 209, 241));
-  color: #fff;
+  /* background: radial-gradient(rgb(225, 211, 245), rgb(230, 209, 241)); */
+  
+  color: #726e6e;
   display: flex;
   flex-direction: column;
   width: 100% !important;
