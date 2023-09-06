@@ -29,7 +29,3 @@ const Transfers = () => {
 };
 
 export default Transfers;
-
-
-// onClick={(event)=>{event.preventDefault()
-//   handleSubmit(balance.transfersArray)}}
