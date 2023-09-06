@@ -5,7 +5,12 @@
   justify-content: center;
   align-items: center;
 }
-
+.logo-container{
+  background-color: #181818 !important;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
 #contact {
   padding: 20px;
   background-color: #181818 !important;

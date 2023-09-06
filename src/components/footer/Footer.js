@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import "./Footer.css";
+import logoImg from "../../assets/img/logoW.png"; // Asegúrate de importar la imagen correctamente
+
 const initialState = {
   name: "",
   email: "",
@@ -40,6 +42,9 @@ export default function Footer({ data }) {
 
   return (
     <div>
+      <div className="logo-container">
+        <img src={logoImg} alt="Logo de HighSoft" className="logo" />
+      </div>
       <ContactSection
         handleSubmit={handleSubmit}
         handleChange={handleChange}
@@ -57,9 +62,6 @@ function ContactSection({ handleSubmit, handleChange, formData, data }) {
       <div className="container center-content">
         <div className="col-md-8 mx-auto">
           <div className="row">
-            <div>
-              <img src="./logoW.png" alt="Logo de HighSoft" className="logo" />
-            </div>
             <div className="section-title text-center">
               <h2>Contacto</h2>
               <p>
@@ -78,8 +80,8 @@ function ContactSection({ handleSubmit, handleChange, formData, data }) {
                       className="form-control"
                       placeholder="Nombre"
                       required
-                      onChange={handleChange} 
-                      value={formData.name} 
+                      onChange={handleChange}
+                      value={formData.name}
                     />
                     <p className="help-block text-danger"></p>
                   </div>
@@ -93,8 +95,8 @@ function ContactSection({ handleSubmit, handleChange, formData, data }) {
                       className="form-control"
                       placeholder="Correo Electrónico"
                       required
-                      onChange={handleChange} 
-                      value={formData.email} 
+                      onChange={handleChange}
+                      value={formData.email}
                     />
                     <p className="help-block text-danger"></p>
                   </div>
@@ -108,7 +110,7 @@ function ContactSection({ handleSubmit, handleChange, formData, data }) {
                   rows="4"
                   placeholder="Mensaje"
                   required
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value={formData.message}
                 ></textarea>
                 <p className="help-block text-danger"></p>

@@ -46,3 +46,25 @@ p.intro {
   margin: 12px 0 0;
   line-height: 24px;
 }
+
+.light-mode header {
+  background-color: #333; /* Fondo claro para el encabezado */
+}
+
+body.dark-mode {
+  background: #424242;
+  color: #fff;
+}
+.dark-mode header {
+  background-color: #222;
+}
+.dark-mode .btn,
+.dark-mode .btnSideBar,
+.dark-mode .footer .red-social a {
+  background-color: #575656;
+}
+.dark-mode .btn:hover,
+.dark-mode .btnSideBar:hover,
+.dark-mode .footer .red-social a:hover {
+  background-color: #070707;
+}
