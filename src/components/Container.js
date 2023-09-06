@@ -9,10 +9,14 @@ import LoanMoney from "./main-modules/loan-money/LoanMoney";
 import CurrencyExchange from "./main-modules/currency-exchange/CurrencyExchange";
 import BalanceProvider from "./main-modules/BalanceProvider";
 
-export default function  Container(){
+export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
+
   useEffect(() => {
-    setLandingPageData(JsonData);
+    // Simulando una carga asincrónica de datos
+    setTimeout(() => {
+      setLandingPageData(JsonData);
+    }, 1000); // Esto es solo para simular una carga, puedes ajustarlo a tus necesidades reales.
   }, []);
 
     return (
@@ -25,6 +29,4 @@ export default function  Container(){
           </BalanceProvider>
       </>
     );
-  
 }
-
