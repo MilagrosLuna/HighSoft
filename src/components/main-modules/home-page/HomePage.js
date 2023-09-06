@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import useBalance from "../../../hooks/useBalance";
-import BalanceContext from "../../../context/BalanceContext.js/BalanceContext";
+import BalanceContext from "../../../context/BalanceContext.js";
 
 const HomePage = () => {
   const balance = useContext(BalanceContext);

@@ -4,10 +4,8 @@ import Footer from "./footer/Footer";
 import MainContent from "./pageContent/MainContent";
 import JsonData from "./data/data.json";
 import HomePage from "./main-modules/home-page/HomePage";
-import Transfers from "./main-modules/transfer-money/Transfers";
-import LoanMoney from "./main-modules/loan-money/LoanMoney";
-import CurrencyExchange from "./main-modules/currency-exchange/CurrencyExchange";
 import BalanceProvider from "./main-modules/BalanceProvider";
+import Transfers from "./main-modules/transfer-money/Transfers";
 
 export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
@@ -25,6 +23,7 @@ export default function Container() {
             <Header />
             <MainContent />
             <HomePage />
+            <Transfers/>
             <Footer data={landingPageData.Contact}/> 
           </BalanceProvider>
       </>
