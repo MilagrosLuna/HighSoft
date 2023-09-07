@@ -1,14 +1,27 @@
-/* Estilos para tamaños de pantalla grandes */
+
+footer{
+  z-index: 1007;
+  background-color: #181818 !important;
+  width: 100%;
+  position: relative;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
 .center-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
+.logo-container{
+  padding-top: 10px;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
 #contact {
   padding: 20px;
-  background-color: #181818 !important;
   color: rgba(255, 255, 255, 0.75);
 }
 
