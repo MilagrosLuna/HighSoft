@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDate } from "./useDate";
+import BalanceContext from "../context/BalanceContext";
 
 const useMovement = () => {
+  const balance = useContext(BalanceContext);
+  const movementsArray = balance.movementsArray;
   const { getDate } = useDate();
 
   const [amount, setAmount] = useState(0);
@@ -10,7 +13,7 @@ const useMovement = () => {
 
   const date = getDate();
 
-  const getType = (type)=>{
+  const getType = (type) => {
     setTypeOfMovement(type);
   };
 
@@ -24,16 +27,16 @@ const useMovement = () => {
     setAmount(event.target.value);
   };
 
-  const handleSubmit = (targetArray, event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newMovement = {
-      type: {typeOfMovement},
-      date: {date},
-      amount: {amount},
-      beneficiary: {beneficiary}
-    }
-    targetArray.push(newMovement);
-    console.log(targetArray)
+      type: typeOfMovement,
+      date: date,
+      amount: amount,
+      beneficiary: beneficiary,
+    };
+    balance.setMovementsArray([...balance.movementsArray, newMovement]);
+    console.log(balance.movementsArray);
   };
 
   return {
@@ -41,7 +44,7 @@ const useMovement = () => {
     getBeneficiary,
     getService,
     getAmount,
-    handleSubmit
+    handleSubmit,
   };
 };
 
