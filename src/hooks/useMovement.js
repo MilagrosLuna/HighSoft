@@ -31,11 +31,12 @@ const useMovement = () => {
     setBeneficiary(service);
   };
 
-  // capturamos el 
+  // capturamos el monto del movimiento
   const getAmount = (event) => {
     setAmount(event.target.value);
   };
 
+  // se crea un objeto con todos los datos recolectados y se envian a el array 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newMovement = {
