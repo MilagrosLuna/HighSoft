@@ -1,14 +1,24 @@
-import React from "react";
-import BalanceContext from "../../context/BalanceContext.js/BalanceContext";
+import React, { useState } from "react";
+import BalanceContext from "../../context/BalanceContext";
 import useBalance from "../../hooks/useBalance";
 
 const BalanceProvider = ({ children }) => {
   const { balance, showBalance, decrement, increment, toggleShow } =
     useBalance();
 
+  const [movementsArray, setMovementsArray] = useState([]);
+
   return (
     <BalanceContext.Provider
-      value={{ balance, showBalance, decrement, increment, toggleShow }}
+      value={{
+        balance,
+        showBalance,
+        decrement,
+        increment,
+        toggleShow,
+        movementsArray,
+        setMovementsArray,
+      }}
     >
       {children}
     </BalanceContext.Provider>
