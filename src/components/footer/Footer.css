@@ -3,8 +3,8 @@ footer{
   z-index: 1007;
   background-color: #181818 !important;
   width: 100%;
-  position: absolute;
-  position: fixed;
+  position: relative;
+  position: relative;
   left: 0;
   bottom: 0;
 }

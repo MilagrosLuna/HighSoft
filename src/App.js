@@ -1,13 +1,13 @@
-import "./App.css";
-import React, { useState } from "react";
-import Container from "./components/Container";
-import Login from "./components/login-register/Login.js";
-import Register from "./components/login-register/Register.js";
-import Transfers from "./components/main-modules/transfer-money/Transfers.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+
+import './App.css';
+import React, { useState } from 'react';
+import Container from './components/Container';
+import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
+import Transfers from './components/main-modules/transfer-money/Transfers';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Importa BrowserRouter y Navigate
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import MySideNav from "./components/navBar/NavBar";
-import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router> {/* Asegúrate de envolver tu aplicación con Router */}
       <Routes>
         <Route
           path="/"
@@ -41,7 +41,22 @@ function App() {
             )
           }
         />
-        <Route path="/register" element={<Register/>} />
+        <Route
+          path="/signup"
+          element={<Signup />} // Utiliza el componente Signup en esta ruta
+        />
+        <Route
+          path="/dashboard"
+          element={
+            isLoggedIn ? (
+              <Container>
+                <Transfers />
+              </Container>
+            ) : (
+              <Navigate to="/login" replace /> // Redirige a la página de inicio de sesión si no está autenticado
+            )
+          }
+        />
       </Routes>
     </Router>
   );
