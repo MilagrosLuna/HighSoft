@@ -21,8 +21,6 @@ export default function Container() {
       <>
             <Header />
             <MySideNav></MySideNav> 
-            <MainContent />
-            <HomePage />
             <Footer data={landingPageData.Contact}/> 
       </>
     );
