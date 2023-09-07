@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'; // Importa useNavigate y L
 import './Login.css'; // Importa tu archivo CSS personalizado
 import { authenticateUser } from '../data/data'; // Importa la función authenticateUser
 
-function Login({ setUser }) {
+function Login({setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Utiliza useNavigate en lugar de useHistory

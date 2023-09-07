@@ -27,7 +27,7 @@ function App() {
                 <Transfers />
               </Container>
             ) : (
-              <Login onLogin={handleLogin} />
+              <Login setUser={handleLogin} />
             )
           }
         />
@@ -37,7 +37,7 @@ function App() {
             isLoggedIn ? (
               <Navigate to="/" replace />
             ) : (
-              <Login onLogin={handleLogin} />
+              <Login setUser={handleLogin}/>
             )
           }
         />
