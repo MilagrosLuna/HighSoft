@@ -17,10 +17,14 @@ const useMovement = () => {
   const getBeneficiary = (event) => {
     setBeneficiary(event.target.value);
   };
+  const getService = (service) => {
+    setBeneficiary(service);
+  };
   const getAmount = (event) => {
     setAmount(event.target.value);
   };
-  const handleSubmit = (event, targetArray) => {
+
+  const handleSubmit = (targetArray, event) => {
     event.preventDefault();
     const newMovement = {
       type: {typeOfMovement},
@@ -35,6 +39,7 @@ const useMovement = () => {
   return {
     getType,
     getBeneficiary,
+    getService,
     getAmount,
     handleSubmit
   };

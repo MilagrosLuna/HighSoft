@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import BalanceContext from "../../../context/BalanceContext.js";
 import useMovement from "../../../hooks/useMovement.js";
-import Button from "../../Button.js";
 
 const Transfers = () => {
   const balance = useContext(BalanceContext);
@@ -13,7 +12,7 @@ const Transfers = () => {
 
   return (
     <div>
-      <form onSubmit={(event)=>{handleSubmit(event, balance.movementsArray)}}>
+      <form onSubmit={(event)=>{handleSubmit(balance.movementsArray, event   )}}>
         <label htmlFor="">
           Ingresa cuenta de destino
           <input type="text" onChange={getBeneficiary} />

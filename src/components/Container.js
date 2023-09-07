@@ -6,6 +6,7 @@ import JsonData from "./data/data.json";
 import HomePage from "./main-modules/home-page/HomePage";
 import BalanceProvider from "./main-modules/BalanceProvider";
 import Transfers from "./main-modules/transfer-money/Transfers";
+import PayServices from "./main-modules/pay-services/PayServices";
 
 export default function Container() {
   const [landingPageData, setLandingPageData] = useState({});
@@ -24,6 +25,7 @@ export default function Container() {
             <MainContent />
             <HomePage />
             <Transfers/>
+            <PayServices />
             <Footer data={landingPageData.Contact}/> 
           </BalanceProvider>
       </>
