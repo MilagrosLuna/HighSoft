@@ -8,7 +8,14 @@ const useBalance = () => {
 
   // funcion para disminuir el monto del balance
   const decrement = (amount) => {
-    setBalance(balance - amount);
+    if(balance>=amount){
+      setBalance(balance - amount);
+      return true
+    }else{
+      alert("No posee saldo suficiente.")
+      return false
+    }
+  
   };
   //funcion para incrementar el monto del balance
   const increment = (amount) => {
