@@ -47,6 +47,7 @@ const useMovement = () => {
     };
     balance.setMovementsArray([newMovement, ...balance.movementsArray]);
     console.log(balance.movementsArray);
+    balance.decrement(amount)
   };
 
   return {
