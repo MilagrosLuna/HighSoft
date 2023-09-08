@@ -1,9 +1,9 @@
 import React from "react";
 
 const MovementLogContainer = ({ children }) => {
-  return <table class="table table-responsive table-striped">{children}
-        <thead>
-            <tr>
+  return <table class="text-black table table-responsive table-striped bg-rosa-secondary rounded">{children}
+        <thead className="bg-rosa-secondary rounded">
+            <tr className="thead-danger">
                 <th>Fecha</th>
                 <th>Tipo</th>
                 <th>Destino</th>
