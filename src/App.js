@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import MySideNav from "./components/navBar/NavBar";
 import BalanceProvider from "./components/main-modules/BalanceProvider";
+import './Custom.css'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

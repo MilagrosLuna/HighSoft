@@ -11,7 +11,7 @@ const Transfers = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container py-3 mx-auto my-3 text-white text-center bg-rosa">
       <form
         onSubmit={(event) => {
           handleSubmit(event);
@@ -23,7 +23,7 @@ const Transfers = () => {
         </label>
         <label htmlFor="">
           Ingresa el monto que deseas tranferir
-          <input type="text" onChange={getAmount} />
+          <input type="number" onChange={getAmount} />
         </label>
         <input type="submit" value="Transferir" />
       </form>

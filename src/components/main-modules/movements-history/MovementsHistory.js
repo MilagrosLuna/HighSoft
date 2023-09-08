@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import BalanceContext from "../../../context/BalanceContext";
 import MovementLog from "./MovementLog";
+import MovementLogContainer from "./MovementLogContainer";
 
 const MovementsHistory = () => {
   const balance = useContext(BalanceContext);
@@ -10,8 +11,9 @@ const MovementsHistory = () => {
   }, [balance.movementsArray]);
 
   return (
-    <div>
-      <h2>Este es el historial de tus movimientos</h2>
+    <div className="container py-3 mx-auto my-3 text-white text-center bg-rosa">
+      <h4>Este es el historial de tus movimientos</h4>
+      <MovementLogContainer>
       {balance.movementsArray.length != 0
         ? balance.movementsArray.map((element) => (
             <MovementLog
@@ -22,6 +24,7 @@ const MovementsHistory = () => {
             />
           ))
         : ""}
+          </MovementLogContainer>
     </div>
   );
 };

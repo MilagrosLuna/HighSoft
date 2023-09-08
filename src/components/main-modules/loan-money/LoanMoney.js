@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 
 const LoanMoney = () => {
   return (
-    <div>
+    <div className="container py-3 mx-auto my-3 text-white text-center bg-rosa">
       <h4>Solicitar Préstamo</h4>
       <form>
         <label>

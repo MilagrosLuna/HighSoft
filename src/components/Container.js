@@ -21,10 +21,10 @@ export default function Container() {
       <>
             <Header />
             <MySideNav></MySideNav> 
-            <MainContent />
             <HomePage />
             <Transfers />
             <LoanMoney />
+            <PayServices />
             <MovementsHistory />
             <Footer data={landingPageData.Contact}/> 
       </>
