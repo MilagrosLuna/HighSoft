@@ -36,18 +36,20 @@ const useMovement = () => {
     setAmount(event.target.value);
   };
 
-  // se crea un objeto con todos los datos recolectados y se envian a el array 
+  // se crea un objeto con todos los datos recolectados y se envian a el array
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newMovement = {
-      type: typeOfMovement,
-      date: date,
-      amount: amount,
-      beneficiary: beneficiary,
-    };
-    balance.setMovementsArray([newMovement, ...balance.movementsArray]);
-    console.log(balance.movementsArray);
-    balance.decrement(amount)
+    if (balance.decrement) {
+      const newMovement = {
+        type: typeOfMovement,
+        date: date,
+        amount: amount,
+        beneficiary: beneficiary,
+      };
+      balance.setMovementsArray([newMovement, ...balance.movementsArray]);
+      console.log(balance.movementsArray);
+      balance.decrement(amount);
+    }
   };
 
   return {
