@@ -7,25 +7,38 @@ const Transfers = () => {
   const { getType, getBeneficiary, getAmount, handleSubmit } = useMovement();
 
   useEffect(() => {
-    getType("transfer");
+    getType("Transferencia");
   }, []);
 
   return (
-    <div className="container py-3 mx-auto my-3 text-white text-center bg-rosa">
+    <div  style={{width:60+"%"}}  className="container py-3 mx-auto my-3 text-white text-center bg-rosa rounded">
+      <h3 className="text-white mb-4">Envia una Transferencia</h3>
       <form
         onSubmit={(event) => {
           handleSubmit(event);
         }}
       >
-        <label htmlFor="">
+        <label className="custom-label" htmlFor="">
           Ingresa cuenta de destino
-          <input type="text" onChange={getBeneficiary} />
+          <input
+            type="text"
+            style={{ width: 50 + "%" }}
+            className="text-center mx-auto my-2 form-control"
+            onChange={getBeneficiary}
+            required
+          />
         </label>
-        <label htmlFor="">
+        <label className="custom-label" htmlFor="">
           Ingresa el monto que deseas tranferir
-          <input type="number" onChange={getAmount} />
+          <input
+            type="number"
+            style={{ width: 50 + "%" }}
+            className="text-center mx-auto my-2 form-control"
+            onChange={getAmount}
+            required
+          />
         </label>
-        <input type="submit" value="Transferir" />
+        <input type="submit" className="btn btn-primary" value="Transferir" />
       </form>
     </div>
   );

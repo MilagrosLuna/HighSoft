@@ -24,6 +24,7 @@ export default function Container() {
             <HomePage />
             <Transfers />
             <LoanMoney />
+            <CurrencyExchange />
             <PayServices />
             <MovementsHistory />
             <Footer data={landingPageData.Contact}/> 
