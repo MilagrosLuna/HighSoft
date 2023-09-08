@@ -2,15 +2,17 @@ import React from "react";
 
 const MovementLog = (props) => {
   return (
-    <div className="container">
-      <span>{props.date}</span>
-      <div className="container">
-        <p>{props.type}</p>
-        <p>{props.beneficiary}</p>
-        <p>${props.amount}</p>
-      </div>
-    </div>
-  );
+        <tr>
+          <td>{props.date}</td>
+          <td>{props.type}</td>
+          <td>{props.beneficiary}</td>
+          <td>${props.amount}</td>
+        </tr>
+    )
 };
 
 export default MovementLog;
+
+// <p>{props.type}</p>
+// <p>{props.beneficiary}</p>
+// <p>${props.amount}</p>

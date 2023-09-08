@@ -8,35 +8,37 @@ const PayServices = () => {
   const { getType, getService, getAmount, handleSubmit } = useMovement();
 
   const handleClick = (event) => {
-    getType("service");
+    getType("Servicios");
     getAmount(event);
-    getService("Servicios");
+    getService(event.target.textContent);
     handleSubmit(event);
   };
 
   return (
-    <div className="container">
-      <Button
-        value={1000}
-        onClick={(event) => {
-          handleClick(event);
-        }}
-        text={"Luz"}
-      />
-      <Button
-        value={300}
-        onClick={(event) => {
-          handleClick(event);
-        }}
-        text={"Agua"}
-      />
-      <Button
-        value={700}
-        onClick={(event) => {
-          handleClick(event);
-        }}
-        text={"Gas"}
-      />
+    <div className="container py-3 mx-auto my-3 text-white text-center bg-rosa">
+      <div className="container">
+        <Button
+          value={1000}
+          onClick={(event) => {
+            handleClick(event);
+          }}
+          text={"Luz"}
+        />
+        <Button
+          value={300}
+          onClick={(event) => {
+            handleClick(event);
+          }}
+          text={"Agua"}
+        />
+        <Button
+          value={700}
+          onClick={(event) => {
+            handleClick(event);
+          }}
+          text={"Gas"}
+        />
+      </div>
     </div>
   );
 };

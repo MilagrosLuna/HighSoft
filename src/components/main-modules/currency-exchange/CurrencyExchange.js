@@ -2,7 +2,7 @@ import React from 'react'
 
 const CurrencyExchange = () => {
   return (
-    <div>
+    <div className="container py-3 mx-auto my-3 bg-secondary text-white text-center bg-rosa">
         <h4>Conversión de Moneda</h4>
         <form>
             <label>Monto:<input type="number"/></label>

@@ -45,7 +45,7 @@ const useMovement = () => {
       amount: amount,
       beneficiary: beneficiary,
     };
-    balance.setMovementsArray([...balance.movementsArray, newMovement]);
+    balance.setMovementsArray([newMovement, ...balance.movementsArray]);
     console.log(balance.movementsArray);
   };
 
