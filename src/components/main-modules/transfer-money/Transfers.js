@@ -10,12 +10,24 @@ const Transfers = () => {
     getType("Transferencia");
   }, []);
 
+  const confirmTransfer = (event) =>{
+    event.preventDefault();
+    const confirmMessage = "¿Desea realizar la transferencia?"
+    const confirm = window.confirm(confirmMessage);
+    if (confirm) {
+      alert("Su transferencia fue enviada");
+      handleSubmit(event);
+    } else {
+      alert("La transferencia ha sido cancelada.");
+    }
+  };
+
   return (
     <div  style={{width:60+"%"}}  className="container py-3 mx-auto my-3 text-white text-center bg-rosa rounded">
       <h3 className="text-white mb-4">Envia una Transferencia</h3>
       <form
         onSubmit={(event) => {
-          handleSubmit(event);
+          confirmTransfer(event)
         }}
       >
         <label className="custom-label" htmlFor="">
