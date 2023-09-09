@@ -1,12 +1,25 @@
 /* Login.css */
+
+.center-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#db3d44;
+
+}
 .login-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  -webkit-box-shadow: -1px 3px 32px 1px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 3px 32px 1px rgba(0,0,0,0.75);
+box-shadow: -1px 3px 32px 1px rgba(0,0,0,0.75);
 }
 
 .login-container h2 {
@@ -30,7 +43,7 @@
 .login-container button {
   margin-top: 10px;
   padding: 10px;
-  background-color: #007bff;
+  background-color:#dd3a35f1 ;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -39,5 +52,23 @@
 }
 
 .login-container button:hover {
-  background-color: #0056b3;
+  background-color: #b1211c;
 }
+
+/* Estilo para el borde válido (verde) */
+.valid {
+  border: 2px solid green;
+}
+
+/* Estilo para el borde inválido (rojo) */
+.invalid {
+  border: 2px solid red;
+}
+
+/* Estilo para el mensaje de error */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+

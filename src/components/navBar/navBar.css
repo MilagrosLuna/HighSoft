@@ -1,0 +1,10 @@
+.link-sin-subrayado {
+    text-decoration: none;
+    color: #007bff; /* Puedes ajustar el color según tus preferencias */
+    user-select: none;
+  }
+
+  #toggle {
+    user-select: none;
+  
+  }

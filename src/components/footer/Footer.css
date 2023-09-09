@@ -1,12 +1,12 @@
 
 footer{
-  z-index: 1007;
+  z-index: 100700000000;
   background-color: #181818 !important;
   width: 100%;
   position: relative;
-  position: relative;
   left: 0;
   bottom: 0;
+  margin-top: 10%;
 }
 .center-content {
   display: flex;
