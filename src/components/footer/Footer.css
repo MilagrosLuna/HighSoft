@@ -1,5 +1,5 @@
 
-footer{
+#container-footer{
   z-index: 100700000000;
   background-color: #181818 !important;
   width: 100%;
@@ -111,7 +111,7 @@ label {
 }
 
 #contact .contact-info {
-  margin: 20px 10px;
+  margin: 10px 10px;
 }
 
 #contact .contact-item {

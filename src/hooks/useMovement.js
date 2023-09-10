@@ -1,12 +1,11 @@
 // Custom hook para capturar los datos de distintos forms, convertirlos en objetos y almacenarlos en un array que lista los movimientos
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useDate } from "./useDate";
 import BalanceContext from "../context/BalanceContext";
 
 const useMovement = () => {
   const balance = useContext(BalanceContext);
-  const movementsArray = balance.movementsArray;
   const { getDate } = useDate();
 
   const [amount, setAmount] = useState(0);
@@ -39,16 +38,17 @@ const useMovement = () => {
   // se crea un objeto con todos los datos recolectados y se envian a el array
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (balance.decrement) {
-      const newMovement = {
-        type: typeOfMovement,
-        date: date,
-        amount: amount,
-        beneficiary: beneficiary,
-      };
-      balance.setMovementsArray([newMovement, ...balance.movementsArray]);
-      console.log(balance.movementsArray);
-      balance.decrement(amount);
+    if(amount > 0){
+      if(balance.decrement(amount)){
+        const newMovement = {
+          type: typeOfMovement,
+          date: date,
+          amount: amount,
+          beneficiary: beneficiary,
+        };
+        balance.setMovementsArray([newMovement, ...balance.movementsArray]);
+        console.log(balance.movementsArray);
+      }
     }
   };
 
