@@ -1,6 +1,6 @@
 // Custom hook para manejar los estados del balance
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useBalance = () => {
   const [balance, setBalance] = useState(10000);
