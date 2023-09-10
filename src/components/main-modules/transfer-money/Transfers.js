@@ -9,28 +9,25 @@ const Transfers = () => {
   useEffect(() => {
     getType("Transferencia");
   }, []);
-  
-  const confirmTrasnfer = (event) =>{;
-      const confirmMessage =
-        "¿Desea realizar la transferencia?";
-      const confirm = window.confirm(confirmMessage);
-      if(confirm){
-        alert("Se envio la transferencia.")
-        handleSubmit(event);
-      }else{
-        alert("La transferencia fue cancelada.")
-        event.preventDefault()
-      }
 
-  }
+  const confirmTransfer = (event) =>{
+    event.preventDefault();
+    const confirmMessage = "¿Desea realizar la transferencia?"
+    const confirm = window.confirm(confirmMessage);
+    if (confirm) {
+      alert("Su transferencia fue enviada");
+      handleSubmit(event);
+    } else {
+      alert("La transferencia ha sido cancelada.");
+    }
+  };
 
   return (
     <div  style={{width:60+"%"}}  className="container py-3 mx-auto my-3 text-white text-center bg-rosa rounded">
       <h3 className="text-white mb-4">Envia una Transferencia</h3>
       <form
         onSubmit={(event) => {
-          confirmTrasnfer(event)
-          ;
+          confirmTransfer(event);
         }}
       >
         <label className="custom-label" htmlFor="">

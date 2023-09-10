@@ -36,7 +36,7 @@ const useMovement = () => {
     setAmount(event.target.value);
   };
 
-  // se crea un objeto con todos los datos recolectados y se envian a el array 
+  // se crea un objeto con todos los datos recolectados y se envian a el array
   const handleSubmit = (event) => {
     event.preventDefault();
     if(amount > 0){
