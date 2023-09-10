@@ -1,9 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import BalanceContext from "../../../context/BalanceContext.js";
+import React, { useEffect } from "react";
 import useMovement from "../../../hooks/useMovement.js";
 
 const Transfers = () => {
-  const balance = useContext(BalanceContext);
   const { getType, getBeneficiary, getAmount, handleSubmit } = useMovement();
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const Transfers = () => {
       <h3 className="text-white mb-4">Envia una Transferencia</h3>
       <form
         onSubmit={(event) => {
-          confirmTransfer(event)
+          confirmTransfer(event);
         }}
       >
         <label className="custom-label" htmlFor="">
