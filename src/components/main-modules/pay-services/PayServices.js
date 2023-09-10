@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import BalanceContext from "../../../context/BalanceContext";
 import useMovement from "../../../hooks/useMovement";
 import Button from "../../Button";
 
 const PayServices = () => {
-  const balance = useContext(BalanceContext);
   const { getType, getService, getAmount, handleSubmit } = useMovement();
 
   const handleClick = async (event) => {
