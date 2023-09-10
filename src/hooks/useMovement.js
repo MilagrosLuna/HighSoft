@@ -1,12 +1,11 @@
 // Custom hook para capturar los datos de distintos forms, convertirlos en objetos y almacenarlos en un array que lista los movimientos
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useDate } from "./useDate";
 import BalanceContext from "../context/BalanceContext";
 
 const useMovement = () => {
   const balance = useContext(BalanceContext);
-  const movementsArray = balance.movementsArray;
   const { getDate } = useDate();
 
   const [amount, setAmount] = useState(0);

@@ -39,9 +39,7 @@ const PayServices = () => {
           className={"mx-auto my-3 px-5 btn d-block center-block btn-danger"}
           value={1000}
           onClick={(event) => {
-            {
-              handleClick(event);
-            }
+            handleClick(event);
           }}
           text={"Luz"}
         />
@@ -49,9 +47,7 @@ const PayServices = () => {
           className={"mx-auto my-3 px-5 btn d-block center-block btn-danger"}
           value={300}
           onClick={(event) => {
-            {
-              handleClick(event);
-            }
+            handleClick(event);
           }}
           text={"Agua"}
         />

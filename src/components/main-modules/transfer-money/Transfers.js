@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import BalanceContext from "../../../context/BalanceContext.js";
 import useMovement from "../../../hooks/useMovement.js";
 
 const Transfers = () => {
-  const balance = useContext(BalanceContext);
   const { getType, getBeneficiary, getAmount, handleSubmit } = useMovement();
 
   useEffect(() => {

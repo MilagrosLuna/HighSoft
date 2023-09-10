@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import useBalance from "../../../hooks/useBalance";
 import BalanceContext from "../../../context/BalanceContext.js";
 import Button from "../../Button";
 // import '../../../Custom.css'
