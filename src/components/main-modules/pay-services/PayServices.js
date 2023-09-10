@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import useMovement from "../../../hooks/useMovement";
 import Button from "../../Button";
 
@@ -55,9 +55,7 @@ const PayServices = () => {
           className={"mx-auto my-3 px-5 btn d-block center-block btn-danger"}
           value={700}
           onClick={(event) => {
-            {
-              handleClick(event);
-            }
+            handleClick(event);
           }}
           text={"Gas"}
         />
