@@ -5,12 +5,10 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: ;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center;  
   margin-bottom: 10%;
   
 }
@@ -106,4 +104,11 @@ header {
   border-radius: 0 5px 5px 0;
   text-align: center;
   padding: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    width: 200px;
+    height: 100%;
+  }
 }

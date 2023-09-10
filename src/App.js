@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import Transfers from "./components/main-modules/transfer-money/Transfers";
@@ -8,11 +8,7 @@ import LoanMoney from "./components/main-modules/loan-money/LoanMoney";
 import CurrencyExchange from "./components/main-modules/currency-exchange/CurrencyExchange";
 import PayServices from "./components/main-modules/pay-services/PayServices";
 import MovementsHistory from "./components/main-modules/movements-history/MovementsHistory";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route ,Navigate} from "react-router-dom";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import MySideNav from "./components/navBar/NavBar";
 import Header from "./components/header/Header";
@@ -22,6 +18,7 @@ import JsonData from "./components/data/data.json";
 import "./Custom.css";
 
 export const handleLogout = (setIsLoggedIn) => {
+  localStorage.removeItem("isLoggedIn");
   setIsLoggedIn(false); // Actualiza isLoggedIn a false cuando se cierra la sesión
 };
 
@@ -30,11 +27,16 @@ function App() {
 
   const handleLogin = (isAuthenticated) => {
     setIsLoggedIn(isAuthenticated);
+    localStorage.setItem("isLoggedIn", isAuthenticated.toString());
   };
   const [landingPageData, setLandingPageData] = useState({});
 
   useEffect(() => {
     setLandingPageData(JsonData);
+    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    if (storedIsLoggedIn === "true") {
+      setIsLoggedIn(true);
+    } 
   }, []);
 
   return (

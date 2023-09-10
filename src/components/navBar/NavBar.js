@@ -9,7 +9,7 @@ import SideNav, {
 } from "@trendmicro/react-sidenav";
 import { handleLogout } from "../../App";
 import "../navBar/navBar.css";
-
+import OutsideClickHandler  from "react-outside-click-handler"; 
 export default function MySideNav() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,24 +17,18 @@ export default function MySideNav() {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (isOpen && !document.getElementById("sideNav").contains(e.target)) {
-        setIsOpen(false); // Cierra el menú al hacer clic fuera de él
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  const handleOutsideClick = () => {
+    if (isOpen) {
+      toggleNav();
+    }
+  };
 
   return (
+    <OutsideClickHandler onOutsideClick={handleOutsideClick}>
     <SideNav
       id="sideNav"
       expanded={isOpen}
-      onSelect={(selected) => {
+      onToggle={(selected) => {
         console.log(selected);
       }}
     >
@@ -129,5 +123,6 @@ export default function MySideNav() {
         </NavItem>
       </SideNav.Nav>
     </SideNav>
+    </OutsideClickHandler>
   );
 }
