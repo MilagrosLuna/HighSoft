@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from './components/Container';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
@@ -19,15 +19,29 @@ import Footer from './components/footer/Footer';
 import './Custom.css';
 
 export const handleLogout = (setIsLoggedIn) => {
-  setIsLoggedIn(false); // Actualiza isLoggedIn a false cuando se cierra la sesión
+  setIsLoggedIn(false);
+  // Limpia el estado de autenticación en localStorage al cerrar sesión
+  localStorage.setItem('isLoggedIn', 'false');
 };
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    // Recupera el estado de autenticación desde localStorage al cargar la aplicación
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    if (storedIsLoggedIn === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLogin = (isAuthenticated) => {
     setIsLoggedIn(isAuthenticated);
+    // Almacena el estado de autenticación en localStorage
+    localStorage.setItem('isLoggedIn', isAuthenticated ? 'true' : 'false');
   };
+
+  
 
   return (
     <BalanceProvider>
