@@ -1,84 +1,61 @@
 import React, { Component } from "react";
 import Carousel from "@/components/carrousel";
-import Image from "next/image";
 import styles from "../styles/inicio.module.css";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-} from "@nextui-org/react";
+import Layout from "@/components/layout";
+import { NextUIProvider } from "@nextui-org/react";
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <Navbar className={styles.nav}>
-          <NavbarBrand>
-            <Image src="/img/logoW.png" width={350} height={80}></Image>
-          </NavbarBrand>
-          <NavbarContent className="hidden sm:flex gap-4" justify="center">
-            <NavbarItem>
-              <Link className={styles.buttonLink} color="foreground" href="#">
-                Features
-              </Link>
-            </NavbarItem>
-            <NavbarItem isActive>
-              <Link className={styles.buttonLink} href="#" aria-current="page">
-                Customers
-              </Link>
-            </NavbarItem>
-            <NavbarItem>
-              <Link className={styles.buttonLink} color="foreground" href="#">
-                Integrations
-              </Link>
-            </NavbarItem>
-          </NavbarContent>
-          <NavbarContent justify="end">
-            <NavbarItem>
-              <Link className={styles.buttonLogin} href="/inicio/login">
-                LOGIN
-              </Link>
-            </NavbarItem>
-          </NavbarContent>
-        </Navbar>
-      </header>
-
-      <main className={styles.main}>
-        <section>
-          <h1>Bienvenido a Banco HIGHSOFT</h1>
-          <p>Tu banco de confianza desde 1905.</p>
-        </section>
-        <section className="features">
-          <div className="feature">
-            <h2>Servicio 24/7</h2>
-            <p>
-              Accede a tus cuentas en cualquier momento, en cualquier lugar.
-            </p>
-          </div>
-          <div className="feature">
-            <h2>Seguridad</h2>
-            <p>
-              Tu seguridad es nuestra prioridad. Protegemos tus datos y
-              transacciones.
-            </p>
-          </div>
-          <div className="feature">
-            <h2>Asistencia</h2>
-            <p>
-              Nuestro equipo de soporte está aquí para ayudarte en todo momento.
-            </p>
-          </div>
-        </section>
-        <div className={styles.centeredCarousel}>
-          <Carousel></Carousel>
+    <Layout className={styles.container}>
+      <section
+        id="HIGHSOFT"
+        className="text-white min-h-screen bg-black text-center flex flex-col justify-center p-4 md:p-0"
+      >
+        <h1 className="font-waterfall text-4xl md:text-7xl text-purple-600 font-bold">
+          Bienvenido a Banco HIGHSOFT
+        </h1>
+      </section>
+      <section
+        id="Seguridad"
+        className="text-white min-h-screen bg-purple-900 text-center flex flex-col justify-center p-4 md:p-0"
+      >
+        <div className="text-center">
+          <h1 className="font-waterfall text-4xl md:text-7xl text-white font-bold">
+            Seguridad
+          </h1>
+          <h2 className="font-waterfall text-4xl md:text-7xl text-white font-bold">
+            Tu seguridad es nuestra prioridad. Protegemos tus datos y
+            transacciones.
+          </h2>
         </div>
-      </main>
+      </section>
 
-      <footer className={styles.footer}>
-        <p>&copy; {new Date().getFullYear()} Banco HIGHSOFT</p>
-      </footer>
-    </div>
+      <section
+        id="servicio"
+        className="text-white min-h-screen bg-black text-center flex flex-col justify-center p-4 md:p-0"
+      >
+        <div className="text-center">
+          <h1 className="font-waterfall text-4xl md:text-7xl text-purple-600 font-bold">
+            Servicio 24/7
+          </h1>
+          <h2 className="font-waterfall text-4xl md:text-7xl text-purple-600 font-bold">
+            Accede a tus cuentas en cualquier momento, en cualquier lugar
+          </h2>
+        </div>
+      </section>
+
+      <section
+        id="asistencia"
+        className="text-white min-h-screen bg-purple-900 text-center flex flex-col justify-center p-4 md:p-0"
+      >
+        <div className="text-center">
+          <h1 className="font-waterfall text-4xl md:text-7xl text-white font-bold">
+            Asistencia
+          </h1>
+          <h2 className="font-waterfall text-4xl md:text-7xl text-white font-bold">
+            Nuestro equipo de soporte está aquí para ayudarte en todo momento.
+          </h2>
+        </div>
+      </section>
+    </Layout>
   );
 }
