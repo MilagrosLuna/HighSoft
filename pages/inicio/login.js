@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router"; // Importa useRouter
+import styles from "../../styles/login.module.css";
+
 const users = [
   { id: 1, username: "usuario1", password: "contrasena1" },
   { id: 2, username: "usuario2", password: "contrasena2" },
@@ -17,7 +19,6 @@ function authenticateUser(username, password) {
 
   // Si el usuario está en la lista hardcodeada, devuélvelo
   if (hardcodedUser) {
-    
     console.log(hardcodedUser);
     return hardcodedUser;
   }
@@ -49,7 +50,7 @@ export default function Login() {
   const [user, setUser] = useState(null); // Define el estado del usuario
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setIsPasswordValid(true);
     setIsUsernameValid(true);
     setErrorMessage("");
@@ -83,46 +84,52 @@ export default function Login() {
     }
   };
   return (
-    <div className="login-container">
-      <div className="login-container-logo">
-        <Image
-          src="/img/logoB.png"
-          alt="Logo highSoft"
-          width={300}
-          height={30}
-          priority
-        />
-      </div>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            setIsUsernameValid(true);
-            setErrorMessage("");
-          }}
-          className={isUsernameValid ? "valid" : "invalid"}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setIsPasswordValid(e.target.value.length >= 8); // Actualiza la validez de la contraseña
-            setErrorMessage("");
-          }}
-          className={isPasswordValid ? "valid" : "invalid"}
-        />
-        {!isPasswordValid && <p className="error-message">{errorMessage}</p>}
-        <button type="button" onClick={handleLogin}>Iniciar sesión</button>
-        <p>
-          ¿No tienes una cuenta?{" "}
-          <Link href="/inicio/register">Regístrate aquí</Link>
-        </p>
-      </form>
+    <div className={styles["container"]}>
+      <div className={styles["login-container"]}>
+        <div className={styles["login-container-logo"]}>
+          <Image
+            src="/img/logoW.png"
+            alt="Logo highSoft"
+            width={300}
+            height={30}
+            priority
+          />
+        </div>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Nombre de usuario"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setIsUsernameValid(true);
+              setErrorMessage("");
+            }}
+            className={isUsernameValid ? styles.valid : styles.invalid}
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setIsPasswordValid(e.target.value.length >= 8); // Actualiza la validez de la contraseña
+              setErrorMessage("");
+            }}
+            className={isPasswordValid ? styles.valid : styles.invalid}
+          />
+          {!isPasswordValid && (
+            <p className={styles["error-message"]}>{errorMessage}</p>
+          )}
+          <button type="button" onClick={handleLogin}>
+            Iniciar sesión
+          </button>
+          <p>
+            ¿No tienes una cuenta?{" "}
+            <Link href="/inicio/register">Regístrate aquí</Link>
+          </p>
+        </form>
+      </div>{" "}
     </div>
   );
 }
