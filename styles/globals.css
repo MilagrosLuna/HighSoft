@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  margin-top:5rem;
+  overflow-x: hidden;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -123,4 +125,72 @@ body {
 }
 .register-container span{
   color: blue;  
+}
+
+/* OVERLAY */
+
+.overlay{
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* MODAL */
+
+.modal-container{
+  z-index: 100000;
+  background-color: #fff;
+  border-radius: .5rem;
+  width: 40%;
+  height: 30%;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.modal-encabezado{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 1rem 0;
+  border-bottom: rgba(0, 0, 0, 0.4) solid;
+}
+.modal-contenido{
+  flex-grow: 1;
+  width: 80%;
+}
+.btn-opcion{
+  background-color: #6bb;
+  border: none;
+  border-radius: 8px;
+  padding: .5rem;
+  margin: 1rem 1rem;
+  font-weight: 600;
+  &:hover{
+    cursor: pointer;
+    background-color: #399;
+  }
+}
+
+.bg-rosa {
+  background-color: #e18387;
+}
+.bg-rosa-secondary {
+  background-color: #f0d3d5;
+}
+.custom-btn {
+  background: #000;
+}
+.custom-label {
+  font-size: 1rem;
+  font-weight: 600;
 }
