@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-
+import styles from "../../styles/register.module.css";
 const users = [
   // Usuarios existentes
   { id: 1, username: "usuario1", password: "contrasena1" },
@@ -69,55 +69,61 @@ export default function Register() {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-container-logo">
-        <Image
-          src="/img/logoB.png"
-          alt="Logo highSoft"
-          priority
-        />
-      </div>
-
-      {isRegistered ? (
-        // Registro exitoso
-        <div>
-          <h2>Registro exitoso, {username}!</h2>
-          <p>¡Ahora puedes iniciar sesión con tu cuenta recién registrada!</p>
-          <Link href="/inicio/login">Iniciar sesión</Link>
+    <div className={styles["container"]}>
+      <div className={styles["register-container"]}>
+        <div className={styles["register-container-logo"]}>
+          <Image
+            src="/img/logoW.png"
+            alt="Logo highSoft"
+            width={300}
+            height={30}
+            priority
+          />
         </div>
-      ) : (
-        // Formulario de registro
-        <form>
-          <input
-            type="text"
-            placeholder="Nombre de usuario"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              setIsUsernameValid(true);
-              setErrorMessage("");
-            }}
-            className={isUsernameValid ? "valid" : "invalid"}
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setIsPasswordValid(e.target.value.length >= 8);
-              setErrorMessage("");
-            }}
-            className={isPasswordValid ? "valid" : "invalid"}
-          />
-          {!isPasswordValid && <p className="error-message">{errorMessage}</p>}
-          <button onClick={handleRegister}>Registrarse</button>
-          <p>
-            ¿Ya tienes una cuenta?{" "}
-            <Link href="/inicio/login">Iniciar sesión aquí</Link>
-          </p>
-        </form>
-      )}
+
+        {isRegistered ? (
+          // Registro exitoso
+          <div>
+            <h2>Registro exitoso, {username}!</h2>
+            <p>¡Ahora puedes iniciar sesión con tu cuenta recién registrada!</p>
+            <Link href="/inicio/login">Iniciar sesión</Link>
+          </div>
+        ) : (
+          // Formulario de registro
+          <form>
+            <input
+              type="text"
+              placeholder="Nombre de usuario"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                setIsUsernameValid(true);
+                setErrorMessage("");
+              }}
+              className={isUsernameValid ? "valid" : "invalid"}
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setIsPasswordValid(e.target.value.length >= 8);
+                setErrorMessage("");
+              }}
+              className={isPasswordValid ? "valid" : "invalid"}
+            />
+            {!isPasswordValid && (
+              <p className="error-message">{errorMessage}</p>
+            )}
+            <button onClick={handleRegister}>Registrarse</button>
+            <p>
+              ¿Ya tienes una cuenta?{" "}
+              <Link href="/inicio/login">Iniciar sesión aquí</Link>
+            </p>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
