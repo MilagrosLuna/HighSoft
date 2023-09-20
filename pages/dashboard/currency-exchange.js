@@ -36,6 +36,7 @@ const Convertidor = () => {
                 handleInput(setAmountToChange, event);
               }}
               type="number"
+              min={0}
               style={{ width: 50 + "%" }}
               className="text-center mx-auto my-2 form-control"
             />

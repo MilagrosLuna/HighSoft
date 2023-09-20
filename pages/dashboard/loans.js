@@ -6,6 +6,7 @@ import { getFinalAmount } from "@/src/utils/loanMoneyUtils";
 import useLoan from "@/src/hooks/useLoan";
 import useModal from "@/src/hooks/useModal";
 import Layout from "@/components/layout";
+import useBalance from "@/src/hooks/useBalance";
 
 const Prestamos = () => {
   const {
@@ -59,6 +60,7 @@ const Prestamos = () => {
                 }}
                 required
                 type="number"
+                min={0}
                 style={{ width: 50 + "%" }}
                 className="text-center mx-auto my-2 form-control"
               />
