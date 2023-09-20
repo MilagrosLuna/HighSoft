@@ -1,56 +1,52 @@
 import React, { useContext, useEffect, useState } from "react";
-import Modal from "@/components/Modal";
-import useModal from "@/src/hooks/useModal";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "@/components/layout";
 import { invoicesArray } from "@/src/data/services";
 import GeneralContext from "@/src/context/generalContext";
+import useMovement from "@/src/hooks/useMovement"
 
 
 const PayServices = () => {
   const balance = useContext(GeneralContext)
-  const { isOpen, setIsOpen, toggleModal } = useModal();
+  const { getType, getService, getAmount, handleSubmit } = useMovement();
   const [servicesToPay, setServicesToPay] = useState([])
 
   useEffect(()=>{
     setServicesToPay(invoicesArray)
   },[])
 
-  const clickHandler = (event, index) => {
-    const amount = event.target.value;
-    console.log(amount);
-    if (!event.target.classList.contains("paid")) {
-      balance.decrement(amount);
-      delete servicesToPay[index];
-      event.target.classList.add("paid");
-      toggleModal();
+  const handleClick = async (event, service) => {
+    const values = event.target.value;
+    console.log(values);
+    getType("Servicios");
+    getAmount(event);
+    getService(service.tipo_servicio);
+    const result = await confirmPay(event);
+
+    if (result) {
+      setTimeout(handleSubmit(event), 10000);
+      alert("Se realizó el pago del servicio.");
     } else {
-      toast.warning("Este servicio ya se pagó.", {
-        position: "bottom-right",
-        autoClose: 5000,
-      });
+      alert("El pago ha sido cancelado.");
     }
   };
 
-  function notifyConfirm() {
-    toast.success("Se pagó el servicio.", {
-      position: "bottom-right",
-      autoClose: 5000,
-    });
-  }
-  function notifyCancel() {
-    toast.error("Se canceló el pago.", {
-      position: "bottom-right",
-      autoClose: 5000,
-    });
-  }
+  const confirmPay = (event) => {
+    const cost = event.target.value;
+    const confirmMessage =
+      "¿Confirma el pago del servicio por el monto de $" + cost + "?";
+    const confirm = window.confirm(confirmMessage);
 
+    return Promise.resolve(confirm);
+  };
+
+
+  
   return (
     <Layout>
       <div
-          style={{ width: 60 + "%" }}
-          className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
+        style={{ width: 60 + "%" }}
+        className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
       >
         <button onClick={()=>{console.log(servicesToPay);}}>probar</button>
         <h3 className="text-white font-bold my-4">Elige que servicios quieres pagar</h3>
@@ -64,7 +60,8 @@ const PayServices = () => {
                 <th></th>
               </tr>
             </thead>
-            {servicesToPay.map((service, index)=>(
+            {servicesToPay.map((service, index)=>
+              (
               <tr>
                 <td>
                   {service.tipo_servicio}
@@ -76,23 +73,14 @@ const PayServices = () => {
                   {service.vencimiento}
                 </td>
                 <td>
-                  <button onClick={(event)=>clickHandler(event, index)} value={service.monto} className="btn btn-success">Pagar</button>
+                  <button onClick={(event)=>handleClick(event, service)} value={service.monto} className="btn btn-success">Pagar</button>
                 </td>
               </tr>
             ))}
           </table>
         </div>
-        <Modal onClose={toggleModal} isOpen={isOpen} cerrar={toggleModal}>
-          <p>¿Desea continuar con el pago del servicio?</p>
-          <button onClick={notifyConfirm} className="btn-opcion btn btn-success">
-            Enviar
-          </button>
-          <button onClick={notifyCancel} className="btn-opcion btn btn-danger">
-            Cancelar
-          </button>
-        </Modal>
-        <ToastContainer />
       </div>
+      <button onClick={()=>console.log(balance.movementsArray)}>probar</button>
     </Layout>
   );
 };

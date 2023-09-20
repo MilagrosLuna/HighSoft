@@ -2,10 +2,10 @@
 
 import { useContext, useState } from "react";
 import { useDate } from "./useDate";
-import BalanceContext from "../context/BalanceContext";
+import GeneralContext from "@/src/context/generalContext";
 
 const useMovement = () => {
-  const balance = useContext(BalanceContext);
+  const balance = useContext(GeneralContext);
   const { getDate } = useDate();
 
   const [amount, setAmount] = useState(0);

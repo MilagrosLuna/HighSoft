@@ -28,12 +28,11 @@ export default function Home() {
             </button>
         </div>
         <div style={{ width: 40 + "%" }} className="container my-3">
-          <div>
-            <Link className="btn btn-primary m-1" href="/dashboard/loans">Prestamos</Link>
-            <Link className="btn btn-primary m-1" href="/dashboard/pay-services">Servicios</Link>
-            <Link className="btn btn-primary m-1" href="/dashboard/currency-exchange">Conversor</Link>
-          </div>
-          <Link style={{ width: 90 + "%" }} className="btn btn-primary m-1 " href="/dashboard/currency-exchange">Transferencias**</Link>
+          <Link className="btn btn-primary m-1 d-block" href="/dashboard/loans">Prestamos</Link>
+          <Link className="btn btn-primary m-1 d-block" href="/dashboard/pay-services">Servicios</Link>
+          <Link className="btn btn-primary m-1 d-block" href="/dashboard/currency-exchange">Conversor</Link>
+          <Link className="btn btn-primary m-1 d-block" href="/dashboard/currency-exchange">Transferencias**</Link>
+          <Link className="btn btn-primary m-1 d-block" href="/dashboard/movements">Movimientos</Link>
         </div>
       </div>
     </Layout>
