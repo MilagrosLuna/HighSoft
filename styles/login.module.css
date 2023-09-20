@@ -1,0 +1,116 @@
+/* LOGIN STYLES
+.login-container {
+    max-width: 400px;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #fff;
+    -webkit-box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+  }
+  .login-container img{
+    align-self: stretch;
+    justify-content: stretch;
+  }
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  .login-container-logo {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .login-container input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  .login-container button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #dd3a35f1;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .login-container button:hover {
+    background-color: #b1211c;
+  }
+  .login-container span{
+    color: blue;
+    
+  } */
+/* login.module.css */
+
+
+.container {    
+  background-color: #9333ea;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.login-container {
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #020202;
+  border-radius: 15px;
+  background-color: #330655; /* Cambiar a violeta */
+  box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container img {
+  align-self: stretch;
+  justify-content: stretch;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login-container button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ac55ee; /* Cambiar a violeta */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.login-container p {
+  color: #fff;
+}
+.login-container button:hover {
+  background-color: #330655; /* Cambiar a un tono más oscuro de violeta al pasar el mouse */
+}
+
+.error-message {
+  color: red;
+}

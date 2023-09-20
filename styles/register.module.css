@@ -1,0 +1,59 @@
+/*REGISTER STYLES*/
+
+.container {
+  background-color: #9333ea;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-container {
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  background-color: #330655; /* Cambiar a violeta */
+  -webkit-box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 3px 32px 1px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.register-container form {
+  display: flex;
+  flex-direction: column;
+}
+.register-container input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.register-container button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #6ddb41; /* Cambiar a violeta */
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.register-container p {
+  color: #fff;
+}
+.register-container button:hover {
+  background-color: #330655; /* Cambiar a un tono más oscuro de violeta al pasar el mouse */
+}
+.register-container span {
+  color: blue;
+}
