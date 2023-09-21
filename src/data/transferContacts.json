@@ -1,0 +1,103 @@
+[
+    {
+      "nombre": "Juan Pérez",
+      "alias": "juanperez123",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "María García",
+      "alias": "mariagarcia456",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Carlos Rodríguez",
+      "alias": "carlosr789",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Laura Martínez",
+      "alias": "lauram456",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Martín López",
+      "alias": "martinl789",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Ana Rodríguez",
+      "alias": "anar123",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Diego González",
+      "alias": "diegog567",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Sofía Pérez",
+      "alias": "sofiap456",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Luisa Fernández",
+      "alias": "luisaf789",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Javier Torres",
+      "alias": "javiert123",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Camila Silva",
+      "alias": "camilas456",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Pedro Pérez",
+      "alias": "pedrop789",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Andrea López",
+      "alias": "andreal123",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Eduardo González",
+      "alias": "eduardog567",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Carolina Martínez",
+      "alias": "carolinam456",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Gustavo Fernández",
+      "alias": "gustavof789",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Natalia Torres",
+      "alias": "nataliat123",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Fernando Silva",
+      "alias": "fernandos456",
+      "banco": "Banco Macro"
+    },
+    {
+      "nombre": "Valentina Pérez",
+      "alias": "valentinap789",
+      "banco": "Banco de la Nación Argentina"
+    },
+    {
+      "nombre": "Roberto López",
+      "alias": "robertol123",
+      "banco": "Banco Galicia"
+    }
+  ]
+  

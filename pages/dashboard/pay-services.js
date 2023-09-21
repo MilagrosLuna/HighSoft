@@ -1,19 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "@/components/layout";
-import { invoicesArray } from "@/src/data/services";
 import GeneralContext from "@/src/context/generalContext";
 import useMovement from "@/src/hooks/useMovement"
+import services from "@/src/data/services.json"
 
 
 const PayServices = () => {
   const balance = useContext(GeneralContext)
   const { getType, getService, getAmount, handleSubmit } = useMovement();
   const [servicesToPay, setServicesToPay] = useState([])
-
-  useEffect(()=>{
-    setServicesToPay(invoicesArray)
-  },[])
 
   const handleClick = async (event, service) => {
     const values = event.target.value;
@@ -48,7 +44,6 @@ const PayServices = () => {
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
       >
-        <button onClick={()=>{console.log(servicesToPay);}}>probar</button>
         <h3 className="text-white font-bold my-4">Elige que servicios quieres pagar</h3>
         <div>
           <table style={{ width: 90 + "%" }} className="table table-bordered text-left mx-auto">
@@ -60,7 +55,7 @@ const PayServices = () => {
                 <th></th>
               </tr>
             </thead>
-            {servicesToPay.map((service, index)=>
+            {services.map((service, index)=>
               (
               <tr>
                 <td>
@@ -80,7 +75,6 @@ const PayServices = () => {
           </table>
         </div>
       </div>
-      <button onClick={()=>console.log(balance.movementsArray)}>probar</button>
     </Layout>
   );
 };

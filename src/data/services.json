@@ -1,4 +1,4 @@
-export const invoicesArray = [
+[
     {
     "tipo_servicio": "Consultoría en marketing",
     "monto": 15000,
