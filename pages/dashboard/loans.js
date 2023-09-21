@@ -101,7 +101,7 @@ const Prestamos = () => {
             </label>
             <input
               type="submit"
-              className="btn btn-primary d-block mx-auto my-4"
+              className="btn btn-danger d-block mx-auto my-4"
               onClick={(event) => {
                 if (paymentDeadline != 0 && requestedAmount != 0) {
                   event.preventDefault();

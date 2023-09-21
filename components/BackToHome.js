@@ -9,7 +9,7 @@ function BackToHome() {
   if (!isHomePage) {
     return (
         <>
-            <Link href="/home">Home</Link>
+            <Link className='back-to-home btn btn-danger' href="/home">Home</Link>
         </>
     );
   }
