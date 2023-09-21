@@ -84,7 +84,7 @@ const Convertidor = () => {
           </label>
           <input
             type="submit"
-            className="mt-3 btn btn-primary d-block mx-auto"
+            className="mt-3 btn btn-danger d-block mx-auto"
             onClick={(event) => {
               event.preventDefault();
               getChangeValue(

@@ -5,7 +5,7 @@ import useBalance from "@/src/hooks/useBalance";
 const GeneralContextProvider = ({ children }) => {
   const { balance, showBalance, decrement, increment, toggleShow } =
     useBalance();
-
+    
   const [movementsArray, setMovementsArray] = useState([]);
 
   return (

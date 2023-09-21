@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  margin-top:4rem;
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -63,7 +66,7 @@ html, body {
 }
 
 .bg-rosa {
-  background-color: #e18387;
+  background-color: #ac55ee;
 }
 .bg-rosa-secondary {
   background-color: #f0d3d5;
@@ -74,4 +77,10 @@ html, body {
 .custom-label {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.back-to-home{
+  position: fixed;
+  top: 6rem;
+  left: 3rem;
 }
