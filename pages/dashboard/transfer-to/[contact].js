@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import contactsData from "@/src/data/transferContacts.json";
 import Layout from "@/components/layout";
 import useMovement from "@/src/hooks/useMovement";
@@ -10,15 +10,14 @@ const TransferContact = (props) => {
 
   const getBeneficiaryDirectly = (beneficiary) => getService(beneficiary);
 
-  useEffect(()=>{
-    getBeneficiaryDirectly(contact.name)
-    getType("Transferencia")
-  },[])
+  useEffect(() => {
+    getBeneficiaryDirectly(contact.name);
+    getType("Transferencia");
+  }, []);
 
-
-  const confirmTransfer = (event) =>{
+  const confirmTransfer = (event) => {
     event.preventDefault();
-    const confirmMessage = "¿Desea realizar la transferencia?"
+    const confirmMessage = "¿Desea realizar la transferencia?";
     const confirm = window.confirm(confirmMessage);
     if (confirm) {
       alert("Su transferencia fue enviada");
@@ -28,7 +27,6 @@ const TransferContact = (props) => {
     }
   };
 
-
   return (
     <Layout>
       <div
@@ -37,16 +35,25 @@ const TransferContact = (props) => {
       >
         <h4 className="my-4">¿Deseas transferir a {contact.name} ?</h4>
         <div className="bg-light text-black text-left mx-auto my-4 p-4 rounded w-75">
-          <h5 className="font-bold mb-4 text-center">Informarcion de la cuenta</h5>
+          <h5 className="font-bold mb-4 text-center">
+            Informarcion de la cuenta
+          </h5>
           <p><b>Propietario/a:</b> {contact.name}</p>
           <p><b>CUIT:</b> {contact.cuit}</p>
           <p><b>Alias de la cuenta:</b> {contact.alias}</p>
           <p><b>Banco:</b> {contact.bank}</p>
         </div>
-          <h4>¿Cuánto deseas transferir?</h4>
+        <h4>¿Cuánto deseas transferir?</h4>
         <div className="container d-flex w-75 gap-3">
-          <input onChange={getAmount} type="number" min={1} className="text-center mx-auto my-2 form-control" />
-          <button onClick={confirmTransfer} className="my-3 btn btn-danger">Transferir</button>
+          <input
+            onChange={getAmount}
+            type="number"
+            min={1}
+            className="text-center mx-auto my-2 form-control"
+          />
+          <button onClick={confirmTransfer} className="my-3 btn btn-danger">
+            Transferir
+          </button>
         </div>
       </div>
     </Layout>
