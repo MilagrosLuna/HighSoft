@@ -69,8 +69,8 @@ export default function Register() {
   };
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["register-container"]}>
+    <div className={styles["main"]}>
+      <div className={styles["container"]}>
         <div className={styles["register-container-logo"]}>
           <Image
             src="/img/logoW.png"
@@ -80,7 +80,6 @@ export default function Register() {
             priority
           />
         </div>
-
         {isRegistered ? (
           // Registro exitoso
           <div>
@@ -90,36 +89,50 @@ export default function Register() {
           </div>
         ) : (
           // Formulario de registro
-          <form>
-            <input
-              type="text"
-              placeholder="Nombre de usuario"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-                setIsUsernameValid(true);
-                setErrorMessage("");
-              }}
-              className={isUsernameValid ? "valid" : "invalid"}
-            />
-            <input
-              type="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setIsPasswordValid(e.target.value.length >= 8);
-                setErrorMessage("");
-              }}
-              className={isPasswordValid ? "valid" : "invalid"}
-            />
+          <form className={styles.formulario}>
+            <div class="form-group">
+              <label for="email" className={styles.labels}>
+              Nombre de usuario:
+              </label>
+              <input
+                type="text"
+                placeholder="Nombre de usuario"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setIsUsernameValid(true);
+                  setErrorMessage("");
+                }}
+                className={styles.formCcontrol}
+              />
+            </div>
+            <div class="form-group">
+              <label for="password" className={styles.labels}>
+                Contraseña:
+              </label>
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setIsPasswordValid(e.target.value.length >= 8);
+                  setErrorMessage("");
+                }}
+                className={styles.formCcontrol}
+              />
+            </div>
             {!isPasswordValid && (
               <p className="error-message">{errorMessage}</p>
             )}
-            <button onClick={handleRegister}>Registrarse</button>
+            <button onClick={handleRegister} className={styles["btn-primary"]}>
+              Registrarse
+            </button>
             <p>
               ¿Ya tienes una cuenta?{" "}
-              <Link href="/inicio/login">Iniciar sesión aquí</Link>
+              <Link href="/inicio/login" className={styles.Link}>
+                Iniciar sesión aquí
+              </Link>
             </p>
           </form>
         )}

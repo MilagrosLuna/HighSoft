@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@itseasy21/react-elastic-carousel": "^0.12.3",
     "@nextui-org/react": "^2.1.12",
     "autoprefixer": "10.4.15",
     "boostrap": "^2.0.0",
