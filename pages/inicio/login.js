@@ -83,9 +83,12 @@ export default function Login() {
       alert("Credenciales incorrectas");
     }
   };
+  const AccesoRapido = (e)=>{
+    router.push("/home");
+  };
   return (
-    <div className={styles["container"]}>
-      <div className={styles["login-container"]}>
+    <div className={styles["main"]}>
+      <div className={styles["container"]}>
         <div className={styles["login-container-logo"]}>
           <Image
             src="/img/logoW.png"
@@ -95,41 +98,64 @@ export default function Login() {
             priority
           />
         </div>
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            placeholder="Nombre de usuario"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              setIsUsernameValid(true);
-              setErrorMessage("");
-            }}
-            className={isUsernameValid ? styles.valid : styles.invalid}
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setIsPasswordValid(e.target.value.length >= 8); // Actualiza la validez de la contraseña
-              setErrorMessage("");
-            }}
-            className={isPasswordValid ? styles.valid : styles.invalid}
-          />
-          {!isPasswordValid && (
-            <p className={styles["error-message"]}>{errorMessage}</p>
-          )}
-          <button type="button" onClick={handleLogin}>
+        <form onSubmit={handleLogin} className={styles.formulario}>
+          <div class="form-group">
+            <label className={styles.labels} for="email">
+              usuario:
+            </label>
+            <input
+              type="text"
+              placeholder="Nombre de usuario"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                setIsUsernameValid(true);
+                setErrorMessage("");
+              }}
+              className={styles.formCcontrol}
+            />
+          </div>
+          <div class="form-group">
+            <label className={styles.labels} for="password">
+              Contraseña:
+            </label>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setIsPasswordValid(e.target.value.length >= 8); // Actualiza la validez de la contraseña
+                setErrorMessage("");
+              }}
+              className={styles.formCcontrol}
+            />
+            {!isPasswordValid && (
+              <p className={styles["error-message"]}>{errorMessage}</p>
+            )}
+          </div>
+          <button
+            type="button"
+            className={styles["btn-primary"]}
+            onClick={handleLogin}
+          >
             Iniciar sesión
           </button>
           <p>
             ¿No tienes una cuenta?{" "}
-            <Link href="/inicio/register">Regístrate aquí</Link>
+            <Link href="/inicio/register" className={styles.Link}>
+              Regístrate aquí
+            </Link>
           </p>
         </form>
-      </div>{" "}
+        <button
+          type="button"
+          className={styles["btn-fast"]}
+          onClick={AccesoRapido}
+        >
+          Acceso rapido
+        </button>
+      </div>
     </div>
   );
 }
