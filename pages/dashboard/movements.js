@@ -29,7 +29,6 @@ const MovementsHistory = () => {
                   />
             )):null}
         </MovementLogContainer>
-        <button onClick={()=>console.log(balance.movementsArray)}>probar</button>
       </div>
     </Layout>
   );

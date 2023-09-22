@@ -27,7 +27,7 @@ export default function Home() {
               {balance.showBalance ? "Ocultar" : "Mostrar"}
             </button>
         </div>
-        <div style={{ width: 40 + "%" }} className="container my-3">
+        <div style={{ width: 70 + "%" }} className="container my-3">
           <Link className="btn btn-danger m-1 d-block" href="/dashboard/loans">Prestamos</Link>
           <Link className="btn btn-danger m-1 d-block" href="/dashboard/pay-services">Servicios</Link>
           <Link className="btn btn-danger m-1 d-block" href="/dashboard/movements">Movimientos</Link>

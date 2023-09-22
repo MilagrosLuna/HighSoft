@@ -35,6 +35,11 @@ const useMovement = () => {
     setAmount(event.target.value);
   };
 
+  // capturamos el monto del movimiento de manera directa
+  const getAmountDirectly = (amount) => {
+    setAmount(amount);
+  };
+
   // se crea un objeto con todos los datos recolectados y se envian a el array
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,6 +62,7 @@ const useMovement = () => {
     getBeneficiary,
     getService,
     getAmount,
+    getAmountDirectly,
     handleSubmit,
   };
 };

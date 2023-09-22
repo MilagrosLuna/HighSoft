@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 function BackToHome() {
   const router = useRouter();
 
-  const isHomePage = (router.pathname === '/home' || router.pathname === '/' );
+  const isHomePage = (router.pathname === '/home' || router.pathname === '/');
 
   if (!isHomePage) {
     return (
