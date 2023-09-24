@@ -1,11 +1,11 @@
 import React from "react";
 import services from "@/src/data/services.json";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 import Link from "next/link";
 
 const transfers = () => {
   return (
-    <Layout>
+    <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -23,7 +23,7 @@ const transfers = () => {
           ))}
         </div>
       </div>
-    </Layout>
+    </LayoutHome>
   );
 };
 

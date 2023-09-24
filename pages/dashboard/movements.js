@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import BalanceContext from "@/src/context/generalContext";
 import MovementLog from "@/components/MovementLog";
 import MovementLogContainer from "@/components/MovementLogContainer";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 
 const MovementsHistory = () => {
   const balance = useContext(BalanceContext);
@@ -12,7 +12,7 @@ const MovementsHistory = () => {
   }, [balance.movementsArray]);
 
   return (
-    <Layout>
+    <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -30,7 +30,7 @@ const MovementsHistory = () => {
             )):null}
         </MovementLogContainer>
       </div>
-    </Layout>
+    </LayoutHome>
   );
 };
 

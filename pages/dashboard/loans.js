@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getFinalAmount } from "@/src/utils/loanMoneyUtils";
 import useLoan from "@/src/hooks/useLoan";
 import useModal from "@/src/hooks/useModal";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
 
 const Prestamos = () => {
@@ -45,7 +45,7 @@ const Prestamos = () => {
 
   return (
     <>
-      <Layout>
+      <LayoutHome>
         <div
           style={{ width: 60 + "%" }}
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -125,7 +125,7 @@ const Prestamos = () => {
           </button>
         </Modal>
         <ToastContainer />
-      </Layout>
+      </LayoutHome>
     </>
   );
 };

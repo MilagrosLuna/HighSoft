@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  margin-top:4rem;
-}
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -14,7 +12,7 @@ html, body {
 
 /* OVERLAY */
 
-.overlay{
+.overlay {
   z-index: 100;
   position: fixed;
   top: 0;
@@ -26,14 +24,14 @@ html, body {
 
 /* MODAL */
 
-.modal-container{
+.modal-container {
   z-index: 100000;
   background-color: #fff;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   width: 40%;
   height: 30%;
   position: fixed;
-  top: 30%;
+  top: 300%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #000;
@@ -42,25 +40,25 @@ html, body {
   align-items: center;
   justify-content: space-evenly;
 }
-.modal-encabezado{
+.modal-encabezado {
   display: flex;
   justify-content: space-between;
   width: 80%;
   margin: 1rem 0;
   border-bottom: rgba(0, 0, 0, 0.4) solid;
 }
-.modal-contenido{
+.modal-contenido {
   flex-grow: 1;
   width: 80%;
 }
-.btn-opcion{
+.btn-opcion {
   background-color: #6bb;
   border: none;
   border-radius: 8px;
-  padding: .5rem;
+  padding: 0.5rem;
   margin: 1rem 1rem;
   font-weight: 600;
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: #399;
   }
@@ -80,7 +78,7 @@ html, body {
   font-weight: 600;
 }
 
-.back-to-home{
+.back-to-home {
   position: fixed;
   top: 6rem;
   left: 3rem;

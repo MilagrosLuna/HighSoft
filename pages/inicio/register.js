@@ -77,6 +77,7 @@ export default function Register() {
             alt="Logo highSoft"
             width={300}
             height={30}
+            quality={100}
             priority
           />
         </div>
@@ -90,9 +91,9 @@ export default function Register() {
         ) : (
           // Formulario de registro
           <form className={styles.formulario}>
-            <div class="form-group">
-              <label for="email" className={styles.labels}>
-              Nombre de usuario:
+            <div className="form-group">
+              <label htmlFor="email" className={styles.labels}>
+                Nombre de usuario:
               </label>
               <input
                 type="text"
@@ -106,8 +107,8 @@ export default function Register() {
                 className={styles.formCcontrol}
               />
             </div>
-            <div class="form-group">
-              <label for="password" className={styles.labels}>
+            <div className="form-group">
+              <label htmlFor="password" className={styles.labels}>
                 Contraseña:
               </label>
               <input

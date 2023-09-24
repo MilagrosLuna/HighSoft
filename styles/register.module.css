@@ -67,7 +67,6 @@
   margin: 0;
   padding: 0;
   background-color: #000;
-  text-align: center;
 }
 .container {
   width: 30%;
@@ -82,8 +81,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
-
 
 .formulario {
   width: 100%;
@@ -91,11 +90,11 @@
 /* Estilo para los campos de entrada del formulario de registro */
 .form-group {
   width: 100%;
-  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 /* Estilo para las etiquetas de los campos del formulario de registro */
@@ -105,7 +104,7 @@
 }
 
 /* Estilo para los campos de entrada de texto del formulario de registro */
-.container .formCcontrol {
+.formCcontrol {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -152,4 +151,30 @@
 .container .btn-primary,
 .container .mt-3 a {
   font-family: "Roboto", sans-serif;
+}
+@media (max-width: 767px) {
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+  .formulario {
+    width: 80%;
+  }
+  .form-control {
+    font-size: 14px;
+  }
+}
+
+/* Estilo para pantallas medianas (por ejemplo, tabletas) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    width: 60%;
+    padding: 20px;
+  }
+  .formulario {
+    width: 80%;
+  }
+  .form-control {
+    font-size: 16px;
+  }
 }

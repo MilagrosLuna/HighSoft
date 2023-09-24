@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-function MyNavBar() {
+function HomeNav() {
+ 
   const [navbar, setNavbar] = useState(false);
   return (
     <div>
@@ -10,13 +10,13 @@ function MyNavBar() {
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link href="/">
+              <Link href="/home">
                 <Image
                   src="/img/logoW.png"
-                  width={300}
-                  height={300}
-                  alt="logo highsoft"
+                  width={350}
+                  height={350}
                   quality={100}
+                  alt="logo highsoft"
                 ></Image>
               </Link>
               {/* HAMBURGER BUTTON FOR MOBILE */}
@@ -54,17 +54,59 @@ function MyNavBar() {
               }`}
             >
               <ul className="h-screen md:h-auto items-center justify-center md:flex ">
-                <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link
-                    href="/inicio/register"
+              <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                 <Link
+                    href="/dashboard/loans"
                     onClick={() => setNavbar(!navbar)}
                   >
-                    Registrarse
+                    Prestamos
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/dashboard/pay-services"
+                    onClick={() => setNavbar(!navbar)}
+                  
+                  >
+                    Servicios
                   </Link>
                 </li>
                 <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link href="/inicio/login" onClick={() => setNavbar(!navbar)}>
-                    Iniciar Sesión
+                  <Link
+                    href="/dashboard/movements"
+                    onClick={() => setNavbar(!navbar)}
+                    
+                  >
+                    Movimientos
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/dashboard/currency-exchange"
+                    onClick={() => setNavbar(!navbar)}
+                   
+                  >
+                    Conversor
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/dashboard/transfers"
+                    onClick={() => setNavbar(!navbar)}
+                   
+                  >
+                    Transferencias
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/"
+                    onClick={() => setNavbar(!navbar)}
+                    style={{                     
+                      color: "white",                     
+                    }}
+                  >
+                    CerrarSesión
                   </Link>
                 </li>
               </ul>
@@ -76,4 +118,4 @@ function MyNavBar() {
   );
 }
 
-export default MyNavBar;
+export default HomeNav;

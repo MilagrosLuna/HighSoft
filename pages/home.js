@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "../styles/inicio.module.css";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
 import Link from "next/link";
 import GeneralContext from "@/src/context/generalContext";
@@ -9,7 +9,7 @@ export default function Home() {
   const balance = useContext(GeneralContext);
 
   return (
-    <Layout>
+    <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -35,6 +35,6 @@ export default function Home() {
           <Link className="btn btn-danger m-1 d-block" href="/dashboard/transfers">Transferencias</Link>
         </div>
       </div>
-    </Layout>
+    </LayoutHome>
   );
 }

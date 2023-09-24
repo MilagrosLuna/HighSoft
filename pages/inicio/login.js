@@ -95,12 +95,13 @@ export default function Login() {
             alt="Logo highSoft"
             width={300}
             height={30}
+            quality={100}
             priority
           />
         </div>
         <form onSubmit={handleLogin} className={styles.formulario}>
-          <div class="form-group">
-            <label className={styles.labels} for="email">
+          <div className="form-group">
+            <label className={styles.labels} htmlFor="email">
               usuario:
             </label>
             <input
@@ -115,8 +116,8 @@ export default function Login() {
               className={styles.formCcontrol}
             />
           </div>
-          <div class="form-group">
-            <label className={styles.labels} for="password">
+          <div className="form-group">
+            <label className={styles.labels} htmlFor="password">
               Contraseña:
             </label>
             <input

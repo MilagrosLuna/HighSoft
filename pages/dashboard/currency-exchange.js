@@ -1,5 +1,5 @@
 import Modal from "@/components/Modal";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 import React, { useEffect, useState } from "react";
 import { getCurrencyValues, getChangeValue } from "@/src/utils/currencyUtils";
 
@@ -22,7 +22,7 @@ const Convertidor = () => {
   };
 
   return (
-    <Layout>
+    <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -113,7 +113,7 @@ const Convertidor = () => {
           <h4>Error: moneda no admitida o tasa de cambio no disponible</h4>
         )}
       </div>
-    </Layout>
+    </LayoutHome>
   );
 };
 

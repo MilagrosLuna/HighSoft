@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import contactsData from "@/src/data/transferContacts.json";
-import Layout from "@/components/layout";
+import LayoutHome from "@/components/layoutHome";
 import useMovement from "@/src/hooks/useMovement";
 
 const TransferContact = (props) => {
@@ -28,7 +28,7 @@ const TransferContact = (props) => {
   };
 
   return (
-    <Layout>
+    <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
         className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
@@ -56,7 +56,7 @@ const TransferContact = (props) => {
           </button>
         </div>
       </div>
-    </Layout>
+    </LayoutHome>
   );
 };
 
