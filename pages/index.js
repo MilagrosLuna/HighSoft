@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nexus Bank - Cuenta</title>
+        <title>HighSoft</title>
         <meta name="description" content="Inicio" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

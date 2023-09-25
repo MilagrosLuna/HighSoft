@@ -7,7 +7,7 @@ import useLoan from "@/src/hooks/useLoan";
 import useModal from "@/src/hooks/useModal";
 import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
-
+import Head from "next/head";
 const Prestamos = () => {
   const {
     requestedAmount,
@@ -45,11 +45,23 @@ const Prestamos = () => {
 
   return (
     <>
+      <Head>
+        <title>HighSoft</title>
+        <meta name="description" content="Inicio" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HighSoft" />
+        <meta
+          name="keywords"
+          content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+        />
+        <meta http-equiv="Content-Language" content="es" />
+      </Head>
       <LayoutHome>
         <div
           style={{ width: 60 + "%" }}
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
-          >
+        >
           <h3 className="text-white font-bold my-4">Solicitar Préstamo</h3>
           <form className="container">
             <label className="custom-label">

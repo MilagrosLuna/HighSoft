@@ -2,7 +2,7 @@ import Modal from "@/components/Modal";
 import LayoutHome from "@/components/layoutHome";
 import React, { useEffect, useState } from "react";
 import { getCurrencyValues, getChangeValue } from "@/src/utils/currencyUtils";
-
+import Head from "next/head";
 const Convertidor = () => {
   const [amountToChange, setAmountToChange] = useState(null);
   const [currencyData, setCurrencyData] = useState(null);
@@ -22,6 +22,19 @@ const Convertidor = () => {
   };
 
   return (
+    <>
+      <Head>
+        <title>HighSoft</title>
+        <meta name="description" content="Inicio" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HighSoft" />
+        <meta
+          name="keywords"
+          content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+        />
+        <meta http-equiv="Content-Language" content="es" />
+      </Head>
     <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
@@ -114,6 +127,7 @@ const Convertidor = () => {
         )}
       </div>
     </LayoutHome>
+    </>
   );
 };
 

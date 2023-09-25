@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/register.module.css";
+import Head from "next/head";
 const users = [
   // Usuarios existentes
   { id: 1, username: "usuario1", password: "contrasena1" },
@@ -69,7 +70,19 @@ export default function Register() {
   };
 
   return (
-    <div className={styles["main"]}>
+    <>
+      <Head>
+        <title>HighSoft</title>
+        <meta name="description" content="Inicio" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HighSoft" />
+        <meta
+          name="keywords"
+          content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+        />
+        <meta http-equiv="Content-Language" content="es" />
+      </Head> <div className={styles["main"]}>
       <div className={styles["container"]}>
         <div className={styles["register-container-logo"]}>
           <Image
@@ -139,5 +152,7 @@ export default function Register() {
         )}
       </div>
     </div>
+    </>
+   
   );
 }

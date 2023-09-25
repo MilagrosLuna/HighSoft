@@ -3,7 +3,7 @@ import FloatingAstronaut from "@/components/floatingAstronaut";
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import Link from "next/link";
-
+import Head from "next/head";
 const PageNotFound = () => {
   useEffect(() => {
     gsap.to(".hover", {
@@ -19,6 +19,19 @@ const PageNotFound = () => {
   });
 
   return (
+    <>
+    <Head>
+      <title>HighSoft</title>
+      <meta name="description" content="Inicio" />
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="author" content="HighSoft" />
+      <meta
+        name="keywords"
+        content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+      />
+      <meta http-equiv="Content-Language" content="es" />
+    </Head>
     <div className={styles.back}>
       <section className={styles.container}>
         <div className={`section-contain margintop-lg ${styles.content}`}>
@@ -35,6 +48,7 @@ const PageNotFound = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

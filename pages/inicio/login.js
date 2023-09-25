@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/router"; // Importa useRouter
 import styles from "../../styles/login.module.css";
-
+import Head from "next/head";
 const users = [
   { id: 1, username: "usuario1", password: "contrasena1" },
   { id: 2, username: "usuario2", password: "contrasena2" },
@@ -87,6 +87,19 @@ export default function Login() {
     router.push("/home");
   };
   return (
+    <>
+      <Head>
+        <title>HighSoft</title>
+        <meta name="description" content="Inicio" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HighSoft" />
+        <meta
+          name="keywords"
+          content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+        />
+        <meta http-equiv="Content-Language" content="es" />
+      </Head>
     <div className={styles["main"]}>
       <div className={styles["container"]}>
         <div className={styles["login-container-logo"]}>
@@ -158,5 +171,6 @@ export default function Login() {
         </button>
       </div>
     </div>
+    </>
   );
 }

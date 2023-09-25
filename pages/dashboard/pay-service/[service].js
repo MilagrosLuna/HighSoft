@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import services from "@/src/data/services.json";
 import LayoutHome from "@/components/layoutHome";
 import useMovement from "@/src/hooks/useMovement";
-
+import Head from "next/head";
 const Service = (props) => {
   const { service } = props;
 
@@ -29,6 +29,19 @@ const Service = (props) => {
   };
 
   return (
+    <>
+      <Head>
+        <title>HighSoft</title>
+        <meta name="description" content="Inicio" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HighSoft" />
+        <meta
+          name="keywords"
+          content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
+        />
+        <meta http-equiv="Content-Language" content="es" />
+      </Head>
     <LayoutHome>
       <div
         style={{ width: 60 + "%" }}
@@ -49,6 +62,7 @@ const Service = (props) => {
         </div>
       </div>
     </LayoutHome>
+    </>
   );
 };
 
