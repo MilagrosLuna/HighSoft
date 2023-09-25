@@ -75,6 +75,12 @@ export default function Home() {
             >
               Transferencias
             </Link>
+            <Link
+              className="btn btn-danger m-1 d-block"
+              href="/dashboard/credit-cards"
+            >
+              Tarjetas
+            </Link>
           </div>
         </div>
       </LayoutHome>
