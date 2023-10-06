@@ -78,8 +78,12 @@ def main():
                 "DNI": cheque["DNI"],
                 "Estado": cheque["Estado"]
             })
+        # En caso de no encontrar coincidencias, se muestra un mensaje al usuario y se detiene el programa
+        else: 
+            print("No se encontraron cheques para ese usuario")
+            exit()
 
-    # Mostrar o exportar los resultados
+    # Mostrar los resultados pantalla
     if args.salida == "PANTALLA":
         for cheque in cheques_filtrados:
             print(f"NroCheque | CodigoBanco | CodigoScurusal | NumeroCuentaOrigen | "
@@ -87,6 +91,7 @@ def main():
             print(f"{cheque['NroCheque']} | {cheque['CodigoBanco']} | {cheque['CodigoScurusal']} | "
                   f"{cheque['NumeroCuentaOrigen']} | {cheque['NumeroCuentaDestino']} | {cheque['Valor']} | "
                   f"{cheque['FechaOrigen']} | {cheque['FechaPago']} | {cheque['DNI']} | {cheque['Estado']}")
+    # Exportar los resultados en archivo CSV
     elif args.salida == "CSV":
         nombre_archivo = f"{args.dni_cliente}_{int(datetime.now().timestamp())}.csv"
         try:
