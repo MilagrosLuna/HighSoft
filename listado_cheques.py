@@ -1,102 +1,141 @@
 import csv
+import argparse
 from datetime import datetime
-import os
 
-# Función para cargar datos desde el archivo CSV
-def cargarDatosDesdeCSV(nombre_archivo):
-    datos_cheques = []
-    with open(nombre_archivo, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        next(reader)  # Saltar la primera fila si es la cabecera
-        for row in reader:
-            nro_cheque, codigo_banco, codigo_sucursal, numero_cuenta_origen, numero_cuenta_destino, valor, fecha_origen, fecha_pago, dni, estado, emitido = row
-            datos_cheques.append({
-                "NroCheque": nro_cheque,
-                "CodigoBanco": codigo_banco,
-                "CodigoScurusal": codigo_sucursal,
-                "NumeroCuentaOrigen": numero_cuenta_origen,
-                "NumeroCuentaDestino": numero_cuenta_destino,
-                "Valor": valor,
+def main():
+    parser = argparse.ArgumentParser(description="Procesamiento de Cheques Bancarios")
+
+    # Argumentos de línea de comandos
+    parser.add_argument("archivo_csv", help="Nombre del archivo CSV que contiene los cheques")
+    parser.add_argument("dni_cliente", type=int, help="DNI del cliente para la consulta")
+    parser.add_argument("salida", choices=["PANTALLA", "CSV"], help="Salida de datos: PANTALLA o CSV")
+    parser.add_argument("tipo_cheque", choices=["EMITIDO", "DEPOSITADO"], help="Tipo de cheque a consultar")
+
+    # Argumento opcional para el estado del cheque
+    parser.add_argument("--estado", choices=["PENDIENTE", "APROBADO", "RECHAZADO"], help="Estado del cheque (opcional)")
+
+    # Argumentos opcionales para el rango de fechas
+    parser.add_argument("--fecha", nargs=2, metavar=("inicio", "fin"), help="Rango de fechas (opcional)")
+
+    args = parser.parse_args()
+
+    if not 10000000 <= args.dni_cliente <= 99999999:
+        print("Error: El DNI debe estar en el rango de 10.000.000 a 99.999.999")
+        return 
+
+
+    # Validar el formato del rango de fechas (si se proporciona)
+    if args.fecha:
+        try:
+            fecha_inicio = datetime.strptime(args.fecha[0], "%Y-%m-%d")
+            fecha_fin = datetime.strptime(args.fecha[1], "%Y-%m-%d")
+        except ValueError:
+            print("Error: El formato de las fechas debe ser 'YYYY-MM-DD'.")
+            return
+    else:
+        fecha_inicio = None
+        fecha_fin = None
+
+    # Leer los datos del archivo CSV
+    cheques = []
+    try:
+        with open(args.archivo_csv, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                cheques.append(row)
+    except FileNotFoundError:
+        print(f"Error: El archivo {args.archivo_csv} no se encuentra.")
+        return
+    except Exception as e:
+        print(f"Error al leer el archivo CSV: {str(e)}")
+        return
+
+    # Validar que los números de cheque sean únicos por cuenta y DNI
+    cuentas = set()
+    for cheque in cheques:
+        cuenta = (cheque["NumeroCuentaOrigen"], cheque["DNI"], cheque["NroCheque"])
+        if cuenta in cuentas:
+            print(f"Error: Número de cheque repetido en la misma cuenta para el DNI {cheque['DNI']}.")
+            return
+        cuentas.add(cuenta)
+
+    # Filtrar los cheques según los criterios proporcionados
+    cheques_filtrados = []
+    for cheque in cheques:
+        fecha_origen = datetime.fromtimestamp(int(cheque["FechaOrigen"])).strftime("%Y-%m-%d %H:%M:%S")
+        fecha_pago = datetime.fromtimestamp(int(cheque["FechaPago"])).strftime("%Y-%m-%d %H:%M:%S")
+
+        if (
+            int(cheque["DNI"]) == args.dni_cliente and
+            cheque["Tipo"] == args.tipo_cheque and
+            (args.estado is None or cheque["Estado"] == args.estado) and
+            (fecha_inicio is None or fecha_inicio <= datetime.strptime(fecha_origen, "%Y-%m-%d %H:%M:%S") <= fecha_fin)   
+        ):
+            cheques_filtrados.append({
+                "NroCheque": cheque["NroCheque"],
+                "CodigoBanco": cheque["CodigoBanco"],
+                "CodigoScurusal": cheque["CodigoScurusal"],
+                "NumeroCuentaOrigen": cheque["NumeroCuentaOrigen"],
+                "NumeroCuentaDestino": cheque["NumeroCuentaDestino"],
+                "Valor": cheque["Valor"],
                 "FechaOrigen": fecha_origen,
                 "FechaPago": fecha_pago,
-                "DNI": dni,
-                "Estado": estado,
-                "Emitido": emitido
+                "DNI": cheque["DNI"],
+                "Estado": cheque["Estado"],
+                "Tipo":cheque["Tipo"]
             })
-    return datos_cheques
-
-
-# Función para filtrar cheques por estado
-def filtrarPorEstado(datos_cheques, estado):
-    return [cheque for cheque in datos_cheques if cheque["Estado"].lower() == estado.lower()]
-
-# Función para imprimir cheques en consola con formato
-def imprimirCheques(cheques):
-    if not cheques:
-        print("No se encontraron cheques que coincidan con los criterios de búsqueda.")
+        # En caso de no encontrar coincidencias, se muestra un mensaje al usuario y se detiene el programa
+       
+    if not cheques_filtrados:
+        print("No se encontraron cheques para ese usuario")
     else:
-        print("{:<10} {:<12} {:<15} {:<20} {:<20} {:<15} {:<20} {:<20} {:<10} {:<10}".format(
-            "NroCheque", "CodigoBanco", "CodigoSucursal", "NumeroCuentaOrigen", "NumeroCuentaDestino",
-            "Valor", "FechaOrigen", "FechaPago", "DNI", "Estado"))
-        for cheque in cheques:
-            print("{:<10} {:<12} {:<15} {:<20} {:<20} {:<15} {:<20} {:<20} {:<10} {:<10}".format(
-                cheque['NroCheque'], cheque['CodigoBanco'], cheque['CodigoScurusal'],
-                cheque['NumeroCuentaOrigen'], cheque['NumeroCuentaDestino'], cheque['Valor'],
-                cheque['FechaOrigen'], cheque['FechaPago'], cheque['DNI'], cheque['Estado']))
-
-# Función para filtrar cheques por número de DNI del cliente
-def filtrarPorDNI(datos_cheques, dni):
-    return [cheque for cheque in datos_cheques if cheque["DNI"] == dni]
- 
-# Función para exportar cheques a un archivo CSV
-def exportarACSV(cheques, nombre_archivo_salida):
-    if not nombre_archivo_salida.endswith('.csv'):
-        nombre_archivo_salida += '.csv'
-    with open(nombre_archivo_salida, mode='w', newline='') as csvfile:
-        fieldnames = ["NroCheque", "CodigoBanco", "CodigoScurusal", "NumeroCuentaOrigen", "NumeroCuentaDestino", "Valor", "FechaOrigen", "FechaPago", "DNI", "Estado", "Emitido"]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        for cheque in cheques:
-            writer.writerow(cheque)
-            
-            
-def main():
-    nombre_archivo = input("Ingrese el nombre del archivo CSV: ")
-    datos_cheques = cargarDatosDesdeCSV(nombre_archivo)
-
-    print(f"{nombre_archivo} es el nombre del archivo.")
-
-    tipo_cheque = input("¿Desea consultar cheques EMITIDOS o DEPOSITADOS? 1-SI 2-NO: ")
-    if tipo_cheque == "1":
-        tipo_cheque = input("EMITIDO o DEPOSITADO? ")
-
-    estado_filtro = input("¿Desea filtrar por estado de cheque (PENDIENTE, APROBADO, RECHAZADO)? 1-SI 2-NO: ")
-    if estado_filtro == "1":
-        estado = input("Ingrese el estado (PENDIENTE, APROBADO, RECHAZADO): ")
-        datos_cheques = filtrarPorEstado(datos_cheques, estado)
-
-    print("¿Desea filtrar por un rango de fechas? 1-SI 2-NO: ")
-    fecha_opcion = input()
-    if fecha_opcion == "1":
-        print("Puede implementar el filtro de fechas aquí según sus necesidades.")
-
-    dni_filtro = input("¿Desea filtrar por número de DNI del cliente? 1-SI 2-NO: ")
-    if dni_filtro == "1":
-        dni = input("Ingrese el número de DNI del cliente: ")
-        datos_cheques = filtrarPorDNI(datos_cheques, dni)
-
-    output_opcion = input("Si desea que el archivo salga por consola ingrese 1, si desea exportarlo a un archivo CSV ingrese 2: ")
-    if output_opcion == "1":
-        imprimirCheques(datos_cheques)
-    elif output_opcion == "2":
-        nombre_archivo_salida = input("Ingrese el nombre del archivo CSV de salida: ")
-        exportarACSV(datos_cheques, nombre_archivo_salida)
-        print(f"Los datos han sido exportados exitosamente a {nombre_archivo_salida}.")
-    else:
-        print("Opción no válida. Por favor, ingrese 1 para consola o 2 para archivo CSV.")
+        # Mostrar los resultados pantalla
+        if args.salida == "PANTALLA":
+            for cheque in cheques_filtrados:
+                print(f"NroCheque | CodigoBanco | CodigoScurusal | NumeroCuentaOrigen | "
+                    f"NumeroCuentaDestino | Valor | FechaOrigen | FechaPago | DNI | Estado | Tipo")
+                print(f"{cheque['NroCheque']} | {cheque['CodigoBanco']} | {cheque['CodigoScurusal']} | "
+                    f"{cheque['NumeroCuentaOrigen']} | {cheque['NumeroCuentaDestino']} | {cheque['Valor']} | "
+                    f"{cheque['FechaOrigen']} | {cheque['FechaPago']} | {cheque['DNI']} | {cheque['Estado']} |{cheque['Tipo']}")
+        # Exportar los resultados en archivo CSV
+        elif args.salida == "CSV":
+            nombre_archivo = f"{args.dni_cliente}_{int(datetime.now().timestamp())}.csv"
+            try:
+                with open(nombre_archivo, mode='w', newline='') as csvfile:
+                    fieldnames = ["NroCheque", "CodigoBanco", "CodigoScurusal", "NumeroCuentaOrigen", "NumeroCuentaDestino", "Valor", "FechaOrigen", "FechaPago", "DNI", "Estado","Tipo"]
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for cheque in cheques_filtrados:
+                        writer.writerow(cheque)
+                print(f"Resultados exportados a {nombre_archivo}")
+            except Exception as e:
+                print(f"Error al exportar los resultados a CSV: {str(e)}")
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
              ##OLDEST VERSION##
@@ -231,4 +270,3 @@ if __name__ == "__main__":
 #                 writer.writerow([cheque["nro_cheque"], cheque["codigo_banco"], cheque["codigo_sucursal"], cheque["numero_cuenta_origen"], cheque["numero_cuenta_destino"], cheque["valor"], cheque["fecha_origen"], cheque["fecha_pago"], cheque["dni"], cheque["estado"], cheque["tipo"]])
 # else:
 #     print("el archivo no existe")
-
