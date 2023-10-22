@@ -1,86 +1,75 @@
 [
     {
-      "numero": 100001,
-      "nombre": "Nicolas",
-      "apellido": "Gaston",
-      "dni": "29494777",
-      "tipo": "BLACK",
-      "cuentas": [
-        {
-          "numero": 190,
-          "tipo": "CAJA_DE_AHORRO_PESOS",
-          "saldo": 100000
-        },
-        {
-          "numero": 191,
-          "tipo": "CUENTA_CORRIENTE_PESOS",
-          "saldo": 20000
-        },
-        {
-          "numero": 192,
-          "tipo": "CUENTA_DE_INVERSION_PESOS",
-          "saldo": 30000
-        }
-      ],
-      "tarjetas": [
-        {
-          "numero": 190001,
-          "tipo": "VISA",
-          "limite": 150000
-        },
-        {
-          "numero": 190002,
-          "tipo": "MASTERCARD",
-          "limite": 100000
-        }
-      ]
+        "numero": 100001,
+        "nombre": "Nicolas",
+        "apellido": "Gaston",
+        "dni": "29494777",
+        "tipo": "BLACK",
+        "cuentas": [
+            {
+                "numero": 190,
+                "tipo": "CAJA_DE_AHORRO_PESOS",
+                "saldo": 100000
+            }
+        ],
+        "tarjetas": [
+            {
+                "numero": 190001,
+                "tipo": "VISA",
+                "limite": 500000
+            },
+            {
+                "numero": 190002,
+                "tipo": "MASTERCARD",
+                "limite": 100000
+            }
+        ]
     },
     {
-      "numero": 100002,
-      "nombre": "Maria",
-      "apellido": "Lopez",
-      "dni": "30123456",
-      "tipo": "GOLD",
-      "cuentas": [
-        {
-          "numero": 193,
-          "tipo": "CAJA_DE_AHORRO_DOLARES",
-          "saldo": 1000
-        },
-        {
-          "numero": 194,
-          "tipo": "CUENTA_CORRIENTE_DOLARES",
-          "saldo": 2000
-        }
-      ],
-      "tarjetas": [
-        {
-          "numero": 190003,
-          "tipo": "AMEX",
-          "limite": 750000
-        }
-      ]
+        "numero": 100002,
+        "nombre": "Maria",
+        "apellido": "Lopez",
+        "dni": "30123456",
+        "tipo": "GOLD",
+        "cuentas": [
+            {
+                "numero": 193,
+                "tipo": "CAJA_DE_AHORRO_DOLARES",
+                "saldo": 1000
+            },
+            {
+                "numero": 194,
+                "tipo": "CUENTA_CORRIENTE_DOLARES",
+                "saldo": 2000
+            }
+        ],
+        "tarjetas": [
+            {
+                "numero": 190003,
+                "tipo": "AMEX",
+                "limite": 750000
+            }
+        ]
     },
     {
-      "numero": 100010,
-      "nombre": "Juan",
-      "apellido": "Perez",
-      "dni": "31234567",
-      "tipo": "CLASSIC",
-      "cuentas": [
-        {
-          "numero": 199,
-          "tipo": "CAJA_DE_AHORRO_PESOS",
-          "saldo": 5000
-        }
-      ],
-      "tarjetas": [
-        {
-          "numero": 190010,
-          "tipo": "VISA",
-          "limite": 50000
-        }
-      ]
+        "numero": 100010,
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "dni": "31234567",
+        "tipo": "CLASSIC",
+        "cuentas": [
+            {
+                "numero": 199,
+                "tipo": "CAJA_DE_AHORRO_PESOS",
+                "saldo": 5000
+            }
+        ],
+        "tarjetas": [
+            {
+                "numero": 190010,
+                "tipo": "VISA",
+                "limite": 50000
+            }
+        ]
     }
-  ]
-  
+]
