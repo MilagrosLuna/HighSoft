@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Informe de Movimientos</title>
+</head>
+<body>
+    <h1>Informe de Movimientos para el Cliente {{ nombre }} {{ apellido }}</h1>
+    <p>Número de Cliente: {{ numero }}</p>
+    <p>DNI: {{ dni }}</p>
+    <p>Tipo de Cliente: {{ tipo }}</p>
+    <table border="1">
+        <tr>
+            <th>Estado</th>
+            <th>Tipo de Transacción</th>
+            <th>Número de Cuenta</th>
+            <th>Permitido Actual</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+        </tr>
+        {% for transaccion in transacciones %}
+        <tr>
+            <td>{{ transaccion.estado }}</td>
+            <td>{{ transaccion.tipo }}</td>
+            <td>{{ transaccion.cuentaNumero }}</td>
+            <td>{{ transaccion.permitidoActualParaTransaccion }}</td>
+            <td>${{ transaccion.monto | floatformat:2 }}</td>
+            <td>{{ transaccion.fecha }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
