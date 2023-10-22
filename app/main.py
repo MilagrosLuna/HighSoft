@@ -89,9 +89,19 @@ if __name__ == "__main__":
     clientes_data = cargar_clientes()
 
     # Realizar algunas operaciones de ejemplo
-    for cliente in clientes_data:
-        nombre = cliente['nombre']
-        tipo_cliente = cliente['tipo']
+    for cliente_data in clientes_data:
+        nombre = cliente_data['nombre']
+        tipo_cliente = cliente_data['tipo']
+
+        if tipo_cliente == 'Classic':
+            from cliente import Classic
+            cliente = Classic(**cliente_data)
+        elif tipo_cliente == 'Gold':
+            from cliente import Gold
+            cliente = Gold(**cliente_data)
+        elif tipo_cliente == 'Black':
+            from cliente import Black
+            cliente = Black(**cliente_data)
 
         # Ejemplo de cálculo del monto total
         monto_total = calcular_monto_total(100, 1000)
@@ -104,12 +114,12 @@ if __name__ == "__main__":
 
         # Generar informe de movimientos
         informe = generar_informe(cliente)
-    
+
         print(f"Cliente: {nombre} ({tipo_cliente})")
         print(f"Monto Total: ${monto_total:.2f}")
         print(f"Monto Descontado: ${monto_descontado:.2f}")
         print(f"Monto Plazo Fijo: ${monto_plazo_fijo:.2f}\n")
 
         # Guardar el informe en un archivo HTML
-        with open(f"informe_{cliente['numero']}.html", "w") as informe_file:
+        with open(f"informe_{cliente_data['numero']}.html", "w") as informe_file:
             informe_file.write(informe)
