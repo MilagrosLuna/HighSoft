@@ -7,7 +7,16 @@ import json
 import os
 
 def cargar_json(nombre_archivo) -> json:
-    ''' Lee un archivo JSON e instancia los objetos correspondientes '''
+    """
+    Lee un archivo JSON e instancia los objetos correspondientes.
+
+    Args:
+        - nombre_archivo (str): El nombre del archivo JSON a cargar.
+
+    Returns:
+        - List[Cliente]: Una lista de objetos Cliente (instancias de Black, Gold o Classic) con sus transacciones cargadas.
+        
+    """
     if not os.path.exists(nombre_archivo):
         raise ValueError(" El archivo no existe")
 
@@ -53,6 +62,13 @@ def cargar_json(nombre_archivo) -> json:
 import argparse
 from generar_html import generar_reporte_html
 def main():
+    """
+    Función principal del programa para generar informes HTML a partir de un archivo JSON.
+
+    Utiliza la librería argparse para aceptar un argumento de línea de comandos que representa el nombre del archivo JSON de entrada. 
+    Carga los datos del archivo JSON, genera informes HTML para cada cliente y los guarda en archivos individuales.
+
+    """
 
     parser = argparse.ArgumentParser(description='Genera informes HTML a partir de un archivo JSON.')
     parser.add_argument('archivo_json', help='Nombre del archivo JSON de entrada')
