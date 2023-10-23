@@ -50,11 +50,18 @@ def cargar_json(nombre_archivo) -> json:
 
     return clientes
 
-
+import argparse
 from generar_html import generar_reporte_html
 def main():
-    datos = cargar_json("data.json")
-    print(datos)
+
+    parser = argparse.ArgumentParser(description='Genera informes HTML a partir de un archivo JSON.')
+    parser.add_argument('archivo_json', help='Nombre del archivo JSON de entrada')
+
+    args = parser.parse_args()
+    archivo_json = args.archivo_json
+
+    datos = cargar_json(archivo_json)
+    #print(datos)
 
     # reporte = generar_reporte_html(datos)
 
