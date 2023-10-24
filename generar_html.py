@@ -3,7 +3,26 @@ import json
 
 
 def generar_reporte_html(cliente):
-    ''' Genera un informe HTML con los datos del cliente '''
+    """
+    Genera un informe HTML con los datos del cliente y sus transacciones.
+
+    Args:
+        - cliente: Instancia del cliente del cual se generará el informe.
+
+    Returns:
+        - str: Cadena HTML que representa el informe.
+
+    La función toma un objeto cliente como argumento y crea un informe en formato HTML que incluye los siguientes datos:
+    - Número de cliente.
+    - Nombre del cliente.
+    - Apellido del cliente.
+    - DNI del cliente.
+    - Tipo de cliente (basado en la clase del cliente).
+    - Detalles de las transacciones del cliente, incluyendo estado, tipo, cuenta número, límite actual para transacción, monto, fecha, número de transacción, saldo en la cuenta y motivo.
+    
+    El resultado es una cadena HTML que puede ser guardada en un archivo o utilizada en una aplicación web para mostrar el informe del cliente.
+
+    """
     tipo_cliente = type(cliente).__name__
     html = f"""
     <html>
