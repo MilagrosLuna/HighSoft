@@ -2,6 +2,28 @@ import re
 
 
 class Transaccion:
+     """
+    Clase que representa una transacción bancaria.
+
+    Atributos:
+        - estado (str): Estado de la transacción, puede ser 'ACEPTADA' o 'RECHAZADA'.
+        - tipo (str): Tipo de operación de la transacción.
+        - cuentaNumero (int): Número de cuenta asociada a la transacción.
+        - permitidoActualParaTransaccion (int o float): Límite disponible para la transacción.
+        - monto (int o float): Monto de la transacción.
+        - fecha (str): Fecha y hora de la transacción en formato 'dd/mm/yyyy hh:mm:ss'.
+        - numero (int): Número de la transacción.
+        - saldoDisponibleEnCuenta (int o float): Saldo disponible en la cuenta.
+
+    Métodos:
+        - __init__(estado, tipo, cuentaNumero, permitidoActualParaTransaccion, monto, fecha, numero, saldoDisponibleEnCuenta): Constructor de la clase.
+        - obtener_motivo(cliente): Establece el motivo de la transacción (aprobada o rechazada) basado en el tipo de cliente y otras condiciones.
+
+    Atributos de Clase:
+        - TIPO_OPERACIONES (list): Lista de tipos de operaciones válidas.
+
+    """
+    
     TIPO_OPERACIONES = [
         "RETIRO_EFECTIVO_CAJERO_AUTOMATICO",
         "RETIRO_EFECTIVO_POR_CAJA",
@@ -32,6 +54,19 @@ class Transaccion:
     fecha_regex = r"\d{2}/\d{2}/\d{4} \d{2}:\d{2}:\d{2}"
 
     def __init__(self, estado, tipo, cuentaNumero, permitidoActualParaTransaccion, monto, fecha, numero,saldoDisponibleEnCuenta) -> None:
+        """
+        Inicializa una transacción bancaria.
+
+        Args:
+            - estado (str): Estado de la transacción ('ACEPTADA' o 'RECHAZADA').
+            - tipo (str): Tipo de operación de la transacción.
+            - cuentaNumero (int): Número de cuenta asociada a la transacción.
+            - permitidoActualParaTransaccion (int o float): Límite disponible para la transacción.
+            - monto (int o float): Monto de la transacción.
+            - fecha (str): Fecha y hora de la transacción en formato 'dd/mm/yyyy hh:mm:ss'.
+            - numero (int): Número de la transacción.
+            - saldoDisponibleEnCuenta (int o float): Saldo disponible en la cuenta.
+        """
 
         if not isinstance(estado, str) or not estado in ["ACEPTADA", "RECHAZADA"]:
             raise ValueError(
@@ -81,7 +116,15 @@ class Transaccion:
         self.motivo = ''
 
     def obtener_motivo(self, cliente):
-        ''' agrega el atributo motivo, para explicar porque una opercion fue rechazada o aprobada'''
+         """
+        Establece el motivo de la transacción (aprobada o rechazada) basado en el tipo de cliente y otras condiciones.
+
+        Args:
+            - cliente: Instancia del cliente asociado a la transacción.
+
+        """
+        
+        ''' agrega el atributo motivo, para explicar porque una operacion fue rechazada o aprobada'''
 
         tipo_cliente = cliente.__class__.__name__
 
