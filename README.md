@@ -1,6 +1,6 @@
 # Documentación del Programa
 
-Este archivo contiene la documentación de las clases y funciones del programa, así como ejemplos de uso.
+Este archivo contiene la documentación de las clases y funciones del programa.
 
 ## Contenido
 
