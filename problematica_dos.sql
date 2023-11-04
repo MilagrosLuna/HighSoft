@@ -109,3 +109,6 @@ SELECT loan_type
 FROM prestamo
 ORDER BY loan_total DESC 
 LIMIT 1;
+
+SELECT loan_type, MAX(loan_total) AS max_importe
+FROM prestamo;

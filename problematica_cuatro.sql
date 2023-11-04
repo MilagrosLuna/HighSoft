@@ -1,8 +1,14 @@
 --  Listar la cantidad de clientes por nombre de sucursal ordenando de mayor
 -- a menor
+SELECT COUNT(c.customer_id) as cant_clientes, s.branch_name
+FROM cliente c
+JOIN sucursal s ON c.branch_id = s.branch_id
+GROUP BY c.branch_id
+ORDER BY cant_clientes DESC;
 
 --  Obtener la cantidad de empleados por cliente por sucursal en un número
 -- real
+
 
 --  Obtener la cantidad de tarjetas de crédito por tipo por sucursal
 
