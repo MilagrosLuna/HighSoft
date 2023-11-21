@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Inicio {% endblock %}</title>
+</head>
+<body>
+
+    <nav class="d-flex w-100 px-5 py-3 align-items-center justify-content-between m-auto border border-dark bg-info">
+        <h1 class="fw-bolder">ITBANK</h1>
+        <ul class="fw-bold fs-4">
+            <a class="fs-5 btn btn-info fw-bold" href="{% url 'home' %}">Inicio</a>
+            <a class="fs-5 btn btn-info fw-bold" href="{% url 'account' %}">Mis cuentas</a>
+            <a class="fs-5 btn btn-info fw-bold" href="{% url 'personal_data' %}">Mis datos</a>
+            {% if request.user.is_authenticated %}
+                <a class="fs-5 btn btn-danger fw-bold" href="{% url 'logout' %}">Salir</a>
+            {% else %}
+                <a class="fs-5 btn btn-success fw-bold" href="{% url 'login' %}">Ingresar</a>
+            {% endif %}
+        </ul>
+    </nav>
+
+    
+
+    {% block content %}
+
+        <div class="mx-auto w-50 text-center my-5">
+            {% if request.user.is_authenticated %}
+                <h1>Bienvenido {{ request.user.first_name }}</h1>
+            {% endif %}
+
+            <section class="container my-4 text-white p-4 rounded" style="background-color: #4592af;">
+                <h2 class="my-4 mt-5 text-black">Novedades Financieras Destacadas</h2>
+                <div class="card mt-5" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Informe Económico Trimestral</h3>
+                        <p class="card-text">Consulta nuestro último informe económico trimestral para obtener análisis detallados sobre las tendencias actuales del mercado, previsiones económicas y consejos de nuestros expertos.</p>
+                    </div>
+                </div>
+        
+                <div class="card mt-4" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Nuevas Oportunidades de Inversión</h3>
+                        <p class="card-text">Descubre las últimas oportunidades de inversión que ofrecemos. Desde fondos mutuos hasta productos estructurados, te presentamos opciones para diversificar y maximizar tus ganancias.</p>
+                    </div>
+                </div>
+        
+                <div class="card mt-4" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Webinar: Estrategias Financieras para el Futuro</h3>
+                        <p class="card-text">Participa en nuestro próximo webinar donde expertos financieros compartirán estrategias para enfrentar los desafíos económicos actuales y planificar un futuro financiero sólido.</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="container my-5 text-white p-4 rounded" style="background-color: #4592af;">
+                <h2 class="my-4 mt-5 text-black">Noticias del Banco</h2>
+                <div class="card mt-5" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Inauguración de Nueva Sucursal</h3>
+                        <p class="card-text">Estamos emocionados de anunciar la apertura de nuestra última sucursal en [Nombre de la Ciudad]. Visítanos para disfrutar de servicios bancarios convenientes y atención personalizada.</p>
+                    </div>
+                </div>
+        
+                <div class="card mt-4" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Lanzamiento de la Aplicación Móvil Mejorada</h3>
+                        <p class="card-text">¡Actualizamos nuestra aplicación móvil! Descarga la última versión para disfrutar de funciones mejoradas, mayor seguridad y una experiencia bancaria más fluida desde tu dispositivo móvil.</p>
+                    </div>
+                </div>
+        
+                <div class="card mt-4" style="background-color: #226089;">
+                    <div class="card-body p-4">
+                        <h3 class="card-title p-3">Charla sobre Inversiones Inteligentes</h3>
+                        <p class="card-text">Únete a nosotros el [Fecha] para una charla exclusiva sobre estrategias de inversión inteligente. Expertos en finanzas compartirán consejos y trucos para maximizar tus inversiones.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    {% endblock %}
+    
+</body>
+</html>

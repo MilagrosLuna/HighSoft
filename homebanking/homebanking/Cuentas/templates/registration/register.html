@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Ingresa
+{% endblock %}
+
+{% block content %}
+
+    {% load crispy_forms_tags %}
+
+
+
+<div class="d-flex flex-column fw-bold w-25 m-auto my-5 p-4 border border-secondary rounded">
+    <h3 class="p-4">Crea tu usuario</h3>
+    <form class="p-4" action="" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        {% if user_created == False %}
+        <p class="fw-bold text-danger">Error creando usuario. Completa todos los campos.</p>
+        {% endif %}
+        <a href="{% url 'home' %}">Volver a inicio</a>
+        <a class="btn btn-danger float-end" href="{% url 'login' %}">Inicia Sesión</a>
+        <input type="submit" class="btn btn-primary float-end mx-3" value="Registrarse">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Cuenta
+{% endblock %}
+
+{% block content %}
+
+{% if 'error' in request.GET %}
+    <h2 class="my-5 w-100 text-center text-danger">Error: alcanzó el limite de cuentas </h2>
+{% endif %}
+
+{% if 'ok' in request.GET %}
+    <h2 class="my-5 w-100 text-center text-success">Su cuenta se abrió correctamente</h2>
+{% endif %}
+
+
+<div class="mx-auto w-50 text-center my-5">
+
+    {% if not request.user.is_authenticated %}
+        <h3>Debes iniciar sesión para continuar</h3>
+        <a href="{% url 'login' %}">Ingresa</a>
+    {% else %}
+    
+    <h3>Tus cuentas</h3>
+    <div class="d-flex mx-auto flex-column">
+        {% for cuenta in cuentas %}
+        <div class="d-flex justify-content-evenly border border-dark rounded p-3 m-2 fw-bold fs-4">
+            <p class="my-auto ">{{ cuenta.id }}</p>
+            <p class="my-auto ">{{ cuenta.tipo }}</p>
+            <p class="my-auto fw-bolder">${{ cuenta.balance }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+</div>
+
+{% block create_account %}
+    <div class="mx-auto w-50 text-center my-5">
+        <a class="btn btn-success" href="{% url 'create_new_account' %}">Abrir nueva cuenta</a>
+    </div>
+{% endblock %}
+
+
+    {% endif %}
+
+
+{% endblock %}
