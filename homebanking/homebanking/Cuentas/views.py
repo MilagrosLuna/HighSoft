@@ -78,9 +78,7 @@ def create_new_account(request):
 
         # limites del tipo cliente
         tipo_cliente = TipoCliente.objects.get(tipo_id=tipo_cliente_id)
-
         cuentas = Cuenta.objects.all().filter(client=cliente_id)
-
         form = CreateBankAccount(data=request.POST)
 
 
@@ -94,13 +92,9 @@ def create_new_account(request):
         
             conteo = len(cuentas.filter(tipo_cuenta_id=tipo_cuenta))
 
-            print(conteo)
-
             limite_cuenta_prueba = get_tipo_cuenta(tipo_cuenta.tipo_cuenta_id)
 
             limite_cuenta = getattr(tipo_cliente, limite_cuenta_prueba)
-
-            print(limite_cuenta)
 
             if conteo < limite_cuenta:
   

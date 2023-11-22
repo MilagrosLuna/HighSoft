@@ -15,6 +15,9 @@ Tus datos
         <p>Fecha de nacimiento: <strong>{{ cliente_data.dob }}</strong></p>
         <p>Cliente <strong>{{ client_class.tipo_cliente_nombre }}</strong></p>
     </div>
+
+    <a class="mt-5 fs-5 btn btn-success fw-bold" href="{% url 'loan_money' %}">Solicitar préstamo</a>
+
 </div> 
 
 {% endblock %}

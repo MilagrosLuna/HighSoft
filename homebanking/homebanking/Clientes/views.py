@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Cliente, TipoCliente
 from .forms import ClientSearchForm
@@ -12,8 +11,6 @@ def client(request):
     user_id = request.user.id
     user_data = Cliente.objects.get(user_id=user_id)
     client_class = TipoCliente.objects.get(tipo_id=user_data.tipo_cliente_id)
-
-    print(client_class.tipo_cliente_nombre)
 
     data = {
         'cliente_id': user_id,

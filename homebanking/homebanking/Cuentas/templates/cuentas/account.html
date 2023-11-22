@@ -6,13 +6,13 @@ Cuenta
 
 {% block content %}
 
-{% if 'error' in request.GET %}
-    <h2 class="my-5 w-100 text-center text-danger">Error: alcanzó el limite de cuentas </h2>
-{% endif %}
+    {% if 'error' in request.GET %}
+        <h2 class="my-5 w-100 text-center text-danger">Error: alcanzó el limite de cuentas </h2>
+    {% endif %}
 
-{% if 'ok' in request.GET %}
-    <h2 class="my-5 w-100 text-center text-success">Su cuenta se abrió correctamente</h2>
-{% endif %}
+    {% if 'ok' in request.GET %}
+        <h2 class="my-5 w-100 text-center text-success">Su cuenta se abrió correctamente</h2>
+    {% endif %}
 
 
 <div class="mx-auto w-50 text-center my-5">
@@ -32,7 +32,6 @@ Cuenta
         </div>
         {% endfor %}
     </div>
-
     
 </div>
 
