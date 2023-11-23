@@ -6,6 +6,7 @@ from .forms import CustomUserCreationForm, CreateBankAccount
 from Clientes.models import Cliente, TipoCliente
 from Cuentas.models import Cuenta, TipoCuenta
 from Cuentas.utils import get_iban, get_tipo_cuenta
+from common.utils import format_number
 
 # Create your views here.
 
@@ -52,8 +53,10 @@ def account(request):
         tipo_cuenta_actual = TipoCuenta.objects.all().filter(
             tipo_cuenta_id=cuenta.tipo_cuenta_id)
         tipo_cuenta = tipo_cuenta_actual[0].tipo_cuenta_nombre
+        formated_balance = format_number(cuenta.balance)
+
         cuenta_data = {
-            'balance': cuenta.balance,
+            'balance': formated_balance,
             'tipo': tipo_cuenta,
             'id': cuenta.account_id
         }

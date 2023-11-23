@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'crispy_forms',
     'crispy_bootstrap5',
+    'djtriggers',
     'Cuentas',
     'Clientes',
     'core',
@@ -50,6 +51,11 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+TRIGGERS = {
+    'loan_trigger': 'LOAN_TRIGGER',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

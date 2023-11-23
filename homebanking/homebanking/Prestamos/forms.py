@@ -1,21 +1,24 @@
 from django import forms
 from Prestamos.models import Prestamo
 
-class NewLoanRequest2(forms.ModelForm):
-    class Meta:
-        model = Prestamo
-        fields = ['loan_type', 'loan_total', 'customer_id']
-
 class NewLoanRequest(forms.Form):
-    
+
+    def __init__(self, account_choices, *args, **kwargs):
+        super(NewLoanRequest, self).__init__(*args, **kwargs)
+        self.fields['account'].choices = account_choices
+
     TYPE_CHOICES = [
-    ('PERSONAL', 'Personal'),
-    ('HIPOTECARIO','Hipotecario'),
-    ('PRENDARIO','Prendario'),
+        ('PERSONAL', 'Personal'),
+        ('HIPOTECARIO', 'Hipotecario'),
+        ('PRENDARIO', 'Prendario'),
     ]
 
     loan_type = forms.ChoiceField(
         choices=TYPE_CHOICES,
-        widget = forms.Select(),
+        widget=forms.Select(),
         label='Tipo de préstamo'
+    )
+    account = forms.ChoiceField(
+        widget = forms.Select(),
+        label = 'Selecciona una cuenta'
     )

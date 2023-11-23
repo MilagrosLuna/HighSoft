@@ -9,7 +9,7 @@ Préstamos
     {% if 'error' in request.GET %}
         <h2 class="mt-5 w-100 text-center text-danger">Error: ocurrió un problema al solicitar tu préstamo
         </h2>
-        <p class="fs-4 w-100 text-center text-danger">Intentalo más tarde o comunícate con soporte</p>
+        <p class="fs-4  w-100 text-center text-danger">Intentalo más tarde o comunícate con soporte</p>
     {% endif %}
 
     {% if 'ok' in request.GET %}
@@ -19,9 +19,15 @@ Préstamos
     {% load crispy_forms_tags %}
 
     <div class="mx-auto w-50 text-center my-5">
-        <h3>
+        <h3 class="fs-2">
             Solicitar préstamo
         </h3>
+
+        <h2 class="p-4 my-3">
+            Eres cliente 
+            <strong>{{ client_class.tipo_cliente_nombre }}</strong><br>
+            Tú límite de préstamo es de ${{ loan_limit }}
+        </h2>
 
         <div class="d-flex mx-auto flex-column">
             <form action="" method="POST">
