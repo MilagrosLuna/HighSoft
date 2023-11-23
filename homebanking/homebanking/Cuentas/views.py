@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import CustomUserCreationForm, CreateBankAccount
 from Clientes.models import Cliente, TipoCliente
 from Cuentas.models import Cuenta, TipoCuenta
 from Cuentas.utils import get_iban, get_tipo_cuenta
-from common.utils import format_number
+from common.utils import format_number, get_branch_id
 
 # Create your views here.
 
@@ -19,12 +20,39 @@ def register(request):
     if request.method == 'POST':
 
         user_creation_form = CustomUserCreationForm(data=request.POST)
+        
 
         if user_creation_form.is_valid():
+
             user_creation_form.save()
+
+
             new_user = authenticate(
                 username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
             login(request, new_user)
+
+
+            if request.user.id:
+
+                customer_name = user_creation_form.cleaned_data['first_name']
+                customer_surname = user_creation_form.cleaned_data['last_name']
+                customer_dni = user_creation_form.cleaned_data['customer_dni']
+                customer_dob = user_creation_form.cleaned_data['dob']
+                customer_user_id = User.objects.get(id=request.user.id)
+                customer_client_class = TipoCliente.objects.get(tipo_id=1)
+
+                new_customer = Cliente.objects.create(
+                    customer_name = customer_name,
+                    customer_surname = customer_surname,
+                    customer_dni = customer_dni,
+                    dob = customer_dob,
+                    branch_id = get_branch_id(),
+                    user = customer_user_id,
+                    tipo_cliente = customer_client_class
+                )
+
+                print(new_customer)
+
             return redirect('home')
         else:
             print("error")
