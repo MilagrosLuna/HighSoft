@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Cliente, TipoCliente
-from .forms import ClientSearchForm
 
 # Create your views here.
 
