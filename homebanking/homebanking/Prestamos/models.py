@@ -1,6 +1,5 @@
 from django.db import models
 from Cuentas.models import Cuenta
-from djtriggers.models import Trigger
 
 # Create your models here.
 
@@ -15,12 +14,3 @@ class Prestamo(models.Model):
     class Meta:
         managed = False
         db_table = 'prestamo'
-
-class LOAN_TRIGGER(Trigger):
-    type = 'post_save'
-
-    def _process(self, instance):
-        if instance._meta.model_name == 'Prestamo':
-            cuenta = Cuenta.objects.get(account_id=instance.account_id)
-            cuenta.balance += instance.loan_total
-            cuenta.save()
