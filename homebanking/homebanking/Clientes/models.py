@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Cliente(models.Model):
+
     customer_id = models.IntegerField(primary_key=True)
     customer_name = models.CharField(max_length=30)
     customer_surname = models.CharField(max_length=30)
