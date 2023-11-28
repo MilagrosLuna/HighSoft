@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './credit-cards.css';
-
 
 // Componente de tarjeta de crédito
 function CreditCard({ type, limit, showDetails }) {
