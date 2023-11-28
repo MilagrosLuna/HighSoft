@@ -2,6 +2,12 @@ import { useState, useReducer } from 'react';
 import emailjs from 'emailjs-com';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+// KEYS
+// NEXT_PUBLIC_EMAIL_JS_SERVICE=service_highsoft 
+// NEXT_PUBLIC_EMAIL_JS_TEMPLATE=template_lbtq95w
+// NEXT_PUBLIC_EMAIL_JS_USER=c27M8Q4FXi0vsbfvL
+// NEXT_PUBLIC_CAPTCHA_SITE_KEY=6LfF3R8pAAAAAPjNyQj2cPzZhje6YsVpBcNQwKRT
+
 const initialState = {
   name: '',
   email: '',
@@ -44,23 +50,23 @@ export default function MessageForm() {
       'g-recaptcha-response': captchaValue,
     };
 
-    setFormSubmitted({ title: 'Sending message...', paragraph: '' });
+    setFormSubmitted({ title: 'Enviando mensaje...', paragraph: '' });
     emailjs.send(
-      process.env.EMAIL_JS_SERVICE,
-      process.env.EMAIL_JS_TEMPLATE,
+      process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE,
+      process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE,
       params,
-      process.env.EMAIL_JS_USER,
+      process.env.NEXT_PUBLIC_EMAIL_JS_USER,
     )
       .then(({ status }) => {
         if (status === 200) {
-          setFormSubmitted({ title: 'Message has been sent', paragraph: 'Mike will be in contact with you soon.' });
+          setFormSubmitted({ title: 'Mensaje enviado', paragraph: 'Nos pondremos en contacto pronto.' });
         } else {
-          setFormSubmitted({ title: 'Unexpected status code returned from EmailJS, try again later', paragraph: 'Please contact Mike either by phone or email.' });
+          setFormSubmitted({ title: 'Código de estado inesperado recibido de EmailJS, inténtalo de nuevo más tarde', paragraph: 'Porfavor comuniquese por telefono.' });
         }
       }, (err) => {
         // eslint-disable-next-line no-console
         console.log(err);
-        setFormSubmitted({ title: 'Error sending message, try again later', paragraph: 'Please contact Mike either by phone or email.' });
+        setFormSubmitted({ title: 'Error al enviar el mensaje, inténtalo de nuevo más tarde', paragraph: 'Porfavor comuniquese por telefono.' });
       });
   };
 
@@ -118,7 +124,7 @@ export default function MessageForm() {
         </form>
       ) : (
         <ReCAPTCHA
-          sitekey={process.env.CAPTCHA_SITE_KEY}
+          sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
           onChange={sendEmail}
           className="mt-6"
         />
