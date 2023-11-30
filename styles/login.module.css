@@ -125,6 +125,9 @@
   padding: 0;
   background-color: #000;
 }
+.error-message {
+  color: red;
+}
 .container {
   width: 30%;
   padding: 30px;

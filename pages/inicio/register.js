@@ -4,17 +4,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/register.module.css";
 import Head from "next/head";
-const users = [
-  // Usuarios existentes
-  { id: 1, username: "usuario1", password: "contrasena1" },
-  { id: 2, username: "usuario2", password: "contrasena2" },
-  { id: 3, username: "a", password: "a" },
-  // Agrega más usuarios según sea necesario
-];
 
-function isUsernameTaken(username) {
-  return users.some((u) => u.username === username);
-}
+import { API } from "@/src/utils/api";
 
 export default function Register() {
   const router = useRouter();
@@ -26,7 +17,7 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     setIsPasswordValid(true);
     setIsUsernameValid(true);
     setErrorMessage("");
@@ -49,24 +40,24 @@ export default function Register() {
       return;
     }
 
-    if (isUsernameTaken(username)) {
-      setErrorMessage("El nombre de usuario ya está en uso.");
-      return;
+    try {
+      // Hacer una solicitud POST a la API/// la validacion de si existe deberia estar en la api
+      const response = await API.post("/register", {
+        username,
+        password,
+      });
+
+      // Si la solicitud fue exitosa, la API debería devolver el usuario
+      if (response.data.success) {
+        setIsRegistered(true);
+        router.push("/home");
+      } else {
+        setErrorMessage(response.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Error al registrar el usuario.");
     }
-
-    // Agrega el nuevo usuario a la lista de usuarios
-    const newUser = {
-      id: users.length + 1,
-      username,
-      password,
-    };
-    users.push(newUser);
-
-    // Guarda la lista actualizada en el localStorage
-    localStorage.setItem("users", JSON.stringify(users));
-
-    // Registro exitoso
-    setIsRegistered(true);
   };
 
   return (
@@ -82,77 +73,105 @@ export default function Register() {
           content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
         />
         <meta http-equiv="Content-Language" content="es" />
-      </Head> <div className={styles["main"]}>
-      <div className={styles["container"]}>
-        <div className={styles["register-container-logo"]}>
-          <Image
-            src="/img/logoW.png"
-            alt="Logo highSoft"
-            width={300}
-            height={30}
-            quality={100}
-            priority
-          />
-        </div>
-        {isRegistered ? (
-          // Registro exitoso
-          <div>
-            <h2>Registro exitoso, {username}!</h2>
-            <p>¡Ahora puedes iniciar sesión con tu cuenta recién registrada!</p>
-            <Link href="/inicio/login">Iniciar sesión</Link>
+      </Head>{" "}
+      <div className={styles["main"]}>
+        <div className={styles["container"]}>
+          <div className={styles["register-container-logo"]}>
+            <Image
+              src="/img/logoW.png"
+              alt="Logo highSoft"
+              width={300}
+              height={30}
+              quality={100}
+              priority
+            />
           </div>
-        ) : (
-          // Formulario de registro
-          <form className={styles.formulario}>
-            <div className="form-group">
-              <label htmlFor="email" className={styles.labels}>
-                Nombre de usuario:
-              </label>
-              <input
-                type="text"
-                placeholder="Nombre de usuario"
-                value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                  setIsUsernameValid(true);
-                  setErrorMessage("");
-                }}
-                className={styles.formCcontrol}
-              />
+          {isRegistered ? (
+            // Registro exitoso
+            <div>
+              <h2>Registro exitoso, {username}!</h2>
+              <p>
+                ¡Ahora puedes iniciar sesión con tu cuenta recién registrada!
+              </p>
+              <Link href="/inicio/login">Iniciar sesión</Link>
             </div>
-            <div className="form-group">
-              <label htmlFor="password" className={styles.labels}>
-                Contraseña:
-              </label>
-              <input
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setIsPasswordValid(e.target.value.length >= 8);
-                  setErrorMessage("");
-                }}
-                className={styles.formCcontrol}
-              />
-            </div>
-            {!isPasswordValid && (
-              <p className="error-message">{errorMessage}</p>
-            )}
-            <button onClick={handleRegister} className={styles["btn-primary"]}>
-              Registrarse
-            </button>
-            <p>
-              ¿Ya tienes una cuenta?{" "}
-              <Link href="/inicio/login" className={styles.Link}>
-                Iniciar sesión aquí
-              </Link>
-            </p>
-          </form>
-        )}
+          ) : (
+            // Formulario de registro
+            <form className={styles.formulario}>
+              <div className="form-group">
+                <label htmlFor="email" className={styles.labels}>
+                  Nombre de usuario:
+                </label>
+                <input
+                  type="text"
+                  placeholder="Nombre de usuario"
+                  value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    setIsUsernameValid(true);
+                    setErrorMessage("");
+                  }}
+                  className={styles.formCcontrol}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password" className={styles.labels}>
+                  Contraseña:
+                </label>
+                <input
+                  type="password"
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setIsPasswordValid(e.target.value.length >= 8);
+                    setErrorMessage("");
+                  }}
+                  className={styles.formCcontrol}
+                />
+              </div>
+              {(!isPasswordValid || !isUsernameValid) && errorMessage && (
+                <>
+                  <p></p>
+                  <div
+                    class="flex bg-red-100 rounded-lg p-4 mb-4 text-sm text-red-700"
+                    role="alert"
+                  >
+                    <svg
+                      class="w-5 h-5 inline mr-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <div>
+                      <span class="font-medium">Error!</span>
+                      {errorMessage}
+                    </div>
+                  </div>
+                </>
+              )}
+              <button
+                onClick={handleRegister}
+                className={styles["btn-primary"]}
+              >
+                Registrarse
+              </button>
+              <p>
+                ¿Ya tienes una cuenta?{" "}
+                <Link href="/inicio/login" className={styles.Link}>
+                  Iniciar sesión aquí
+                </Link>
+              </p>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
     </>
-   
   );
 }

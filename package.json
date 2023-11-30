@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.1.12",
     "autoprefixer": "10.4.15",
+    "axios": "^1.6.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.2",
     "emailjs-com": "^3.2.0",
