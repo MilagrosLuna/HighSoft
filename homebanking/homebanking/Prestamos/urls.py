@@ -1,6 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from .views import SolicitarPrestamo
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('loan-money', SolicitarPrestamo)
 
 urlpatterns = [
-    path('loan-money/', views.loan_money, name='loan_money'),
+    path('', include(router.urls)),
 ]
