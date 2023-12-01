@@ -9,139 +9,37 @@ from Cuentas.models import Cuenta, TipoCuenta
 from Cuentas.utils import get_iban, get_tipo_cuenta
 from common.utils import format_number, get_branch_id
 
+# Imports for ViewSets
+
+from rest_framework import viewsets, permissions, response, status
+from .serializers import CuentaSerializer, CrearCuentaSerializer
+from rest_framework.authentication import BasicAuthentication
+
 # Create your views here.
 
 # contra 684WY2mHfICk1BXLHerh3
 
-def register(request):
+class CuentaViewset(viewsets.ModelViewSet):
+    
+    queryset = Cuenta.objects.all()
+    serializer_class = CuentaSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    data = {'form': CustomUserCreationForm()}
+class CrearCuentaViewSet(viewsets.ModelViewSet):
 
-    if request.method == 'POST':
+    queryset = Cuenta.objects.all()
+    serializer_class = CrearCuentaSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-        user_creation_form = CustomUserCreationForm(data=request.POST)
-        
+    def create(self, request):
+         # Acceder a los datos de la solicitud POST
+        data = request.data
 
-        if user_creation_form.is_valid():
+        # Crear una nueva instancia de TuModelo usando el serializador
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
 
-            user_creation_form.save()
-
-
-            new_user = authenticate(
-                username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
-            login(request, new_user)
-
-
-            if request.user.id:
-
-                customer_name = user_creation_form.cleaned_data['first_name']
-                customer_surname = user_creation_form.cleaned_data['last_name']
-                customer_dni = user_creation_form.cleaned_data['customer_dni']
-                customer_dob = user_creation_form.cleaned_data['dob']
-                customer_user_id = User.objects.get(id=request.user.id)
-                customer_client_class = TipoCliente.objects.get(tipo_id=1)
-
-                new_customer = Cliente.objects.create(
-                    customer_name = customer_name,
-                    customer_surname = customer_surname,
-                    customer_dni = customer_dni,
-                    dob = customer_dob,
-                    branch_id = get_branch_id(),
-                    user = customer_user_id,
-                    tipo_cliente = customer_client_class
-                )
-
-                print(new_customer)
-
-            return redirect('home')
-        else:
-            print("error")
-            data['user_created'] = False
-            return render(request, 'registration/register.html', data)
-
-    return render(request, 'registration/register.html', data)
-
-
-def exit_account(request):
-    logout(request)
-    return redirect('home')
-
-
-@login_required
-def account(request):
-
-    user_info = request.user.id
-    cliente = Cliente.objects.all().filter(user_id=user_info)
-    cliente_id = cliente[0].customer_id
-    cuentas = Cuenta.objects.all().filter(client=cliente_id)
-
-    cuentas_list = list()
-
-    for cuenta in cuentas:
-        tipo_cuenta_actual = TipoCuenta.objects.all().filter(
-            tipo_cuenta_id=cuenta.tipo_cuenta_id)
-        tipo_cuenta = tipo_cuenta_actual[0].tipo_cuenta_nombre
-        formated_balance = format_number(cuenta.balance)
-
-        cuenta_data = {
-            'balance': formated_balance,
-            'tipo': tipo_cuenta,
-            'id': cuenta.account_id
-        }
-        cuentas_list.append(cuenta_data)
-
-    data = {
-        'cuentas': cuentas_list}
-
-    return render(request, 'cuentas/account.html', data)
-
-@login_required
-def create_new_account(request):
-
-    data = {'form': CreateBankAccount()}
-
-    if request.method == 'POST':
-
-        user_info = request.user.id
-        cliente = Cliente.objects.all().filter(user_id=user_info)
-        cliente_id = cliente[0].customer_id
-        tipo_cliente_id = cliente[0].tipo_cliente_id
-
-        # limites del tipo cliente
-        tipo_cliente = TipoCliente.objects.get(tipo_id=tipo_cliente_id)
-        cuentas = Cuenta.objects.all().filter(client=cliente_id)
-        form = CreateBankAccount(data=request.POST)
-
-
-        if form.is_valid():
-
-            tipo_seleccionado = form.cleaned_data['tipo_cuenta']
-            tipo_cuenta = TipoCuenta.objects.get(tipo_cuenta_id=tipo_seleccionado)
-            cliente = Cliente.objects.get(customer_id=cliente_id)
-            balance = 0
-            iban = get_iban()
-        
-            conteo = len(cuentas.filter(tipo_cuenta_id=tipo_cuenta))
-
-            limite_cuenta_prueba = get_tipo_cuenta(tipo_cuenta.tipo_cuenta_id)
-
-            limite_cuenta = getattr(tipo_cliente, limite_cuenta_prueba)
-
-            if conteo < limite_cuenta:
-  
-                cuenta_nueva = Cuenta.objects.create(
-                    tipo_cuenta = tipo_cuenta,
-                    client = cliente,
-                    iban = iban,
-                    balance = balance
-                )
-
-                cuenta_nueva.save()
-
-                return redirect(reverse('account')+'?ok')
-            
-            elif conteo >= limite_cuenta:
-            
-                return redirect(reverse('account')+'?error')
-
-    return render(request, 'cuentas/create-account.html', data)
+        # Devolver una respuesta indicando que el objeto se creó con éxito
+        headers = self.get_success_headers(serializer.data)
+        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
