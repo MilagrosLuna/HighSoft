@@ -36,9 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # External APPs
+    'rest_framework',
     'bootstrap5',
     'crispy_forms',
     'crispy_bootstrap5',
+    'drf_spectacular',
+    # Internal APPs
     'Cuentas',
     'Clientes',
     'core',
@@ -150,3 +154,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'HighSoft API Documentation'
+}
