@@ -12,6 +12,7 @@ from common.utils import format_number, get_branch_id
 
 from rest_framework import viewsets, permissions, response, status
 from .serializers import CuentaSerializer, CrearCuentaSerializer, CrearUserSerializer
+from Clientes.serializers import ClienteSerializer
 from rest_framework.authentication import BasicAuthentication
 
 # Create your views here.
@@ -60,11 +61,24 @@ class CrearUserViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
 
-        data = request.data
+        serializer_user = CrearUserSerializer(data=request.data.get('user_data'))
+        serializer_user.is_valid(raise_exception=True)
+        user_instance = serializer_user.save()
 
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
+        # Obtener el ID del usuario recién creado
+        user_id = user_instance.id
 
-        headers = self.get_success_headers(serializer.data)
-        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        # Agregar el ID del usuario a los datos del cliente
+        cliente_data = request.data.get('cliente_data', {})
+        cliente_data['user'] = user_id
+
+        serializer_cliente = ClienteSerializer(data=cliente_data)
+        serializer_cliente.is_valid(raise_exception=True)
+        cliente_instance = serializer_cliente.save()
+
+        response_data = {
+            'user': CrearUserSerializer(user_instance).data,
+            'cliente': ClienteSerializer(cliente_instance).data             
+        }
+
+        return response.Response(response_data, status=status.HTTP_201_CREATED)

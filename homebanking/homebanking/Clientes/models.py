@@ -11,7 +11,7 @@ class Cliente(models.Model):
     customer_surname = models.CharField(max_length=30)
     customer_dni = models.IntegerField(db_column='customer_DNI')
     dob = models.DateField(blank=True, null=True)
-    branch_id = models.IntegerField()
+    branch = models.ForeignKey('Empleados.Sucursal', models.DO_NOTHING)
     user = models.ForeignKey(User, models.DO_NOTHING)
     tipo_cliente = models.ForeignKey('TipoCliente', models.DO_NOTHING)
 
