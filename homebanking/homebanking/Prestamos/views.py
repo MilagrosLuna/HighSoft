@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from Clientes.models import Cliente, TipoCliente
 from Cuentas.models import Cuenta
 from .models import Prestamo
-from .forms import NewLoanRequest
 from common.utils import format_number
 
 # Imports for viewsets
@@ -20,14 +19,35 @@ class SolicitarPrestamo(viewsets.ModelViewSet):
     queryset = Prestamo.objects.all()
 
     def create(self, request):
-         # Acceder a los datos de la solicitud POST
-        data = request.data
 
-        # Crear una nueva instancia de TuModelo usando el serializador
-        serializer = self.get_serializer(data=data)
+        user_id = request.user.id
+        client = Cliente.objects.filter(user_id=user_id)
+        client_id = client[0].customer_id
+
+        client_data = request.data
+        client_data['customer_id'] = client_id
+        print(client_data)
+
+        serializer = self.get_serializer(data=client_data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
 
-        # Devolver una respuesta indicando que el objeto se creó con éxito
         headers = self.get_success_headers(serializer.data)
         return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def list(self, request):
+
+        user_id = request.user.id
+        client = Cliente.objects.filter(user_id=user_id)
+        client_id = client[0].customer_id
+        
+        client_data = request.data.get('user', {})
+        print(client_data)
+
+        queryset = Prestamo.objects.filter(customer_id=client_id)
+
+        serializer = self.get_serializer(queryset, many=True)
+
+        return response.Response(serializer.data, status=status.HTTP_200_OK)
+
+    
