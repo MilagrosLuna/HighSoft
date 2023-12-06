@@ -1,17 +1,18 @@
 from django.db import models
-from Cuentas.models import Cuenta
+from common.utils import get_expire_date, get_emision_date, get_cvv_number, get_card_number
 
 # Create your models here.
 
 class Tarjeta(models.Model):
     card_id = models.AutoField(primary_key=True, blank=True, null=False)
-    card_number = models.IntegerField(unique=True)
-    account = models.ForeignKey(Cuenta, models.DO_NOTHING, blank=True, null=True, to_field='account_id')
-    cvv = models.IntegerField(blank=True, null=True)
-    emision_date = models.DateField(blank=True, null=True)
-    expiration_date = models.DateField(blank=True, null=True)
-    card_brand = models.ForeignKey('MarcaTarjeta', models.DO_NOTHING, blank=True, null=True)
-    active = models.BooleanField(blank=True, null=True)
+    card_number = models.IntegerField(default=get_card_number, unique=True)
+    account = models.ForeignKey('Cuentas.Cuenta', models.DO_NOTHING)
+    client = models.ForeignKey('Clientes.Cliente', models.DO_NOTHING)
+    cvv = models.IntegerField(default=get_cvv_number)
+    emision_date = models.CharField(default=get_emision_date, max_length=10)
+    expiration_date = models.CharField(default=get_expire_date, max_length=10)
+    card_brand = models.ForeignKey('MarcaTarjeta', models.DO_NOTHING)
+    active = models.BooleanField(default=True, blank=False, null=False)
 
     class Meta:
         managed = False
