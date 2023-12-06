@@ -10,6 +10,7 @@ class Prestamo(models.Model):
     loan_total = models.IntegerField()
     customer_id = models.IntegerField()
     account = models.ForeignKey(Cuenta, models.DO_NOTHING)
+    branch = models.ForeignKey('Empleados.Sucursal', models.DO_NOTHING)
 
     class Meta:
         managed = False

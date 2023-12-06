@@ -13,7 +13,7 @@ from .serializers import PrestamoSerializer
 
 # Create your views here.
 
-class SolicitarPrestamo(viewsets.ModelViewSet):
+class SolicitarPrestamoViewset(viewsets.ModelViewSet):
     serializer_class = PrestamoSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = Prestamo.objects.all()
@@ -42,12 +42,29 @@ class SolicitarPrestamo(viewsets.ModelViewSet):
         client_id = client[0].customer_id
         
         client_data = request.data.get('user', {})
-        print(client_data)
 
         queryset = Prestamo.objects.filter(customer_id=client_id)
 
         serializer = self.get_serializer(queryset, many=True)
 
         return response.Response(serializer.data, status=status.HTTP_200_OK)
+    
+class PrestamosSucursalViewSet(viewsets.ModelViewSet):
+
+    queryset = Prestamo.objects.all()
+    serializer_class = PrestamoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request):
+
+        branch_id = request.query_params['branch-id']
+
+        queryset = Prestamo.objects.filter(branch_id=branch_id)
+        serializer = self.get_serializer(queryset, many=True)
+
+        return response.Response(serializer.data)
+
+
+
 
     
