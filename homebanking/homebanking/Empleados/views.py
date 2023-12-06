@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets, response, status, permissions
+from .serializers import *
 
-# Create your views here.
+class SucursalesViewSet(viewsets.ModelViewSet):
+
+    queryset = Sucursal.objects.all()
+    serializer_class = SucursalSerializer
+    permission_classes = [permissions.AllowAny]
+
+
