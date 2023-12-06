@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Cuentas',
     'Clientes',
     'core',
+    'Direcciones',
     'Empleados',
     'Movimientos',
     'Prestamos',

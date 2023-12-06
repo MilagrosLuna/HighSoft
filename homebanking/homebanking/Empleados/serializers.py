@@ -1,4 +1,5 @@
-from .models import Empleado, DireccionEmpleado, Sucursal, Direcciones
+from .models import Empleado, Sucursal
+from Direcciones.models import Direcciones, DireccionEmpleado
 from rest_framework import serializers
 
 class EmpleadoSerializer(serializers.ModelSerializer):

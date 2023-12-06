@@ -1,5 +1,5 @@
 from django.db import models
-from Empleados.models import Direcciones
+from Direcciones.models import Direcciones
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -18,16 +18,6 @@ class Cliente(models.Model):
     class Meta:
         managed = False
         db_table = 'cliente'
-
-
-class DireccionCliente(models.Model):
-    direccion = models.ForeignKey('Empleados.Direcciones', models.DO_NOTHING)
-    customer = models.ForeignKey(Cliente, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'direccion_cliente'
-
 
 class TipoCliente(models.Model):
     tipo_id = models.AutoField(primary_key=True, blank=True)
