@@ -25,7 +25,7 @@ class Direcciones(models.Model):
     direccion_calle = models.CharField(max_length=50)
     direccion_provincia = models.CharField(max_length=50)
     direccion_pais = models.CharField(max_length=50)
-    direccion_codigo_postal = models.IntegerField()
+    direccion_codigo_postal = models.TextField()
 
     class Meta:
         managed = False
