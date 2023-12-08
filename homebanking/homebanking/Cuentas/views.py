@@ -8,7 +8,7 @@ from Cuentas.models import Cuenta, TipoCuenta
 from rest_framework import viewsets, permissions, response, status
 from .serializers import CuentaSerializer, CrearCuentaSerializer, CrearUserSerializer
 from Clientes.serializers import ClienteSerializer
-from .serializers import TipoCuentaSerializer
+from .serializers import TipoCuentaSerializer, CombinedSerializer
 
 # Create your views here.
 
@@ -22,15 +22,24 @@ class CuentaViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request):
+
+        serializer_context = {'request': request}
+
         user_id = request.user.id
         client = Cliente.objects.filter(user_id=user_id)
         client_id = client[0].customer_id
 
-        queryset = Cuenta.objects.filter(client_id=client_id)
+        queryset = Cliente.objects.filter(customer_id=client_id)
 
-        serializer = CuentaSerializer(queryset, many=True)
+        if queryset.exists():
 
-        return response.Response(serializer.data, status=status.HTTP_200_OK)
+            cuentas_instances = queryset.all()
+
+            serializer = CombinedSerializer(cuentas_instances, many=True, context=serializer_context)
+            return response.Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            # Handle the case where no accounts are found for the client
+            return response.Response({'detail': 'No accounts found for the client'}, status=status.HTTP_404_NOT_FOUND)
     
 
 class TipoCuentaViewSet(viewsets.ModelViewSet):
