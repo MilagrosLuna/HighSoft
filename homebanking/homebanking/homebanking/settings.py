@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # External APPs
+    'corsheaders',
     'rest_framework',
     'bootstrap5',
     'crispy_forms',
@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'Empleados',
     'Movimientos',
     'Prestamos',
-    'Tarjetas'
+    'Tarjetas',
+    'Transferencias'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
