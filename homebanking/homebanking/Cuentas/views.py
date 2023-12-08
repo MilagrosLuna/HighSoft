@@ -1,15 +1,14 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from Clientes.models import Cliente
-from Cuentas.models import Cuenta
+from Cuentas.models import Cuenta, TipoCuenta
 
 # Imports for ViewSets
 
 from rest_framework import viewsets, permissions, response, status
 from .serializers import CuentaSerializer, CrearCuentaSerializer, CrearUserSerializer
 from Clientes.serializers import ClienteSerializer
-
-import base64
+from .serializers import TipoCuentaSerializer
 
 # Create your views here.
 
@@ -28,9 +27,17 @@ class CuentaViewset(viewsets.ModelViewSet):
         client_id = client[0].customer_id
 
         queryset = Cuenta.objects.filter(client_id=client_id)
+
         serializer = CuentaSerializer(queryset, many=True)
 
         return response.Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class TipoCuentaViewSet(viewsets.ModelViewSet):
+    
+    queryset = TipoCuenta.objects.all()
+    serializer_class = TipoCuentaSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class CrearCuentaViewSet(viewsets.ModelViewSet):
@@ -57,12 +64,11 @@ class CrearUserViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
 
-        serializer_user = CrearUserSerializer(data=request.data.get('user_data'))
+        serializer_user = CrearUserSerializer(
+            data=request.data.get('user_data'))
         serializer_user.is_valid(raise_exception=True)
 
         deserialized_user_data = serializer_user.validated_data
-
-
 
         # Encoding the password
         user_password = deserialized_user_data.get('password')
@@ -74,7 +80,6 @@ class CrearUserViewSet(viewsets.ModelViewSet):
         user_data['password'] = encoded_password
         user_instance = serializer_user.save(password=encoded_password)
 
-
         # Get the new User ID
         user_id = user_instance.id
 
@@ -82,14 +87,13 @@ class CrearUserViewSet(viewsets.ModelViewSet):
         cliente_data = request.data.get('cliente_data', {})
         cliente_data['user'] = user_id
 
-
         serializer_cliente = ClienteSerializer(data=cliente_data)
         serializer_cliente.is_valid(raise_exception=True)
         cliente_instance = serializer_cliente.save()
 
         response_data = {
             'user': CrearUserSerializer(user_instance).data,
-            'cliente': ClienteSerializer(cliente_instance).data             
+            'cliente': ClienteSerializer(cliente_instance).data
         }
 
         return response.Response(response_data, status=status.HTTP_201_CREATED)

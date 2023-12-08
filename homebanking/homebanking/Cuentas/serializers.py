@@ -7,6 +7,11 @@ class CuentaSerializer(serializers.ModelSerializer):
         model = Cuenta
         fields = '__all__'
 
+class TipoCuentaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoCuenta
+        fields = '__all__'
+
 class CrearCuentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuenta
