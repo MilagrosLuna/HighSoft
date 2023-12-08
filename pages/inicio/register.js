@@ -4,61 +4,93 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/register.module.css";
 import Head from "next/head";
-
-import { API } from "@/src/utils/api";
+import axios from "axios";
 
 export default function Register() {
   const router = useRouter();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [customerSurname, setCustomerSurname] = useState("");
+  const [customerDNI, setCustomerDNI] = useState("");
+  const [customerDOB, setCustomerDOB] = useState("");
+  const [customerType, setCustomerType] = useState("");
+  const [customerBranch, setCustomerBranch] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isUsernameValid, setIsUsernameValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
   const handleRegister = async () => {
+    event.preventDefault(); // Para prevenir la acción por defecto del formulario
     setIsPasswordValid(true);
     setIsUsernameValid(true);
     setErrorMessage("");
 
-    if (!username || !password) {
-      if (!username) {
-        setIsUsernameValid(false);
-      }
-      if (!password || password.length < 8) {
-        setIsPasswordValid(false);
-        setErrorMessage("La contraseña debe tener al menos 8 caracteres.");
-      } else {
-        setErrorMessage("Todos los campos son obligatorios.");
-      }
-
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 5000);
-
+    if (
+      !username ||
+      !password ||
+      !customerName ||
+      !customerSurname ||
+      !customerDNI ||
+      !customerDOB ||
+      !customerType ||
+      !customerBranch
+    ) {
+      setErrorMessage("Todos los campos son obligatorios.");
       return;
     }
 
     try {
-      // Hacer una solicitud POST a la API/// la validacion de si existe deberia estar en la api
-      const response = await API.post("/register", {
-        username,
-        password,
-      });
+      const basicAuth = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
+      const headers = {
+        Authorization: basicAuth,
+        "Content-Type": "application/json",
+      };
+    
+      const response = await axios.post(
+        'http://127.0.0.1:8000/api/create-user/',
+        {
+          user_data: {
+            username,
+            password,
+            first_name: customerName,
+            last_name: customerSurname,
+            is_staff: "0", // Cambia a '1' si necesitas el valor dinámico
+          },
+          cliente_data: {
+            customer_name: customerName,
+            customer_surname: customerSurname,
+            customer_dni: parseInt(customerDNI),
+            dob: customerDOB, // Asegúrate de que esté en el formato AAAA-MM-DD
+            tipo_cliente: parseInt(customerType),
+            branch: parseInt(customerBranch),
+          },
+        },
+        { headers }
+      );
 
-      // Si la solicitud fue exitosa, la API debería devolver el usuario
-      if (response.data.success) {
+      
+    
+      if (response.status === 201) {
+        console.log('Usuario creado correctamente');
         setIsRegistered(true);
         router.push("/home");
       } else {
-        setErrorMessage(response.data.message);
+        if (response.data.username && response.data.username[0] === "Ya existe un usuario con ese nombre.") {
+          console.log("Usuario ya existe");
+          // Mostrar un mensaje al usuario informándole que el usuario ya existe
+        } else {
+          setErrorMessage(response.data.message || "Error al registrar el usuario.");
+        }
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error al registrar el usuario:", error);
       setErrorMessage("Error al registrar el usuario.");
     }
-  };
+  }
+    
 
   return (
     <>
@@ -73,7 +105,7 @@ export default function Register() {
           content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
         />
         <meta http-equiv="Content-Language" content="es" />
-      </Head>{" "}
+      </Head>
       <div className={styles["main"]}>
         <div className={styles["container"]}>
           <div className={styles["register-container-logo"]}>
@@ -99,7 +131,7 @@ export default function Register() {
             // Formulario de registro
             <form className={styles.formulario}>
               <div className="form-group">
-                <label htmlFor="email" className={styles.labels}>
+                <label htmlFor="username" className={styles.labels}>
                   Nombre de usuario:
                 </label>
                 <input
@@ -112,6 +144,7 @@ export default function Register() {
                     setErrorMessage("");
                   }}
                   className={styles.formCcontrol}
+                  id="username"
                 />
               </div>
               <div className="form-group">
@@ -128,40 +161,101 @@ export default function Register() {
                     setErrorMessage("");
                   }}
                   className={styles.formCcontrol}
+                  id="password"
                 />
               </div>
-              {(!isPasswordValid || !isUsernameValid) && errorMessage && (
-                <>
-                  <p></p>
-                  <div
-                    class="flex bg-red-100 rounded-lg p-4 mb-4 text-sm text-red-700"
-                    role="alert"
-                  >
-                    <svg
-                      class="w-5 h-5 inline mr-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <div>
-                      <span class="font-medium">Error!</span>
-                      {errorMessage}
-                    </div>
-                  </div>
-                </>
-              )}
+
+              <div className="form-group">
+                <label htmlFor="customerName" className={styles.labels}>
+                  Nombre del cliente:
+                </label>
+                <input
+                  type="text"
+                  placeholder="Nombre del cliente"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerName"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="customerSurname" className={styles.labels}>
+                  Apellido del cliente:
+                </label>
+                <input
+                  type="text"
+                  placeholder="Apellido del cliente"
+                  value={customerSurname}
+                  onChange={(e) => setCustomerSurname(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerSurname"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="customerDNI" className={styles.labels}>
+                  Número de identificación (DNI):
+                </label>
+                <input
+                  type="number"
+                  placeholder="Número de identificación"
+                  value={customerDNI}
+                  onChange={(e) => setCustomerDNI(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerDNI"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="customerDOB" className={styles.labels}>
+                  Fecha de nacimiento (AAAA-MM-DD):
+                </label>
+                <input
+                  type="date"
+                  placeholder="Fecha de nacimiento"
+                  value={customerDOB}
+                  onChange={(e) => setCustomerDOB(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerDOB"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="customerType" className={styles.labels}>
+                  Tipo de cliente (1: Classic, 2: Gold, 3: Black):
+                </label>
+                <input
+                  type="text"
+                  placeholder="Tipo de cliente"
+                  value={customerType}
+                  onChange={(e) => setCustomerType(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerType"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="customerBranch" className={styles.labels}>
+                  ID de sucursal:
+                </label>
+                <input
+                  type="text"
+                  placeholder="ID de sucursal"
+                  value={customerBranch}
+                  onChange={(e) => setCustomerBranch(e.target.value)}
+                  className={styles.formCcontrol}
+                  id="customerBranch"
+                />
+              </div>
+              {/* Botón de registro */}
               <button
                 onClick={handleRegister}
                 className={styles["btn-primary"]}
               >
                 Registrarse
               </button>
+
               <p>
                 ¿Ya tienes una cuenta?{" "}
                 <Link href="/inicio/login" className={styles.Link}>
