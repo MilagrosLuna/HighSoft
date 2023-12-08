@@ -9,8 +9,8 @@ class Tarjeta(models.Model):
     account = models.ForeignKey('Cuentas.Cuenta', models.DO_NOTHING)
     client = models.ForeignKey('Clientes.Cliente', models.DO_NOTHING)
     cvv = models.IntegerField(default=get_cvv_number)
-    emision_date = models.CharField(default=get_emision_date, max_length=10)
-    expiration_date = models.CharField(default=get_expire_date, max_length=10)
+    emision_date = models.TextField(default=get_emision_date, max_length=10)
+    expiration_date = models.TextField(default=get_expire_date, max_length=10)
     card_brand = models.ForeignKey('MarcaTarjeta', models.DO_NOTHING)
     active = models.BooleanField(default=True, blank=False, null=False)
 

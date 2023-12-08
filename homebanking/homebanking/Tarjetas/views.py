@@ -36,9 +36,14 @@ class TarjetasPorCliente(viewsets.ModelViewSet):
 
     def list(self, request):
 
-        account_id = request.query_params['client-id']
+        if request.user.is_staff:
 
-        queryset = Tarjeta.objects.filter(client=account_id)
-        serializer = self.get_serializer(queryset, many=True)
+            account_id = request.query_params['client-id']
 
-        return response.Response(serializer.data)
+            queryset = Tarjeta.objects.filter(client=account_id)
+            serializer = self.get_serializer(queryset, many=True)
+
+            return response.Response(serializer.data)
+        
+        else: 
+            return response.Response({'message': 'Solo los empleados tienen acceso a este endpoint'}, status=status.HTTP_403_FORBIDDEN)
