@@ -112,7 +112,7 @@ class LoginViewSet(viewsets.ModelViewSet):
     serializer_class = CheckUserSerializer
     permission_classes = [permissions.AllowAny]
 
-    def list(self, request):
+    def create(self, request):
 
         data = request.data
 
