@@ -4,7 +4,7 @@ from .models import Cliente, TipoCliente
 
 from rest_framework import viewsets, response, permissions, status
 from .models import Cliente, TipoCliente
-from .serializers import ClienteSerializer, TipoClienteSerializer
+from .serializers import ClienteSerializer, TipoClienteSerializer, CombinedClienteIsStaffSerializer, ClienteIsStaffSerializer
 
 # Create your views here.
 
@@ -18,8 +18,9 @@ class ClienteViewSet(viewsets.ModelViewSet):
 
         user_id = request.user.id
  
-        queryset = Cliente.objects.filter(user_id = user_id)
-        serializer = ClienteSerializer(queryset, many=True)
+        client_instance = Cliente.objects.get(user_id = user_id)
+        print(client_instance)
+        serializer = ClienteIsStaffSerializer(client_instance, context={'request': request})
 
         return response.Response(serializer.data, status.HTTP_200_OK)
     
