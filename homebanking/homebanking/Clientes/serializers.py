@@ -6,3 +6,8 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = ['customer_name', 'customer_surname', 'customer_dni', 'dob', 'branch', 'user', 'tipo_cliente']
 
+class TipoClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoCliente
+        fields = '__all__'
+
