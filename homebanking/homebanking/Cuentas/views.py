@@ -1,19 +1,15 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
-from django.urls import reverse
-from Cuentas.models import Cuenta, TipoCuenta
-from Cuentas.utils import get_iban, get_tipo_cuenta
+from django.contrib.auth.hashers import make_password
 from Clientes.models import Cliente
-from common.utils import format_number, get_branch_id
+from Cuentas.models import Cuenta
 
 # Imports for ViewSets
 
 from rest_framework import viewsets, permissions, response, status
 from .serializers import CuentaSerializer, CrearCuentaSerializer, CrearUserSerializer
 from Clientes.serializers import ClienteSerializer
-from rest_framework.authentication import BasicAuthentication
+
+import base64
 
 # Create your views here.
 
@@ -41,7 +37,7 @@ class CrearCuentaViewSet(viewsets.ModelViewSet):
 
     queryset = Cuenta.objects.all()
     serializer_class = CrearCuentaSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def create(self, request):
         data = request.data
@@ -63,14 +59,29 @@ class CrearUserViewSet(viewsets.ModelViewSet):
 
         serializer_user = CrearUserSerializer(data=request.data.get('user_data'))
         serializer_user.is_valid(raise_exception=True)
-        user_instance = serializer_user.save()
 
-        # Obtener el ID del usuario recién creado
+        deserialized_user_data = serializer_user.validated_data
+
+
+
+        # Encoding the password
+        user_password = deserialized_user_data.get('password')
+        encoded_password = make_password(user_password)
+        print(user_password)
+
+        # Add the encoded password to the user_data object
+        user_data = request.data.get('user_data', {})
+        user_data['password'] = encoded_password
+        user_instance = serializer_user.save(password=encoded_password)
+
+
+        # Get the new User ID
         user_id = user_instance.id
 
-        # Agregar el ID del usuario a los datos del cliente
+        # Add the new User ID to the cliente_data object
         cliente_data = request.data.get('cliente_data', {})
         cliente_data['user'] = user_id
+
 
         serializer_cliente = ClienteSerializer(data=cliente_data)
         serializer_cliente.is_valid(raise_exception=True)
