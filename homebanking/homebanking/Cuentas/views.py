@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from Clientes.models import Cliente
 from Cuentas.models import Cuenta, TipoCuenta
 
@@ -8,7 +8,7 @@ from Cuentas.models import Cuenta, TipoCuenta
 from rest_framework import viewsets, permissions, response, status
 from .serializers import CuentaSerializer, CrearCuentaSerializer, CrearUserSerializer
 from Clientes.serializers import ClienteSerializer
-from .serializers import TipoCuentaSerializer, CombinedSerializer
+from .serializers import TipoCuentaSerializer, CombinedSerializer, CheckUserSerializer
 
 # Create your views here.
 
@@ -106,3 +106,24 @@ class CrearUserViewSet(viewsets.ModelViewSet):
         }
 
         return response.Response(response_data, status=status.HTTP_201_CREATED)
+    
+class LoginViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = CheckUserSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def list(self, request):
+
+        data = request.data
+
+        login_username = data['username']
+        login_password = data['password']
+
+        user_data = User.objects.get(username=login_username)
+
+        verifying_password = check_password(login_password, user_data.password)
+
+        if verifying_password:
+            return response.Response({'detail': 'La contraseña es correcta'}, status=status.HTTP_200_OK)
+        else:
+            return response.Response({'detail': 'La contraseña es incorrecta'}, status=status.HTTP_401_UNAUTHORIZED)
