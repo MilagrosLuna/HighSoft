@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,6 +63,8 @@ TRIGGERS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,6 +75,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'homebanking.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "https://miaplicacion.com",
+    "http://localhost:3000",  # Ejemplo de dominio local para desarrollo frontend
+]
 
 TEMPLATES = [
     {
