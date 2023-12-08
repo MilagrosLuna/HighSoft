@@ -20,7 +20,7 @@ class CuentaSerializer(serializers.ModelSerializer):
         serializer = TipoCuentaSerializer(nombre_cuenta[0])
         return serializer.data
     
-class CombinedSerializer(serializers.Serializer):
+class CombinedCuentaTipoCuentaSerializer(serializers.Serializer):
     cuenta_data = serializers.SerializerMethodField()
     tipo_cuenta_data = serializers.SerializerMethodField()
 
@@ -45,7 +45,6 @@ class CombinedSerializer(serializers.Serializer):
         client_id = client[0].customer_id
         tipos_cuenta = TipoCuenta.objects.filter(cuenta=client_id)
 
-        # Asegúrate de tener un serializer para TipoCuenta, reemplaza con el nombre correcto si es diferente
         tipo_cuenta_serializer = TipoCuentaSerializer(tipos_cuenta, many=True, context={'request': self.context['request']})
         return tipo_cuenta_serializer.data
 
