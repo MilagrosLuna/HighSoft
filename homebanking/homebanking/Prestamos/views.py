@@ -1,10 +1,5 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from Clientes.models import Cliente, TipoCliente
-from Cuentas.models import Cuenta
+from Clientes.models import Cliente
 from .models import Prestamo, SolicitudPrestamo
-from common.utils import format_number
 
 # Imports for viewsets
 
@@ -20,19 +15,20 @@ class PrestamoPreaprobadosViewset(viewsets.ModelViewSet):
 
     def create(self, request):
 
-        user_id = request.user.id
-        client = Cliente.objects.filter(user_id=user_id)
-        client_id = client[0].customer_id
+        if request.user.is_staff:
 
-        client_data = request.data
-        client_data['customer_id'] = client_id
+            data = request.data
+            print(data)
 
-        serializer = self.get_serializer(data=client_data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
+            serializer = self.get_serializer(data=data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
 
-        headers = self.get_success_headers(serializer.data)
-        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            headers = self.get_success_headers(serializer.data)
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        
+        else:
+            return response.Response({'error': 'Solo los empleados pueden otorgar préstamos'}, status=status.HTTP_401_UNAUTHORIZED)
     
     def list(self, request):
 
