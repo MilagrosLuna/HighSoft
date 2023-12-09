@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "../styles/inicio.module.css";
 import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
@@ -8,6 +8,23 @@ import GeneralContext from "@/src/context/generalContext";
 import Head from "next/head";
 export default function Home() {
   const balance = useContext(GeneralContext);
+
+  const [clientData, setClientData] = useState()
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('myData');
+
+    if (storedData) {
+      // Si hay datos almacenados, convertir la cadena JSON a un objeto JavaScript
+      const parsedData = JSON.parse(storedData);
+      console.log(parsedData.clientData)
+      setClientData(parsedData.clientData)
+    } else {
+      // No hay datos almacenados bajo la clave 'myData'
+      console.log('No hay datos almacenados.');
+    }
+
+  }, [])
 
   return (
     <>
@@ -29,6 +46,7 @@ export default function Home() {
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
         >
           <h1 className="text-center">Bienvenido</h1>
+          {clientData && <p>{clientData.customer_name}</p>}
           <div
             style={{ width: 70 + "%", height: "max-content" }}
             className="text-black p-5 container d-flex flex-col gap-3 bg-rosa-secondary mx-auto d-flex align-items-center justify-content-between rounded"
