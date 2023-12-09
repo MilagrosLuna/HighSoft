@@ -4,60 +4,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/login.module.css";
 import Head from "next/head";
-// const users = [
-//   { id: 1, username: "usuario1", password: "contrasena1" },
-//   { id: 2, username: "usuario2", password: "contrasena2" },
-//   { id: 3, username: "a", password: "a" },
-// ];
-
-// function authenticateUser(username, password) {
-//   // Busca en la lista de usuarios hardcodeados
-//   const hardcodedUser = users.find(
-//     (u) => u.username === username && u.password === password
-//   );
-
-//   // Si el usuario está en la lista hardcodeada, devuélvelo
-//   if (hardcodedUser) {
-//     console.log(hardcodedUser);
-//     return hardcodedUser;
-//   }
-
-//   // Si no está en la lista hardcodeada, intenta buscarlo en el localStorage
-//   const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-//   const userFromLocalStorage = storedUsers.find(
-//     (u) => u.username === username && u.password === password
-//   );
-
-//   // Si lo encontraste en el localStorage, devuélvelo
-//   if (userFromLocalStorage) {
-//     console.log(userFromLocalStorage);
-//     return userFromLocalStorage;
-//   }
-
-//   // Si no se encuentra en ninguna parte, devuelve null
-//   return null;
-// }
-
 import axios from "axios";
 import { API } from "@/src/utils/api";
 
-async function authenticateUser(username, password) {
-  try {
-    // solicitud a la api                /api-token-auth
-    const response = await API.post("/login/", {
-      username,
-      password,
-    });
-    // en este caso se toma q la api devolvio el user, verificar!
-    const user = response.data;
-    console.log(user);
-    return user;
-  } catch (error) {
-    console.error(error);
-    // solicitud falla.
-    return null;
-  }
-}
 
 export default function Login() {
   const router = useRouter(); // Obtiene el router de Next.js
@@ -69,12 +18,13 @@ export default function Login() {
 
   const [user, setUser] = useState(null); // Define el estado del usuario
 
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsPasswordValid(true);
     setIsUsernameValid(true);
     setErrorMessage("");
-
+  
     if (!username || !password || password.length < 8) {
       if (!username) {
         setIsUsernameValid(false);
@@ -92,25 +42,54 @@ export default function Login() {
       setTimeout(() => {
         setErrorMessage("");
       }, 5000);
-
       return;
     }
-
-    const authenticatedUser = await authenticateUser(username, password); // Verifica las credenciales
-
-    if (authenticatedUser) {
-      setUser(authenticatedUser);
-      router.push("/home");
-    } else {
-      alert("Credenciales incorrectas");
+  
+    try {
+      const authenticatedUser = await authenticateUser(username, password);
+  
+      if (authenticatedUser) {
+        setUser(authenticatedUser);
+        router.push("/home");
+      } else {
+        alert("Credenciales incorrectas");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Credenciales incorrectas"); // Alerta para manejar errores de autenticación
+      // Otro manejo de errores si es necesario
     }
   };
+  
+  const authenticateUser = async (username, password) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+        username: username,
+        password: password,
+      });
+  
+      if (response.status === 200) {
+        const data = response.data;
+        console.log(data); // Puedes usar estos datos si son necesarios
+        return data; // Devuelve los datos del usuario si el inicio de sesión es exitoso
+      } else {
+        console.log("No se pudo iniciar sesión");
+        return null; // Devuelve null si falla el inicio de sesión
+      }
+    } catch (error) {
+      console.error(error);
+      throw error; // Lanza el error para manejarlo en la función handleLogin
+    }
+  };
+  
   const AccesoRapido = async (e) => {
-    // harcodear credenciales para el acceso rapido
-    const authenticatedUser = await authenticateUser("username", "password");
+    // harcodear credenciales para el acceso rápido
+    const authenticatedUser = await authenticateUser("cliente_prueba", "684WY2mHfICk1BXLHerh3");
     setUser(authenticatedUser);
     router.push("/home");
   };
+
+
   return (
     <>
       <Head>

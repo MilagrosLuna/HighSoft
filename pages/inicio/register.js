@@ -76,7 +76,7 @@ export default function Register() {
       if (response.status === 201) {
         console.log('Usuario creado correctamente');
         setIsRegistered(true);
-        router.push("/home");
+        
       } else {
         if (response.data.username && response.data.username[0] === "Ya existe un usuario con ese nombre.") {
           console.log("Usuario ya existe");
@@ -91,6 +91,14 @@ export default function Register() {
     }
   }
     
+  const validateUsername = (username) => {
+    setIsUsernameValid(username.length >= 6); // Por ejemplo, al menos 3 caracteres
+  };
+
+  const validatePassword = (password) => {
+    setIsPasswordValid(password.length >= 8); // Por ejemplo, al menos 8 caracteres
+  };
+
 
   return (
     <>
@@ -146,6 +154,11 @@ export default function Register() {
                   className={styles.formCcontrol}
                   id="username"
                 />
+                {!isUsernameValid && (
+                <span style={{ color: "red" }}>
+                  El nombre de usuario debe tener al menos 3 caracteres
+                </span>
+              )}
               </div>
               <div className="form-group">
                 <label htmlFor="password" className={styles.labels}>
@@ -269,3 +282,4 @@ export default function Register() {
     </>
   );
 }
+
