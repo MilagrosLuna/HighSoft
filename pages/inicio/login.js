@@ -176,7 +176,7 @@ export default function Login() {
               )}
             </div>
             <button
-              type="button"
+              type="submit"
               className={styles["btn-primary"]}
               onClick={handleLogin}
             >
