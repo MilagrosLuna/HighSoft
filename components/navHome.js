@@ -13,8 +13,8 @@ function HomeNav() {
               <Link href="/home">
                 <Image
                   src="/img/logoW.png"
-                  width={350}
-                  height={350}
+                  width={4550}
+                  height={4550}
                   quality={100}
                   alt="logo highsoft"
                 ></Image>
