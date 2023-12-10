@@ -4,40 +4,6 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/login.module.css";
 import Head from "next/head";
-// const users = [
-//   { id: 1, username: "usuario1", password: "contrasena1" },
-//   { id: 2, username: "usuario2", password: "contrasena2" },
-//   { id: 3, username: "a", password: "a" },
-// ];
-
-// function authenticateUser(username, password) {
-//   // Busca en la lista de usuarios hardcodeados
-//   const hardcodedUser = users.find(
-//     (u) => u.username === username && u.password === password
-//   );
-
-//   // Si el usuario está en la lista hardcodeada, devuélvelo
-//   if (hardcodedUser) {
-//     console.log(hardcodedUser);
-//     return hardcodedUser;
-//   }
-
-//   // Si no está en la lista hardcodeada, intenta buscarlo en el localStorage
-//   const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-//   const userFromLocalStorage = storedUsers.find(
-//     (u) => u.username === username && u.password === password
-//   );
-
-//   // Si lo encontraste en el localStorage, devuélvelo
-//   if (userFromLocalStorage) {
-//     console.log(userFromLocalStorage);
-//     return userFromLocalStorage;
-//   }
-
-//   // Si no se encuentra en ninguna parte, devuelve null
-//   return null;
-// }
-
 import axios from "axios";
 import API from "@/src/utils/api";
 import GeneralContext from "@/src/context/generalContext";
@@ -72,12 +38,13 @@ export default function Login() {
 
   const [user, setUser] = useState(null); // Define el estado del usuario
 
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsPasswordValid(true);
     setIsUsernameValid(true);
     setErrorMessage("");
-
+  
     if (!username || !password || password.length < 8) {
       if (!username) {
         setIsUsernameValid(false);
@@ -95,7 +62,6 @@ export default function Login() {
       setTimeout(() => {
         setErrorMessage("");
       }, 5000);
-
       return;
     }
 
@@ -133,12 +99,36 @@ export default function Login() {
       alert("Credenciales incorrectas");
     }
   };
+  
+  const authenticateUser = async (username, password) => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+        username: username,
+        password: password,
+      });
+  
+      if (response.status === 200) {
+        const data = response.data;
+        console.log(data); // Puedes usar estos datos si son necesarios
+        return data; // Devuelve los datos del usuario si el inicio de sesión es exitoso
+      } else {
+        console.log("No se pudo iniciar sesión");
+        return null; // Devuelve null si falla el inicio de sesión
+      }
+    } catch (error) {
+      console.error(error);
+      throw error; // Lanza el error para manejarlo en la función handleLogin
+    }
+  };
+  
   const AccesoRapido = async (e) => {
-    // harcodear credenciales para el acceso rapido
-    const authenticatedUser = await authenticateUser("username", "password");
+    // harcodear credenciales para el acceso rápido
+    const authenticatedUser = await authenticateUser("cliente_prueba", "684WY2mHfICk1BXLHerh3");
     setUser(authenticatedUser);
     router.push("/home");
   };
+
+
   return (
     <>
       <Head>
@@ -225,7 +215,7 @@ export default function Login() {
               )}
             </div>
             <button
-              type="button"
+              type="submit"
               className={styles["btn-primary"]}
               onClick={handleLogin}
             >

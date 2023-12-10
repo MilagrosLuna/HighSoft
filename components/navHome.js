@@ -13,8 +13,8 @@ function HomeNav() {
               <Link href="/home">
                 <Image
                   src="/img/logoW.png"
-                  width={350}
-                  height={350}
+                  width={4550}
+                  height={4550}
                   quality={100}
                   alt="logo highsoft"
                 ></Image>
@@ -105,6 +105,15 @@ function HomeNav() {
                    
                   >
                     Tarjetas
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/dashboard/my-account"
+                    onClick={() => setNavbar(!navbar)}
+                   
+                  >
+                    Cuenta
                   </Link>
                 </li>
                 <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">

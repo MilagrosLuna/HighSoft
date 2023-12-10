@@ -22,7 +22,7 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
     event.preventDefault(); // Para prevenir la acción por defecto del formulario
     setIsPasswordValid(true);
     setIsUsernameValid(true);
@@ -31,6 +31,7 @@ export default function Register() {
     if (
       !username ||
       !password ||
+      password.length < 8 ||
       !customerName ||
       !customerSurname ||
       !customerDNI ||
@@ -38,9 +39,21 @@ export default function Register() {
       !customerType ||
       !customerBranch
     ) {
-      setErrorMessage("Todos los campos son obligatorios.");
+      setErrorMessage(alert("Todos los campos son obligatorios."));
+
+      if (!username) {
+        setIsUsernameValid(false);
+      }
+      if (!password) {
+        setIsPasswordValid(false);
+        setErrorMessage("La contraseña es obligatoria.");
+      } else if (password.length < 8) {
+        setIsPasswordValid(false);
+        setErrorMessage("La contraseña debe tener al menos 8 caracteres.");
+      }
       return;
     }
+
 
     try {
       const basicAuth = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
@@ -73,24 +86,25 @@ export default function Register() {
 
       
     
-      if (response.status === 201) {
-        console.log('Usuario creado correctamente');
-        setIsRegistered(true);
-        router.push("/home");
-      } else {
-        if (response.data.username && response.data.username[0] === "Ya existe un usuario con ese nombre.") {
-          console.log("Usuario ya existe");
-          // Mostrar un mensaje al usuario informándole que el usuario ya existe
-        } else {
-          setErrorMessage(response.data.message || "Error al registrar el usuario.");
-        }
-      }
-    } catch (error) {
-      console.error("Error al registrar el usuario:", error);
-      setErrorMessage("Error al registrar el usuario.");
+      console.log('Respuesta de la API:', response);
+
+    if (response.status === 201) {
+      console.log('Usuario creado correctamente');
+      setIsRegistered(true);
+    } else if (response.status === 400) {
+      console.log('Error 400:', response.data);
+      alert('Problema el registrar usuario');
     }
+  } catch (error) {
+    console.error('Error al registrar el usuario:', error);
+    alert(error.response.data.username[0]); 
+    ;// Avisa si hay un error de conexión
   }
+};
+  
     
+  
+
 
   return (
     <>
@@ -129,7 +143,7 @@ export default function Register() {
             </div>
           ) : (
             // Formulario de registro
-            <form className={styles.formulario}>
+            <form className={styles.formulario} onSubmit={handleRegister}>
               <div className="form-group">
                 <label htmlFor="username" className={styles.labels}>
                   Nombre de usuario:
@@ -140,12 +154,17 @@ export default function Register() {
                   value={username}
                   onChange={(e) => {
                     setUsername(e.target.value);
-                    setIsUsernameValid(true);
+                    setIsUsernameValid(e.target.value.length >= 3);
                     setErrorMessage("");
                   }}
                   className={styles.formCcontrol}
                   id="username"
                 />
+                {!isUsernameValid && (
+                <span style={{ color: "red" }}>
+                  El nombre de usuario debe tener al menos 3 caracteres
+                </span>
+              )}
               </div>
               <div className="form-group">
                 <label htmlFor="password" className={styles.labels}>
@@ -162,7 +181,11 @@ export default function Register() {
                   }}
                   className={styles.formCcontrol}
                   id="password"
-                />
+                />{!isPasswordValid && (
+                <span style={{ color: "red" }}>
+                  La contraseña debe tener al menos 8 caracteres
+                </span>
+              )}
               </div>
 
               <div className="form-group">
@@ -252,6 +275,7 @@ export default function Register() {
               <button
                 onClick={handleRegister}
                 className={styles["btn-primary"]}
+                type="submit"
               >
                 Registrarse
               </button>
@@ -269,3 +293,4 @@ export default function Register() {
     </>
   );
 }
+
