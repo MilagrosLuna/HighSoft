@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "../styles/inicio.module.css";
 import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
@@ -7,7 +7,15 @@ import GeneralContext from "@/src/context/generalContext";
 
 import Head from "next/head";
 export default function Home() {
-  const balance = useContext(GeneralContext);
+  const context = useContext(GeneralContext);
+
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientData] = useState()
+
+  // traer los datos del cliente y almacenarlos en el
+  useEffect(() => {
+    context.getClientData(setClientData)
+  }, [])
 
   return (
     <>
@@ -28,20 +36,20 @@ export default function Home() {
           style={{ width: 60 + "%" }}
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
         >
-          <h1 className="text-center">Bienvenido</h1>
+          <h1 className="text-center">Bienvenido {clientData && clientData.customer_name}</h1>
           <div
             style={{ width: 70 + "%", height: "max-content" }}
             className="text-black p-5 container d-flex flex-col gap-3 bg-rosa-secondary mx-auto d-flex align-items-center justify-content-between rounded"
           >
             <h4>Tu saldo</h4>
-            <h3>{balance.showBalance ? "$" + balance.balance : "***"}</h3>
+            <h3>{context.showBalance ? "$" + context.balance : "***"}</h3>
             <button
               className="btn btn-danger"
               onClick={() => {
-                balance.toggleShow();
+                context.toggleShow();
               }}
             >
-              {balance.showBalance ? "Ocultar" : "Mostrar"}
+              {context.showBalance ? "Ocultar" : "Mostrar"}
             </button>
           </div>
           <div style={{ width: 70 + "%" }} className="container my-3">

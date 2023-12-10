@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import LayoutHome from './../../components/layoutHome';
 import Head from "next/head";
+import GeneralContext from '@/src/context/generalContext';
 // Componente de tarjeta de crédito
 function CreditCard({ type, limit, showDetails }) {
   const [cardNumber, setCardNumber] = useState('**** **** **** 1234'); // Número de tarjeta ficticio
+
+  const context = useContext(GeneralContext);
+
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientData] = useState()
+
+  // traer los datos del cliente y almacenarlos en el
+  useEffect(() => {
+    context.getClientData(setClientData)
+  }, [])
 
   return (
     <div className="card container py-3 mx-auto my-20 text-white text-center bg-rosa rounded">

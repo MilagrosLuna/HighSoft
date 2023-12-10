@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Modal from "@/components/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,8 @@ import useModal from "@/src/hooks/useModal";
 import LayoutHome from "@/components/layoutHome";
 import useBalance from "@/src/hooks/useBalance";
 import Head from "next/head";
+import GeneralContext from "@/src/context/generalContext";
+
 const Prestamos = () => {
   const {
     requestedAmount,
@@ -20,6 +22,15 @@ const Prestamos = () => {
     handleInput,
   } = useLoan();
   const { isOpen, setIsOpen, toggleModal } = useModal();
+  const context = useContext(GeneralContext)
+
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientdata] = useState()
+
+  // traer los datos del cliente y almacenarlos en el estado
+  useEffect(() => {
+    context.getClientData(setClientdata)
+  }, [])
 
   useEffect(() => {
     getFinalAmount(
@@ -63,6 +74,7 @@ const Prestamos = () => {
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
         >
           <h3 className="text-white font-bold my-4">Solicitar Préstamo</h3>
+          {clientData && <p>{clientData.customer_name}</p>}
           <form className="container">
             <label className="custom-label">
               Monto a solicitar:

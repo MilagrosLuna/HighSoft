@@ -1,12 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/login.module.css";
 import Head from "next/head";
 import axios from "axios";
-import { API } from "@/src/utils/api";
+import API from "@/src/utils/api";
+import GeneralContext from "@/src/context/generalContext";
 
+async function authenticateUser(username, password) {
+  try {
+    // solicitud a la api                /api-token-auth
+    const response = await API.post("/api/login/", {
+      username,
+      password,
+    });
+    // en este caso se toma q la api devolvio el user, verificar!
+    const user = response.data;
+    console.log(user);
+    return user;
+  } catch (error) {
+    console.error(error);
+    // solicitud falla.
+    return null;
+  }
+}
 
 export default function Login() {
   const router = useRouter(); // Obtiene el router de Next.js
@@ -15,6 +33,8 @@ export default function Login() {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isUsernameValid, setIsUsernameValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const getAuth = useContext(GeneralContext);
 
   const [user, setUser] = useState(null); // Define el estado del usuario
 
@@ -44,20 +64,39 @@ export default function Login() {
       }, 5000);
       return;
     }
-  
-    try {
-      const authenticatedUser = await authenticateUser(username, password);
-  
-      if (authenticatedUser) {
-        setUser(authenticatedUser);
-        router.push("/home");
-      } else {
-        alert("Credenciales incorrectas");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Credenciales incorrectas"); // Alerta para manejar errores de autenticación
-      // Otro manejo de errores si es necesario
+
+    const StoreData = () =>{
+
+      getAuth.getClientDataFromApi(getAuth.getCredentials(username, password))
+      .then(clientData => {
+        if (clientData) {
+          console.log(clientData);
+          const dataToStore = { 
+            clientData
+          };
+          localStorage.setItem('myData', JSON.stringify(dataToStore));
+        }
+      })
+      .catch(error => {
+        console.error("Error al obtener los datos del cliente:", error);
+      });
+
+      // Para recuperar datos del localStorage
+      const storedData = localStorage.getItem('myData');
+      const parsedData = JSON.parse(storedData);
+
+      console.log(parsedData);
+    }
+
+    const authenticatedUser = await authenticateUser(username, password); // Verifica las credenciales
+
+    if (authenticatedUser) {
+      setUser(authenticatedUser);
+      getAuth.getCredentials(username, password);
+      StoreData();
+      router.push("/home");
+    } else {
+      alert("Credenciales incorrectas");
     }
   };
   

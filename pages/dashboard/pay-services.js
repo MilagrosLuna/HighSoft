@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import services from "@/src/data/services.json";
 import LayoutHome from "@/components/layoutHome";
 import Link from "next/link";
 import Head from "next/head";
+import GeneralContext from "@/src/context/generalContext";
 const transfers = () => {
+
+  const context = useContext(GeneralContext)
+
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientdata] = useState()
+
+  // traer los datos del cliente y almacenarlos en el estado
+  useEffect(() => {
+    context.getClientData(setClientdata)
+  }, [])
+
   return (
     <>
       <Head>
