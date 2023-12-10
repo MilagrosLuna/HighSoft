@@ -5,11 +5,21 @@ import MovementLogContainer from "@/components/MovementLogContainer";
 import LayoutHome from "@/components/layoutHome";
 import Head from "next/head";
 const MovementsHistory = () => {
-  const balance = useContext(BalanceContext);
+
+  const context = useContext(BalanceContext);
+
+
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientdata] = useState()
+
+  // traer los datos del cliente y almacenarlos en el
+  useEffect(() => {
+    context.getClientData(setClientdata)
+  }, [])
 
   useEffect(() => {
-    console.log(balance.movementsArray);
-  }, [balance.movementsArray]);
+    console.log(context.movementsArray);
+  }, [context.movementsArray]);
 
   return (
     <>
@@ -24,7 +34,7 @@ const MovementsHistory = () => {
           content="HighSoft, Online Banking, Banco, Homebanking, Préstamos personales, Pagos en línea, Transferencias"
         />
         <meta http-equiv="Content-Language" content="es" />
-      </Head>{" "}
+      </Head>
       <LayoutHome>
         <div
           style={{ width: 60 + "%" }}
@@ -34,8 +44,8 @@ const MovementsHistory = () => {
             Este es el historial de tus movimientos
           </h3>
           <MovementLogContainer>
-            {balance.movementsArray.length != 0
-              ? balance.movementsArray.map((element) => (
+            {context.movementsArray.length != 0
+              ? context.movementsArray.map((element) => (
                   <MovementLog
                     date={element.date}
                     type={element.type}

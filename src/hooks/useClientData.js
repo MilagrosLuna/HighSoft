@@ -6,7 +6,7 @@ import API from "@/src/utils/api";
 const useClientData = () => {
     const [clientData, setClientData] = useState();
 
-    async function getClientData( authHeader ) {
+    async function getClientDataFromApi( authHeader ) {
             try {
               // solicitud a la api                /api-token-auth
                 const response = await API.get("/api/client-data/", {
@@ -24,7 +24,23 @@ const useClientData = () => {
           }
     }
 
+    const getClientData = (setter) => {
+
+      const storedData = localStorage.getItem('myData');
+  
+      if (storedData) {
+        // Si hay datos almacenados, convertir la cadena JSON a un objeto JavaScript
+        const parsedData = JSON.parse(storedData);
+        setter(parsedData.clientData)
+      } else {
+        // No hay datos almacenados bajo la clave 'myData'
+        console.log('No hay datos almacenados.');
+      }
+
+    }
+
     return {
+        getClientDataFromApi,
         getClientData,
         clientData
     }

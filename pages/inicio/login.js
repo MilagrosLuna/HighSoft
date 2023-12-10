@@ -101,7 +101,7 @@ export default function Login() {
 
     const StoreData = () =>{
 
-      getAuth.getClientData(getAuth.getCredentials(username, password))
+      getAuth.getClientDataFromApi(getAuth.getCredentials(username, password))
       .then(clientData => {
         if (clientData) {
           console.log(clientData);

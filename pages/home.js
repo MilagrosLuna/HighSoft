@@ -7,23 +7,14 @@ import GeneralContext from "@/src/context/generalContext";
 
 import Head from "next/head";
 export default function Home() {
-  const balance = useContext(GeneralContext);
+  const context = useContext(GeneralContext);
 
+  // estado para almacenar los datos del cliente como objeto
   const [clientData, setClientData] = useState()
 
+  // traer los datos del cliente y almacenarlos en el
   useEffect(() => {
-    const storedData = localStorage.getItem('myData');
-
-    if (storedData) {
-      // Si hay datos almacenados, convertir la cadena JSON a un objeto JavaScript
-      const parsedData = JSON.parse(storedData);
-      console.log(parsedData.clientData)
-      setClientData(parsedData.clientData)
-    } else {
-      // No hay datos almacenados bajo la clave 'myData'
-      console.log('No hay datos almacenados.');
-    }
-
+    context.getClientData(setClientData)
   }, [])
 
   return (
@@ -45,21 +36,20 @@ export default function Home() {
           style={{ width: 60 + "%" }}
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
         >
-          <h1 className="text-center">Bienvenido</h1>
-          {clientData && <p>{clientData.customer_name}</p>}
+          <h1 className="text-center">Bienvenido {clientData && clientData.customer_name}</h1>
           <div
             style={{ width: 70 + "%", height: "max-content" }}
             className="text-black p-5 container d-flex flex-col gap-3 bg-rosa-secondary mx-auto d-flex align-items-center justify-content-between rounded"
           >
             <h4>Tu saldo</h4>
-            <h3>{balance.showBalance ? "$" + balance.balance : "***"}</h3>
+            <h3>{context.showBalance ? "$" + context.balance : "***"}</h3>
             <button
               className="btn btn-danger"
               onClick={() => {
-                balance.toggleShow();
+                context.toggleShow();
               }}
             >
-              {balance.showBalance ? "Ocultar" : "Mostrar"}
+              {context.showBalance ? "Ocultar" : "Mostrar"}
             </button>
           </div>
           <div style={{ width: 70 + "%" }} className="container my-3">
