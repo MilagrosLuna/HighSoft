@@ -70,10 +70,13 @@ export default function Login() {
       getAuth.getClientDataFromApi(getAuth.getCredentials(username, password))
       .then(clientData => {
         if (clientData) {
+          let credentials = getAuth.getCredentials(username, password);
+          clientData.auth_header = credentials
           console.log(clientData);
           const dataToStore = { 
             clientData
           };
+          console.log(dataToStore);
           localStorage.setItem('myData', JSON.stringify(dataToStore));
         }
       })

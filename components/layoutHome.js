@@ -1,7 +1,9 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
 import HomeNav from "./navHome";
 import Footer from "./footer";
 import BackToHome from "./BackToHome";
+import HomeNavEmployee from "./navHomeEmployee";
+import GeneralContext from "@/src/context/generalContext";
 
 const styles = {
   container: {
@@ -12,25 +14,22 @@ const styles = {
   },
 };
 export default function LayoutHome({ children }) {
-
-  const [clientData, setClientData] = useState(null);
  
-  useEffect(() => {
-    const storedData = localStorage.getItem('myData');
+  const context = useContext(GeneralContext);
 
-    if (storedData) {
-      // Si hay datos almacenados, convertir la cadena JSON a un objeto JavaScript
-      const parsedData = JSON.parse(storedData);
-      setClientData(parsedData.clientData);
-    } else {
-      // No hay datos almacenados bajo la clave 'myData'
-      console.log('No hay datos almacenados.');
-    }
-  }, []);
+  // estado para almacenar los datos del cliente como objeto
+  const [clientData, setClientData] = useState()
+
+  // traer los datos del cliente y almacenarlos en el
+  useEffect(() => {
+    context.getClientData(setClientData)
+  }, [])
 
   return (
     <div style={styles.container}>
-      <HomeNav />
+      {clientData && (
+        clientData.is_staff ? <HomeNavEmployee /> :<HomeNav />
+      )}
       <BackToHome />
         {children}
       <Footer />

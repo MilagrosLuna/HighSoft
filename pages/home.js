@@ -37,6 +37,7 @@ export default function Home() {
           className="container py-3 mx-auto my-20 text-white text-center bg-rosa rounded"
         >
           <h1 className="text-center">Bienvenido {clientData && clientData.customer_name}</h1>
+          {clientData && clientData.is_staff && <h2>Empleado</h2>}
           <div
             style={{ width: 70 + "%", height: "max-content" }}
             className="text-black p-5 container d-flex flex-col gap-3 bg-rosa-secondary mx-auto d-flex align-items-center justify-content-between rounded"

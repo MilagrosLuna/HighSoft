@@ -1,7 +1,9 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useContext } from 'react';
+import styles from "../../styles/accounts.module.css"
 import LayoutHome from './../../components/layoutHome';
 import Head from "next/head";
 import axios from 'axios';
+import GeneralContext from '@/src/context/generalContext';
 // // Componente de tarjeta de crédito
 // function CreditCard({ type, limit, showDetails }) {
 //   const [cardNumber, setCardNumber] = useState('**** **** **** 1234'); // Número de tarjeta ficticio
@@ -24,8 +26,8 @@ import axios from 'axios';
 // }
 
 function ClienteDetail({ customerId }) {
-  const [clienteData, setClienteData] = useState(null);
-  const [accountsData, setAccountsData] = useState(null);
+  const [clientData, setClientData] = useState();
+  const [accountsData, setAccountsData] = useState();
 
   // Objeto que mapea los tipos de cliente
   const tipoClienteMap = {
@@ -34,46 +36,13 @@ function ClienteDetail({ customerId }) {
     3: 'Black'
   };
 
+  const context = useContext(GeneralContext);
+
   useEffect(() => {
-    const fetchClienteData = async () => {
-      try {
-        const basicAuth = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
-        const headers = {
-          Authorization: basicAuth,
-          "Content-Type": "application/json",
-        };
-
-        const response = await axios.get(
-          `http://127.0.0.1:8000/api/client-data/`,
-          { headers } // Agregar los headers a la solicitud
-        );
-        setClienteData(response.data);
-        console.log(response.data)
-      } catch (error) {
-        console.error('Error al obtener los datos del cliente:', error);
-        // Manejo de errores
-      }
-    };
-
-    const fetchAccountsData = async () => {
-      try {
-        const basicAuth = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
-        const headers = {
-          Authorization: basicAuth,
-          "Content-Type": "application/json",
-        };
-
-        const response = await axios.get('http://127.0.0.1:8000/api/accounts/', { headers }
-        );
-        setAccountsData(response.data);
-      } catch (error) {
-        console.error('Error al obtener los datos de cuentas:', error);
-      }
-    };
-
-    fetchClienteData();
-    fetchAccountsData();
-  }, [customerId]);
+    context.getClientData(setClientData)
+    context.getAccountsData(setAccountsData)
+  }, []);
+  
 
 // function CreditCards() {
 //   const [showCardDetails, setShowCardDetails] = useState(false);
@@ -93,19 +62,19 @@ function ClienteDetail({ customerId }) {
         <meta http-equiv="Content-Language" content="es" />
       </Head>
       <LayoutHome>
-        <div className="container py-3 mx-auto my-20 ">
-          <div className="credit-cards bg-rosa rounded">
+        <div className="container py-5 mx-auto mt-20">
+          <div className="credit-cards bg-rosa rounded p-5">
             <div>
-              {clienteData && clienteData.customer_name ? (
+              {clientData && clientData.customer_name ? (
                 <div>
                   <h2>Detalles del Cliente</h2>
-                  <p>Nombre: {clienteData.customer_name}</p>
-                  <p>Apellido: {clienteData.customer_surname}</p>
-                  <p>DNI: {clienteData.customer_dni}</p>
-                  <p>Fecha de nacimiento: {clienteData.dob}</p>
-                  <p>Sucursal: {clienteData.branch}</p>
-                  <p>ID de usuario: {clienteData.user}</p>
-                  <p>Tipo de cliente: {tipoClienteMap[clienteData.tipo_cliente]}</p>
+                  <p>Nombre: {clientData.customer_name}</p>
+                  <p>Apellido: {clientData.customer_surname}</p>
+                  <p>DNI: {clientData.customer_dni}</p>
+                  <p>Fecha de nacimiento: {clientData.dob}</p>
+                  <p>Sucursal: {clientData.branch}</p>
+                  <p>ID de usuario: {clientData.user}</p>
+                  <p>Tipo de cliente: {tipoClienteMap[clientData.tipo_cliente]}</p>
                   {/* Otros detalles del cliente */}
                 </div>
               ) : (
@@ -115,22 +84,23 @@ function ClienteDetail({ customerId }) {
             </div>
         </div>
 
-        <div className="container py-3 mx-auto my-30">
-          <div className="credit-cards bg-rosa rounded">
+        <div className="container py-3 mx-auto ">
+          <div className="credit-cards bg-rosa rounded p-5">
 
         <div>
             <h2>Mis Cuentas</h2>
   {accountsData ? (
     <div>
       {accountsData[0].cuenta_data.map((account, index) => (
-        <div key={index}>
+        <div key={index} className={styles.accountWrap}>
           <p>ID de cuenta: {account.account_id}</p>
           <p>Tipo de cuenta: {account.tipo_cuenta_nombre.tipo_cuenta_nombre}</p>
-          <p>Balance: {account.balance}</p>
+          <p>Balance: <strong>{account.balance}</strong></p>
           <p>IBAN: {account.iban}</p>
           {/* Otros detalles de la cuenta */}
         </div>
       ))}
+  {accountsData && console.log(accountsData)}
     </div>
   ) : (
     <p>Cargando datos de cuentas...</p>

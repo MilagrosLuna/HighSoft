@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import API from "@/src/utils/api";
+import { accordionItem } from "@nextui-org/react";
 
 const useClientData = () => {
     const [clientData, setClientData] = useState();
@@ -39,9 +40,38 @@ const useClientData = () => {
 
     }
 
+    const getAccountsData = async (setter) => {
+        try {
+          const authHeader = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
+          const response = await API.get("/api/accounts/", {
+            headers:{
+                Authorization: authHeader
+            }
+        });
+          setter(response.data);
+          return response.data;
+        } catch (error) {
+          console.error('Error al obtener los datos de cuentas:', error);
+        }
+    }
+
+    const getTotalBalance = (accounts) => {
+
+      let totalBalance = 0
+
+
+      accounts[0].cuenta_data.map((account) => (
+        totalBalance += account.balance
+      ))
+      return totalBalance
+    }
+
+
     return {
         getClientDataFromApi,
         getClientData,
+        getAccountsData,
+        getTotalBalance,
         clientData
     }
 
