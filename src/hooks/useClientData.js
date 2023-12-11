@@ -40,12 +40,11 @@ const useClientData = () => {
 
     }
 
-    const getAccountsData = async (setter) => {
+    const getAccountsData = async (setter, credentials) => {
         try {
-          const authHeader = "Basic R29uekE6Njg0V1kybUhmSUNrMUJYTEhlcmgz";
           const response = await API.get("/api/accounts/", {
             headers:{
-                Authorization: authHeader
+                Authorization: credentials
             }
         });
           setter(response.data);
@@ -55,15 +54,18 @@ const useClientData = () => {
         }
     }
 
-    const getTotalBalance = (accounts) => {
-
-      let totalBalance = 0
-
-
-      accounts[0].cuenta_data.map((account) => (
-        totalBalance += account.balance
-      ))
-      return totalBalance
+    const getLoansByBranch = async (setter, credentials, branchId) => {
+      try {
+        const response = await API.get(`/api/loans-per-branch/?branch-id=${branchId}`, {
+          headers:{
+              Authorization: credentials
+          }
+      });
+        setter(response.data);
+        return response.data;
+      } catch (error) {
+        console.error('Error al obtener los datos de cuentas:', error);
+      }
     }
 
 
@@ -71,7 +73,7 @@ const useClientData = () => {
         getClientDataFromApi,
         getClientData,
         getAccountsData,
-        getTotalBalance,
+        getLoansByBranch,
         clientData
     }
 

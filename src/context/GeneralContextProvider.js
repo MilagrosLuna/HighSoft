@@ -8,7 +8,7 @@ const GeneralContextProvider = ({ children }) => {
   const { balance, showBalance, decrement, increment, toggleShow } =
     useBalance();
   const { getCredentials, getUsername, getPassword, username, password, credentials } = useAuth()
-  const { getClientDataFromApi, getClientData, getAccountsData, getTotalBalance, clientData } = useClientData()
+  const { getClientDataFromApi, getClientData, getAccountsData, getLoansByBranch, clientData } = useClientData()
     
   const [movementsArray, setMovementsArray] = useState([]);
 
@@ -31,7 +31,7 @@ const GeneralContextProvider = ({ children }) => {
         getClientDataFromApi,
         getClientData,
         getAccountsData,
-        getTotalBalance,
+        getLoansByBranch,
         clientData
       }}
     >

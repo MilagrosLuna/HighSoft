@@ -42,6 +42,13 @@ function ClienteDetail({ customerId }) {
     context.getClientData(setClientData)
     context.getAccountsData(setAccountsData)
   }, []);
+
+  useEffect(() => {
+    if (clientData){
+      context.getAccountsData(setAccountsData, clientData.auth_header)
+    }
+  }, [clientData])
+  
   
 
 // function CreditCards() {
