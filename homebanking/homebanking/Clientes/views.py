@@ -1,38 +1,44 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import Cliente, TipoCliente
+
+# Imports for viewsets
+
+from rest_framework import viewsets, response, permissions, status
+from .models import Cliente, TipoCliente
+from .serializers import ClienteSerializer, TipoClienteSerializer, CombinedClienteIsStaffSerializer, ClienteIsStaffSerializer
 
 # Create your views here.
 
-@login_required
-def client(request):
+class ClienteViewSet(viewsets.ModelViewSet):
 
-    user_id = request.user.id
-    user_data = Cliente.objects.get(user_id=user_id)
-    client_class = TipoCliente.objects.get(tipo_id=user_data.tipo_cliente_id)
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    data = {
-        'cliente_id': user_id,
-        'cliente_data': user_data,
-        'client_class': client_class
-    }
+    def list(self, request):
 
-    return render(request, 'clientes/client.html', data)
+        user_id = request.user.id
+ 
+        client_instance = Cliente.objects.get(user_id = user_id)
+        print(client_instance)
+        serializer = ClienteIsStaffSerializer(client_instance, context={'request': request})
 
-def client_search(request):
+        return response.Response(serializer.data, status.HTTP_200_OK)
+    
+class TipoClienteViewSet(viewsets.ModelViewSet):
 
-    if request.method == 'GET':
-        form = ClientSearchForm(request.GET)
-        print(request.GET)
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    if form.is_valid():
-        query = form.cleaned_data['query']
-        results = Cliente.objects.using('homebanking').filter(customer_name__icontains=query) | Cliente.objects.using('homebanking').filter(customer_surname__icontains=query) | Cliente.objects.filter(customer_dni__icontains=query)
-        form = ClientSearchForm()
-        context = {'results': results, 'searched': query, 'form': form}
-        return render(request, 'clientes/client.html', context)
-    else:
-        form = ClientSearchForm()
-        
+    def list(self, request):
 
-    return render(request, 'clientes/client.html', {'form': form})
+        user_id = request.user.id
+        queryset = Cliente.objects.filter(user_id = user_id)
+
+        user_client_type_id = queryset[0].tipo_cliente.tipo_id
+
+        user_client_type = TipoCliente.objects.filter(tipo_id = user_client_type_id)
+
+        serializer = TipoClienteSerializer(user_client_type, many=True)
+
+        return response.Response(serializer.data, status.HTTP_200_OK)

@@ -1,12 +1,13 @@
 from django.db import models
 from Clientes.models import Cliente
+from .utils import get_iban
 
 # Create your models here.
 
 class Cuenta(models.Model):
     account_id = models.AutoField(primary_key=True)
-    balance = models.IntegerField()
-    iban = models.TextField()
+    balance = models.IntegerField(default=0)
+    iban = models.TextField(default=get_iban)
     client = models.ForeignKey(Cliente, models.DO_NOTHING)
     tipo_cuenta = models.ForeignKey('TipoCuenta', models.DO_NOTHING)
 

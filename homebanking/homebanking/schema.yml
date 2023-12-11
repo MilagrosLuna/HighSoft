@@ -1,0 +1,751 @@
+openapi: 3.0.3
+info:
+  title: HighSoft API Documentation
+  version: 0.0.0
+paths:
+  /api/clientes/:
+    get:
+      operationId: api_clientes_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+          description: ''
+    post:
+      operationId: api_clientes_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+  /api/clientes/{customer_id}/:
+    get:
+      operationId: api_clientes_retrieve
+      parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: integer
+        description: A unique value identifying this cliente.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    put:
+      operationId: api_clientes_update
+      parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: integer
+        description: A unique value identifying this cliente.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    patch:
+      operationId: api_clientes_partial_update
+      parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: integer
+        description: A unique value identifying this cliente.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCliente'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+          description: ''
+    delete:
+      operationId: api_clientes_destroy
+      parameters:
+      - in: path
+        name: customer_id
+        schema:
+          type: integer
+        description: A unique value identifying this cliente.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/crear-cuenta/:
+    get:
+      operationId: api_crear_cuenta_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CrearCuenta'
+          description: ''
+    post:
+      operationId: api_crear_cuenta_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrearCuenta'
+          description: ''
+  /api/crear-cuenta/{account_id}/:
+    get:
+      operationId: api_crear_cuenta_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrearCuenta'
+          description: ''
+    put:
+      operationId: api_crear_cuenta_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CrearCuenta'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrearCuenta'
+          description: ''
+    patch:
+      operationId: api_crear_cuenta_partial_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCrearCuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCrearCuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCrearCuenta'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrearCuenta'
+          description: ''
+    delete:
+      operationId: api_crear_cuenta_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/cuentas/:
+    get:
+      operationId: api_cuentas_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cuenta'
+          description: ''
+    post:
+      operationId: api_cuentas_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cuenta'
+          description: ''
+  /api/cuentas/{account_id}/:
+    get:
+      operationId: api_cuentas_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cuenta'
+          description: ''
+    put:
+      operationId: api_cuentas_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cuenta'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cuenta'
+          description: ''
+    patch:
+      operationId: api_cuentas_partial_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCuenta'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCuenta'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCuenta'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cuenta'
+          description: ''
+    delete:
+      operationId: api_cuentas_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this cuenta.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/loan-money/:
+    get:
+      operationId: api_loan_money_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prestamo'
+          description: ''
+    post:
+      operationId: api_loan_money_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prestamo'
+          description: ''
+  /api/loan-money/{loan_id}/:
+    get:
+      operationId: api_loan_money_retrieve
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this prestamo.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prestamo'
+          description: ''
+    put:
+      operationId: api_loan_money_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this prestamo.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Prestamo'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prestamo'
+          description: ''
+    patch:
+      operationId: api_loan_money_partial_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this prestamo.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPrestamo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPrestamo'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPrestamo'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prestamo'
+          description: ''
+    delete:
+      operationId: api_loan_money_destroy
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this prestamo.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+        customer_name:
+          type: string
+          maxLength: 30
+        customer_surname:
+          type: string
+          maxLength: 30
+        customer_dni:
+          type: integer
+        dob:
+          type: string
+          format: date
+          nullable: true
+        branch_id:
+          type: integer
+        user:
+          type: integer
+        tipo_cliente:
+          type: integer
+      required:
+      - branch_id
+      - customer_dni
+      - customer_id
+      - customer_name
+      - customer_surname
+      - tipo_cliente
+      - user
+    CrearCuenta:
+      type: object
+      properties:
+        client:
+          type: integer
+        tipo_cuenta:
+          type: integer
+      required:
+      - client
+      - tipo_cuenta
+    Cuenta:
+      type: object
+      properties:
+        account_id:
+          type: integer
+          readOnly: true
+        balance:
+          type: integer
+        iban:
+          type: string
+        client:
+          type: integer
+        tipo_cuenta:
+          type: integer
+      required:
+      - account_id
+      - client
+      - tipo_cuenta
+    PatchedCliente:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+        customer_name:
+          type: string
+          maxLength: 30
+        customer_surname:
+          type: string
+          maxLength: 30
+        customer_dni:
+          type: integer
+        dob:
+          type: string
+          format: date
+          nullable: true
+        branch_id:
+          type: integer
+        user:
+          type: integer
+        tipo_cliente:
+          type: integer
+    PatchedCrearCuenta:
+      type: object
+      properties:
+        client:
+          type: integer
+        tipo_cuenta:
+          type: integer
+    PatchedCuenta:
+      type: object
+      properties:
+        account_id:
+          type: integer
+          readOnly: true
+        balance:
+          type: integer
+        iban:
+          type: string
+        client:
+          type: integer
+        tipo_cuenta:
+          type: integer
+    PatchedPrestamo:
+      type: object
+      properties:
+        loan_id:
+          type: integer
+          readOnly: true
+        loan_type:
+          type: string
+          title: Tipo de préstamo
+        loan_date:
+          type: string
+          format: date
+          readOnly: true
+        loan_total:
+          type: integer
+        customer_id:
+          type: integer
+        account:
+          type: integer
+    Prestamo:
+      type: object
+      properties:
+        loan_id:
+          type: integer
+          readOnly: true
+        loan_type:
+          type: string
+          title: Tipo de préstamo
+        loan_date:
+          type: string
+          format: date
+          readOnly: true
+        loan_total:
+          type: integer
+        customer_id:
+          type: integer
+        account:
+          type: integer
+      required:
+      - account
+      - customer_id
+      - loan_date
+      - loan_id
+      - loan_total
+      - loan_type
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

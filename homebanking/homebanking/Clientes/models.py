@@ -1,5 +1,5 @@
 from django.db import models
-from Empleados.models import Direcciones
+from Direcciones.models import Direcciones
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -11,23 +11,13 @@ class Cliente(models.Model):
     customer_surname = models.CharField(max_length=30)
     customer_dni = models.IntegerField(db_column='customer_DNI')
     dob = models.DateField(blank=True, null=True)
-    branch_id = models.IntegerField()
+    branch = models.ForeignKey('Empleados.Sucursal', models.DO_NOTHING)
     user = models.ForeignKey(User, models.DO_NOTHING)
     tipo_cliente = models.ForeignKey('TipoCliente', models.DO_NOTHING)
 
     class Meta:
         managed = False
         db_table = 'cliente'
-
-
-class DireccionCliente(models.Model):
-    direccion = models.ForeignKey('Empleados.Direcciones', models.DO_NOTHING)
-    customer = models.ForeignKey(Cliente, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'direccion_cliente'
-
 
 class TipoCliente(models.Model):
     tipo_id = models.AutoField(primary_key=True, blank=True)

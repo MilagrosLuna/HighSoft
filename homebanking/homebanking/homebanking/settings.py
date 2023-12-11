@@ -36,17 +36,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # External APPs
+    'corsheaders',
+    'rest_framework',
     'bootstrap5',
     'crispy_forms',
     'crispy_bootstrap5',
-    'djtriggers',
+    'drf_spectacular',
+    # Internal APPs
     'Cuentas',
     'Clientes',
     'core',
+    'Direcciones',
     'Empleados',
     'Movimientos',
     'Prestamos',
-    'Tarjetas'
+    'Tarjetas',
+    'Transferencias'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -58,6 +64,8 @@ TRIGGERS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,6 +76,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'homebanking.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "https://miaplicacion.com",
+    "http://localhost:3000",  # Ejemplo de dominio local para desarrollo frontend
+]
 
 TEMPLATES = [
     {
@@ -151,3 +164,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'HighSoft API Documentation'
+}
