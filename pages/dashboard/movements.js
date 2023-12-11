@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BalanceContext from "@/src/context/generalContext";
 import MovementLog from "@/components/MovementLog";
 import MovementLogContainer from "@/components/MovementLogContainer";
