@@ -30,6 +30,7 @@ const PrestamosEmpleado = () => {
   };
 
   const handleSubmit = () => {
+    event.preventDefault();
     if (clientData && requestedBranch){
         context.getLoansByBranch(setLoansData, clientData.auth_header, requestedBranch)
     }
