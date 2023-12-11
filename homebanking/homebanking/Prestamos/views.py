@@ -47,7 +47,7 @@ class PrestamoPreaprobadosViewset(viewsets.ModelViewSet):
 class PrestamosSucursalViewSet(viewsets.ModelViewSet):
 
     queryset = Prestamo.objects.all()
-    serializer_class = SolicitudPrestamoSerializer
+    serializer_class = PrestamoSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request):
