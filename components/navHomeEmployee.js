@@ -62,15 +62,6 @@ function HomeNavEmployee() {
                     Prestamos
                   </Link>
                 </li>
-                <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link
-                    href="/dashboard/branches"
-                    onClick={() => setNavbar(!navbar)}
-                  
-                  >
-                    Sucursales
-                  </Link>
-                </li>
                 <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
                   <Link
                     href="/dashboard/currency-exchange"
@@ -82,7 +73,7 @@ function HomeNavEmployee() {
                 </li>
                 <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
                   <Link
-                    href="/dashboard/credit-cards"
+                    href="/dashboard/credit-cards-employee"
                     onClick={() => setNavbar(!navbar)}
                    
                   >
@@ -96,6 +87,15 @@ function HomeNavEmployee() {
                    
                   >
                     Cuenta
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                  <Link
+                    href="/dashboard/branches"
+                    onClick={() => setNavbar(!navbar)}
+                  
+                  >
+                    Sucursales
                   </Link>
                 </li>
                 <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">

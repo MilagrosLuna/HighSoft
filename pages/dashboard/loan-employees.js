@@ -25,7 +25,6 @@ const PrestamosEmpleado = () => {
   }, [])
 
   const handleBranch = (event) => {
-    event.preventDefault();
     setRequestedBranch(event.target.value);
   };
 

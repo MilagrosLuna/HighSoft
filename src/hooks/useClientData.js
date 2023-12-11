@@ -68,12 +68,27 @@ const useClientData = () => {
       }
     }
 
+    const getCardsData = async (setter, credentials, clientId) => {
+      try {
+        const response = await API.get(`/api/cards-per-client?client-id=${clientId}`, {
+          headers:{
+              Authorization: credentials
+          }
+      });
+        setter(response.data);
+        return response.data;
+      } catch (error) {
+        console.error('Error al obtener los datos de cuentas:', error);
+      }
+    }
+
 
     return {
         getClientDataFromApi,
         getClientData,
         getAccountsData,
         getLoansByBranch,
+        getCardsData,
         clientData
     }
 
